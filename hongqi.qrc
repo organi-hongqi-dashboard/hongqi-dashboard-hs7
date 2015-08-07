@@ -29,4 +29,20 @@
     <qresource prefix="/letfPanel"/>
     <qresource prefix="/rightPanel"/>
     <qresource prefix="/centrePanel"/>
+    <qresource prefix="/rpmPanel">
+        <file>images/rpmPanel/gearD.png</file>
+        <file>images/rpmPanel/rpm0.png</file>
+        <file>images/rpmPanel/rpm1.png</file>
+        <file>images/rpmPanel/rpm2.png</file>
+        <file>images/rpmPanel/rpm3.png</file>
+        <file>images/rpmPanel/rpm4.png</file>
+        <file>images/rpmPanel/rpm5.png</file>
+        <file>images/rpmPanel/rpm6.png</file>
+        <file>images/rpmPanel/rpm7.png</file>
+        <file>images/rpmPanel/rpm_disk.png</file>
+        <file>images/rpmPanel/rpm_pointer.png</file>
+        <file>images/rpmPanel/rpm_scale.png</file>
+        <file>images/rpmPanel/unit_down.png</file>
+        <file>images/rpmPanel/unit_up.png</file>
+    </qresource>
 </RCC>
