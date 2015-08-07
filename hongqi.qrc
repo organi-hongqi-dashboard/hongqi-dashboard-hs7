@@ -25,10 +25,76 @@
     </qresource>
     <qresource prefix="/common">
         <file>images/common/spinner.png</file>
+        <file>images/common/redCube.png</file>
+        <file>images/common/barOutline.png</file>
+        <file>images/common/greenCube.png</file>
+        <file>images/common/iconTripA.png</file>
+        <file>images/common/iconKMTemp.png</file>
+        <file>images/common/iconDate.png</file>
+        <file>images/common/charTemp.png</file>
+        <file>images/common/charOdo.png</file>
+        <file>images/common/baseline.png</file>
+        <file>images/common/iconTime.png</file>
+        <file>images/common/outlinelittle.png</file>
+        <file>images/common/outlineBig.png</file>
     </qresource>
     <qresource prefix="/letfPanel"/>
-    <qresource prefix="/rightPanel"/>
-    <qresource prefix="/centrePanel"/>
+    <qresource prefix="/rightPanel">
+        <file>images/coolantTemp/coolant90.png</file>
+        <file>images/coolantTemp/bottomHighlight_2.png</file>
+        <file>images/coolantTemp/tempReflection.png</file>
+        <file>images/coolantTemp/coolant130.png</file>
+        <file>images/coolantTemp/coolant50.png</file>
+        <file>images/coolantTemp/totalTempBar.png</file>
+        <file>images/coolantTemp/iconTemp.png</file>
+        <file>images/rightDisk/graduationRight2.png</file>
+        <file>images/rightDisk/graduationRight1.png</file>
+        <file>images/rightDisk/rightPoint.png</file>
+        <file>images/rightDisk/num240.png</file>
+        <file>images/rightDisk/num220.png</file>
+        <file>images/rightDisk/num200.png</file>
+        <file>images/rightDisk/num180.png</file>
+        <file>images/rightDisk/num160.png</file>
+        <file>images/rightDisk/num140.png</file>
+        <file>images/rightDisk/num120.png</file>
+        <file>images/rightDisk/num100.png</file>
+        <file>images/rightDisk/num80.png</file>
+        <file>images/rightDisk/num60.png</file>
+        <file>images/rightDisk/num40.png</file>
+        <file>images/rightDisk/num20.png</file>
+        <file>images/rightDisk/num0.png</file>
+        <file>images/rightDisk/graduationRightBig.png</file>
+        <file>images/rightDisk/numSpeed.png</file>
+        <file>images/rightDisk/iconKmPerHBig.png</file>
+        <file>images/rightDisk/roundRightBig1.png</file>
+        <file>images/rightDisk/roundRightBig2.png</file>
+        <file>images/rightDisk/bgRightBig.png</file>
+        <file>images/rightDisk/09.png</file>
+        <file>images/rightDisk/08.png</file>
+        <file>images/rightDisk/07.png</file>
+        <file>images/rightDisk/06.png</file>
+        <file>images/rightDisk/05.png</file>
+        <file>images/rightDisk/04.png</file>
+        <file>images/rightDisk/03.png</file>
+        <file>images/rightDisk/02.png</file>
+        <file>images/rightDisk/01.png</file>
+        <file>images/rightDisk/00.png</file>
+    </qresource>
+    <qresource prefix="/centrePanel">
+        <file>images/oilMass/9999.png</file>
+        <file>images/oilMass/8888.png</file>
+        <file>images/oilMass/7777.png</file>
+        <file>images/oilMass/6666.png</file>
+        <file>images/oilMass/5555.png</file>
+        <file>images/oilMass/4444.png</file>
+        <file>images/oilMass/3333.png</file>
+        <file>images/oilMass/2222.png</file>
+        <file>images/oilMass/1111.png</file>
+        <file>images/oilMass/0000.png</file>
+        <file>images/oilMass/bottomHighlight.png</file>
+        <file>images/oilMass/iconPercentage.png</file>
+        <file>images/oilMass/iconOilMass.png</file>
+    </qresource>
     <qresource prefix="/rpmPanel">
         <file>images/rpmPanel/gearD.png</file>
         <file>images/rpmPanel/rpm0.png</file>

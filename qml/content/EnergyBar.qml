@@ -21,7 +21,7 @@ Item {
 
 	Image {
 		id: mTargetShade
-		visible: false
+        visible: true
 		source: targetShade
 	}
 
