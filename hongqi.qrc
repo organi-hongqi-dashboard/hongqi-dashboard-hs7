@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file>qml/content/qmldir</file>
+        <file>qml/mainViewer.qml</file>
+        <file>qml/content/DormancyPanel.qml</file>
+        <file>qml/content/MainPanel.qml</file>
+        <file>qml/content/EnergyBar.qml</file>
+        <file>qml/content/RightPanel.qml</file>
+        <file>qml/content/LeftPanel.qml</file>
+        <file>qml/content/DigitValue.qml</file>
+        <file>qml/content/CentrePanel.qml</file>
+        <file>qml/content/Fps.qml</file>
+        <file>qml/content/RightInfo.qml</file>
+        <file>qml/content/LeftInfo.qml</file>
+        <file>qml/content/WaterTempBar.qml</file>
+        <file>qml/content/SpeedDisk.qml</file>
+        <file>qml/content/SocBar.qml</file>
+        <file>qml/content/RpmDisk.qml</file>
+        <file>qml/content/PowerKwBar.qml</file>
+        <file>qml/content/OilBar.qml</file>
+        <file>qml/content/CarInfo.qml</file>
+        <file>qml/content/CarFunction.qml</file>
+        <file>qml/content/functionMode/FunctionMenu.qml</file>
+        <file>qml/content/Gear.qml</file>
+    </qresource>
+    <qresource prefix="/common">
+        <file>images/common/spinner.png</file>
+    </qresource>
+    <qresource prefix="/letfPanel"/>
+    <qresource prefix="/rightPanel"/>
+    <qresource prefix="/centrePanel"/>
+</RCC>
