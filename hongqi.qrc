@@ -45,4 +45,32 @@
         <file>images/rpmPanel/unit_down.png</file>
         <file>images/rpmPanel/unit_up.png</file>
     </qresource>
+    <qresource prefix="/menuPanel">
+        <file>images/menuPanel/7812512.png</file>
+        <file>images/menuPanel/7812512Y.png</file>
+        <file>images/menuPanel/7984524512.png</file>
+        <file>images/menuPanel/7984524512Y.png</file>
+        <file>images/menuPanel/contactSetting.png</file>
+        <file>images/menuPanel/contactSettingY.png</file>
+        <file>images/menuPanel/drivInfo.png</file>
+        <file>images/menuPanel/drivInfoY.png</file>
+        <file>images/menuPanel/themeStyle.png</file>
+        <file>images/menuPanel/themeStyleY.png</file>
+        <file>images/menuPanel/timeSetting.png</file>
+        <file>images/menuPanel/timeSettingY.png</file>
+        <file>images/menuPanel/TPMSInfo.png</file>
+        <file>images/menuPanel/TPMSInfoY.png</file>
+        <file>images/menuPanel/unitSetting.png</file>
+        <file>images/menuPanel/unitSettingY.png</file>
+        <file>images/menuPanel/ellipse_14.png</file>
+        <file>images/menuPanel/ellipse_14_copy.png</file>
+        <file>images/menuPanel/ellipse_18.png</file>
+        <file>images/menuPanel/layer_177_copy_2.png</file>
+        <file>images/menuPanel/layer_177_copy_3.png</file>
+        <file>images/menuPanel/layer_180.png</file>
+        <file>images/menuPanel/menu.png</file>
+        <file>images/menuPanel/rect_1.png</file>
+        <file>images/menuPanel/rect_1_copy.png</file>
+        <file>images/menuPanel/yellow_copy.png</file>
+    </qresource>
 </RCC>

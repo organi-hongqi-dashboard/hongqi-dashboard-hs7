@@ -112,7 +112,7 @@ Item {
 
     Image {
         id: rpm_pointer
-        x: 50
+        x: 51.5
         y: 432
         opacity: 0
         source: "qrc:/rpmPanel/images/rpmPanel/rpm_pointer.png"
