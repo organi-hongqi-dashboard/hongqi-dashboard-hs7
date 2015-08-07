@@ -4,7 +4,7 @@ Rectangle {
 	id: leftPanel
 
     RpmDisk {
-        id: rpmDisk
+        id: rpmPanel
     }
 
     LeftInfo {
@@ -17,5 +17,23 @@ Rectangle {
 
     PowerKwBar {
         id: powerKwBar
+    }
+
+    states: [
+        State {
+            name: ""
+            PropertyChanges { target: rpmPanel; state: "" }
+        },
+        State {
+            name: "Bigshow"
+            PropertyChanges { target: rpmPanel; state: "Bigshow" }
+        },
+        State {
+            name: "Smallshow"
+            PropertyChanges { target: rpmPanel; state: "Smallshow" }
+        }
+    ]
+    Component.onCompleted: {
+        leftPanel.state = "Bigshow"
     }
 }
