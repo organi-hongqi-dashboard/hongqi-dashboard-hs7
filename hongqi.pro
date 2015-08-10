@@ -25,7 +25,8 @@ HEADERS += $$HEADER_FOLDER/carstatus.h \
     $$HEADER_FOLDER/hqcarstatus.h \
     $$HEADER_FOLDER/protocol.h \
     $$HEADER_FOLDER/serial.h \
-    $$HEADER_FOLDER/ring.h
+    $$HEADER_FOLDER/ring.h \
+    src/include/fontName.h
 
 SOURCES += $$SOURCE_FOLDER/main.cpp \
     $$SOURCE_FOLDER/carstatus.cpp \
