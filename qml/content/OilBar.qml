@@ -53,7 +53,6 @@ Rectangle {
         source: "qrc:/centrePanel/images/oilMass/iconPercentage.png"
     }
 
-
     Image {
         id: iconOilMass
         x: 1236
@@ -61,7 +60,6 @@ Rectangle {
         opacity: 1.0
         source: "qrc:/centrePanel/images/oilMass/iconOilMass.png"
     }
-
 
     Image {
         id: bottomHighlight

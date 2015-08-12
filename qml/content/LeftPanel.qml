@@ -18,15 +18,20 @@ Rectangle {
     PowerKwBar {
         id: powerKwBar
     }
+    VoltagePanel {
+        id:voltagePanel
+    }
 
     states: [
         State {
             name: ""
             PropertyChanges { target: rpmPanel; state: "" }
+            PropertyChanges { target: leftInfo; state: "" }
         },
         State {
             name: "Bigshow"
             PropertyChanges { target: rpmPanel; state: "Bigshow" }
+            PropertyChanges { target: leftInfo; state: "Bigshow" }
         },
         State {
             name: "Smallshow"
