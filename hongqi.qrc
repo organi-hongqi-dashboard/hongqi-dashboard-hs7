@@ -22,6 +22,7 @@
         <file>qml/content/CarFunction.qml</file>
         <file>qml/content/functionMode/FunctionMenu.qml</file>
         <file>qml/content/Gear.qml</file>
+        <file>qml/content/VoltagePanel.qml</file>
     </qresource>
     <qresource prefix="/common">
         <file>images/common/spinner.png</file>
@@ -138,5 +139,28 @@
         <file>images/menuPanel/rect_1.png</file>
         <file>images/menuPanel/rect_1_copy.png</file>
         <file>images/menuPanel/yellow_copy.png</file>
+    </qresource>
+    <qresource prefix="/gearPanel">
+        <file>images/gearPanel/gearD.png</file>
+        <file>images/gearPanel/gearDcopy.png</file>
+        <file>images/gearPanel/gearN.png</file>
+        <file>images/gearPanel/gearNcopy.png</file>
+        <file>images/gearPanel/gearP.png</file>
+        <file>images/gearPanel/gearPcopy.png</file>
+        <file>images/gearPanel/gearR.png</file>
+        <file>images/gearPanel/gearRcopy.png</file>
+        <file>images/gearPanel/gearS.png</file>
+        <file>images/gearPanel/gearScopy.png</file>
+    </qresource>
+    <qresource prefix="/socBar">
+        <file>images/soc/soc_%.png</file>
+        <file>images/soc/soc_scale.png</file>
+        <file>images/soc/soc_unit.png</file>
+    </qresource>
+    <qresource prefix="/voltage">
+        <file>images/voltage/voltage_0%.png</file>
+        <file>images/voltage/voltage_100.png</file>
+        <file>images/voltage/voltage_scale.png</file>
+        <file>images/voltage/voltage_unit.png</file>
     </qresource>
 </RCC>

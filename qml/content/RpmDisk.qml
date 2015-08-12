@@ -102,13 +102,6 @@ Item {
             source: "qrc:/rpmPanel/images/rpmPanel/rpm7.png"
         }
     }
-    Image {
-        id: gearD
-        x: 323
-        y: 308
-        opacity: 0
-        source: "qrc:/rpmPanel/images/rpmPanel/gearD.png"
-    }
 
     Image {
         id: rpm_pointer
@@ -151,7 +144,6 @@ Item {
             PropertyChanges { target: rpm_scale; opacity: 0 }
             PropertyChanges { target: rpm_number; opacity: 0; numCtrl: 0.0  }
             PropertyChanges { target: rpm_pointer; opacity: 0; }
-            PropertyChanges { target: gearD; opacity: 0; }
             PropertyChanges { target: unit_up; opacity: 0; }
             PropertyChanges { target: unit_down; opacity: 0; }
         },
@@ -164,7 +156,6 @@ Item {
             PropertyChanges { target: rpm_scale; opacity: 1.0 }
             PropertyChanges { target: rpm_number; opacity: 1.0; numCtrl: 8.0 }
             PropertyChanges { target: rpm_pointer; opacity: 1.0 }
-            PropertyChanges { target: gearD; opacity: 1.0; }
             PropertyChanges { target: unit_up; opacity: 1.0; }
             PropertyChanges { target: unit_down; opacity: 0; }
         },
@@ -204,10 +195,7 @@ Item {
                 NumberAnimation { target: unit_up; property: "opacity"; duration: 500 }
                 NumberAnimation { target: rpm_pointer; property: "opacity"; duration: 400 }
                 NumberAnimation { target: pointerRotation; property: "angle"; from: 0; to: 270; duration: 800 }
-                ParallelAnimation {
-                    NumberAnimation { target: pointerRotation; property: "angle"; from: 270; to: 0; duration: 800 }
-                    NumberAnimation { target: gearD; property: "opacity"; duration: 1200 }
-                }
+                NumberAnimation { target: pointerRotation; property: "angle"; from: 270; to: 0; duration: 800 }
             }
         },
         Transition {
@@ -250,8 +238,5 @@ Item {
             }
         }
     ]
-    //    Component.onCompleted: {
-    //        rpmPanel.state = "show"
-    //    }
 }
 

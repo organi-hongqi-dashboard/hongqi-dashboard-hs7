@@ -4,6 +4,6 @@ Rectangle {
 	id: leftInfo
 
     Gear {
-        id: gear
+        id: gearPanel
     }
 }

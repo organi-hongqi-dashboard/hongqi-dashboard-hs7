@@ -126,7 +126,7 @@ Item {
         anchors.fill: parent
         preferredHighlightBegin: 0.5
         preferredHighlightEnd: 0.5
-        focus: true
+        focus: false
         model: appModel
         delegate: appDelegate
         path: Path {
@@ -166,19 +166,19 @@ Item {
             name: ""
         },
         State {
-            name: "show"
+            name: "Bigshow"
         }
     ]
 
     transitions: [
         Transition {
             from: ""
-            to: "show"
+            to: "Bigshow"
             SequentialAnimation {
             }
         },
         Transition {
-            from: "show"
+            from: "Bigshow"
             to: ""
             SequentialAnimation {
             }
