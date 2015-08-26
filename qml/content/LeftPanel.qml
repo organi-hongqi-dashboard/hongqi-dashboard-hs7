@@ -1,44 +1,48 @@
 import QtQuick 2.2
 
-Rectangle {
-	id: leftPanel
+Item {
+    id: leftPanel
 
     RpmDisk {
-        id: rpmPanel
+        id: rpmDisk
+        state: ""
     }
 
-    LeftInfo {
-        id: leftInfo
+    GearPanel {
+        id: gearPanel
+        state: ""
     }
 
-    SocBar {
-        id: socBar
-    }
+//    LeftInfo {
+//        id: leftInfo
+//    }
 
-    PowerKwBar {
-        id: powerKwBar
-    }
-    VoltagePanel {
-        id:voltagePanel
-    }
+//    SocBar {
+//        id: socBar
+//    }
+
+//    PowerKwBar {
+//        id: powerKwBar
+//    }
+//    VoltagePanel {
+//        id:voltagePanel
+//    }
 
     states: [
         State {
             name: ""
-            PropertyChanges { target: rpmPanel; state: "" }
-            PropertyChanges { target: leftInfo; state: "" }
+            PropertyChanges { target: rpmDisk; visible: false; state: "" }
+            PropertyChanges { target: gearPanel; visible: false; state: "" }
         },
         State {
-            name: "Bigshow"
-            PropertyChanges { target: rpmPanel; state: "Bigshow" }
-            PropertyChanges { target: leftInfo; state: "Bigshow" }
+            name: "normalMode"
+            PropertyChanges { target: rpmDisk; visible: true; state: "normalMode" }
+            PropertyChanges { target: gearPanel; visible: true; state: "normalMode" }
         },
         State {
-            name: "Smallshow"
-            PropertyChanges { target: rpmPanel; state: "Smallshow" }
+            name: "functionMode"
+            PropertyChanges { target: rpmDisk; visible: true; state: "functionMode" }
+            PropertyChanges { target: gearPanel; visible: true; state: "functionMode" }
         }
     ]
-    Component.onCompleted: {
-        leftPanel.state = "Bigshow"
-    }
 }

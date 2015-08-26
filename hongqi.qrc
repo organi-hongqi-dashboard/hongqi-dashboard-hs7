@@ -2,7 +2,6 @@
     <qresource prefix="/qml">
         <file>qml/content/qmldir</file>
         <file>qml/mainViewer.qml</file>
-        <file>qml/content/DormancyPanel.qml</file>
         <file>qml/content/MainPanel.qml</file>
         <file>qml/content/EnergyBar.qml</file>
         <file>qml/content/RightPanel.qml</file>
@@ -23,6 +22,9 @@
         <file>qml/content/functionMode/FunctionMenu.qml</file>
         <file>qml/content/Gear.qml</file>
         <file>qml/content/VoltagePanel.qml</file>
+        <file>qml/content/SplashPanel.qml</file>
+        <file>qml/content/GearPanel.qml</file>
+        <file>qml/content/GearBox.qml</file>
     </qresource>
     <qresource prefix="/common">
         <file>images/common/spinner.png</file>
@@ -96,21 +98,19 @@
         <file>images/oilMass/iconPercentage.png</file>
         <file>images/oilMass/iconOilMass.png</file>
     </qresource>
-    <qresource prefix="/rpmPanel">
-        <file>images/rpmPanel/gearD.png</file>
-        <file>images/rpmPanel/rpm0.png</file>
-        <file>images/rpmPanel/rpm1.png</file>
-        <file>images/rpmPanel/rpm2.png</file>
-        <file>images/rpmPanel/rpm3.png</file>
-        <file>images/rpmPanel/rpm4.png</file>
-        <file>images/rpmPanel/rpm5.png</file>
-        <file>images/rpmPanel/rpm6.png</file>
-        <file>images/rpmPanel/rpm7.png</file>
-        <file>images/rpmPanel/rpm_disk.png</file>
-        <file>images/rpmPanel/rpm_pointer.png</file>
-        <file>images/rpmPanel/rpm_scale.png</file>
-        <file>images/rpmPanel/unit_down.png</file>
-        <file>images/rpmPanel/unit_up.png</file>
+    <qresource prefix="/rpmDisk">
+        <file>images/letfPanel/rpmDisk/unit.png</file>
+        <file>images/letfPanel/rpmDisk/rpm_scale.png</file>
+        <file>images/letfPanel/rpmDisk/rpm_pointer.png</file>
+        <file>images/letfPanel/rpmDisk/rpm_disk.png</file>
+        <file>images/letfPanel/rpmDisk/rpm7.png</file>
+        <file>images/letfPanel/rpmDisk/rpm6.png</file>
+        <file>images/letfPanel/rpmDisk/rpm5.png</file>
+        <file>images/letfPanel/rpmDisk/rpm4.png</file>
+        <file>images/letfPanel/rpmDisk/rpm3.png</file>
+        <file>images/letfPanel/rpmDisk/rpm2.png</file>
+        <file>images/letfPanel/rpmDisk/rpm1.png</file>
+        <file>images/letfPanel/rpmDisk/rpm0.png</file>
     </qresource>
     <qresource prefix="/menuPanel">
         <file>images/menuPanel/7812512.png</file>
@@ -162,5 +162,8 @@
         <file>images/voltage/voltage_100.png</file>
         <file>images/voltage/voltage_scale.png</file>
         <file>images/voltage/voltage_unit.png</file>
+    </qresource>
+    <qresource prefix="/splash">
+        <file>images/splash/splash.png</file>
     </qresource>
 </RCC>

@@ -1,7 +1,7 @@
 import QtQuick 2.2
 
 Rectangle {
-	id: centrePanel
+    id: centrePanel
 
     property string valueTime: "10:25"
     property string valueDate: "2015-01-09"
@@ -32,7 +32,7 @@ Rectangle {
 
         Text {
             id: numTime
-//            x: 913
+            //            x: 913
             x: 915
             y: 16
             font.pixelSize: 33
@@ -45,7 +45,7 @@ Rectangle {
 
         Text {
             id: numDate
-//            x: 901
+            //            x: 901
             x: 897
             y: 53
             font.pixelSize: 22
@@ -92,12 +92,12 @@ Rectangle {
                 font.pixelSize: 32
                 font.family: fontName.fontCurrent
                 color: "white"
-//                y: 609
+                //                y: 609
                 y: 600
-//                font.letterSpacing: 3
+                //                font.letterSpacing: 3
                 font.bold: true
                 anchors.left: charTemp.right
-//                anchors.leftMargin: 5
+                //                anchors.leftMargin: 5
             }
         }
 
@@ -165,7 +165,7 @@ Rectangle {
                 font.family: fontName.fontCurrent
                 font.letterSpacing: 3
                 font.bold: true
-//                y: 609
+                //                y: 609
                 y: 600
                 anchors.left: iconTripA.right
                 anchors.leftMargin: 10
@@ -184,9 +184,9 @@ Rectangle {
                 font.pixelSize: 32
                 font.family: fontName.fontCurrent
                 font.bold: true
-//                font.weight:Font.ExtraBold
+                //                font.weight:Font.ExtraBold
                 font.letterSpacing: 3
-//                y: 609
+                //                y: 609
                 y: 600
                 color: "white"
                 text: valueTrip
@@ -194,11 +194,11 @@ Rectangle {
         }
     }
 
-    CarFunction {
-        id: carFunction
-    }
+    //    CarFunction {
+    //        id: carFunction
+    //    }
 
-    CarInfo {
-        id: carInfo
-    }
+    //    CarInfo {
+    //        id: carInfo
+    //    }
 }

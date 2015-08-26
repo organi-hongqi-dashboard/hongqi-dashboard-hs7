@@ -10,14 +10,47 @@ Window {
     visible: true
 
     Rectangle {
-        id: hongqi_hs7
-        color: "black"
+        id: carnation
+
+
+        focus: true
+        Keys.onPressed: {
+            switch(event.key) {
+            case Qt.Key_1:
+
+                mainPanel.state = "functionMode"
+                break;
+            case Qt.Key_2:
+                mainPanel.state = "normalMode"
+
+                break;
+            }
+        }
+
+        //        Fps {
+        //            id: fps
+        //        }
+
+        SplashPanel {
+            id: splashPanel
+            state: ""
+
+            onAnimationFinishedChanged: {
+                if( animationFinished === true ) {
+                    mainPanel.state = "normalMode";
+                    splashPanel.state = "";
+                }
+            }
+        }
 
         MainPanel {
             id: mainPanel
+            state: ""
         }
-        Fps {
-            id: fps
+
+
+        Component.onCompleted: {
+            splashPanel.state = "show"
         }
     }
 }
