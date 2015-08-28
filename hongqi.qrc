@@ -40,8 +40,20 @@
         <file>images/common/iconTime.png</file>
         <file>images/common/outlinelittle.png</file>
         <file>images/common/outlineBig.png</file>
+        <file>images/common/bg.png</file>
     </qresource>
-    <qresource prefix="/letfPanel"/>
+    <qresource prefix="/letfPanel/gearPanel">
+        <file>images/letfPanel/gearPanel/gearScopy.png</file>
+        <file>images/letfPanel/gearPanel/gearS.png</file>
+        <file>images/letfPanel/gearPanel/gearRcopy.png</file>
+        <file>images/letfPanel/gearPanel/gearR.png</file>
+        <file>images/letfPanel/gearPanel/gearPcopy.png</file>
+        <file>images/letfPanel/gearPanel/gearP.png</file>
+        <file>images/letfPanel/gearPanel/gearNcopy.png</file>
+        <file>images/letfPanel/gearPanel/gearN.png</file>
+        <file>images/letfPanel/gearPanel/gearDcopy.png</file>
+        <file>images/letfPanel/gearPanel/gearD.png</file>
+    </qresource>
     <qresource prefix="/rightPanel">
         <file>images/coolantTemp/coolant90.png</file>
         <file>images/coolantTemp/bottomHighlight_2.png</file>
@@ -66,12 +78,8 @@
         <file>images/rightDisk/num40.png</file>
         <file>images/rightDisk/num20.png</file>
         <file>images/rightDisk/num0.png</file>
-        <file>images/rightDisk/graduationRightBig.png</file>
         <file>images/rightDisk/numSpeed.png</file>
         <file>images/rightDisk/iconKmPerHBig.png</file>
-        <file>images/rightDisk/roundRightBig1.png</file>
-        <file>images/rightDisk/roundRightBig2.png</file>
-        <file>images/rightDisk/bgRightBig.png</file>
         <file>images/rightDisk/09.png</file>
         <file>images/rightDisk/08.png</file>
         <file>images/rightDisk/07.png</file>
@@ -101,8 +109,6 @@
     <qresource prefix="/rpmDisk">
         <file>images/letfPanel/rpmDisk/unit.png</file>
         <file>images/letfPanel/rpmDisk/rpm_scale.png</file>
-        <file>images/letfPanel/rpmDisk/rpm_pointer.png</file>
-        <file>images/letfPanel/rpmDisk/rpm_disk.png</file>
         <file>images/letfPanel/rpmDisk/rpm7.png</file>
         <file>images/letfPanel/rpmDisk/rpm6.png</file>
         <file>images/letfPanel/rpmDisk/rpm5.png</file>
@@ -140,18 +146,6 @@
         <file>images/menuPanel/rect_1_copy.png</file>
         <file>images/menuPanel/yellow_copy.png</file>
     </qresource>
-    <qresource prefix="/gearPanel">
-        <file>images/gearPanel/gearD.png</file>
-        <file>images/gearPanel/gearDcopy.png</file>
-        <file>images/gearPanel/gearN.png</file>
-        <file>images/gearPanel/gearNcopy.png</file>
-        <file>images/gearPanel/gearP.png</file>
-        <file>images/gearPanel/gearPcopy.png</file>
-        <file>images/gearPanel/gearR.png</file>
-        <file>images/gearPanel/gearRcopy.png</file>
-        <file>images/gearPanel/gearS.png</file>
-        <file>images/gearPanel/gearScopy.png</file>
-    </qresource>
     <qresource prefix="/socBar">
         <file>images/soc/soc_%.png</file>
         <file>images/soc/soc_scale.png</file>
@@ -165,5 +159,9 @@
     </qresource>
     <qresource prefix="/splash">
         <file>images/splash/splash.png</file>
+    </qresource>
+    <qresource prefix="/common/disk">
+        <file>images/common/disk/pointer.png</file>
+        <file>images/common/disk/disk.png</file>
     </qresource>
 </RCC>

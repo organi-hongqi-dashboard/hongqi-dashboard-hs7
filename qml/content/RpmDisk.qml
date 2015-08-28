@@ -11,7 +11,7 @@ Item {
         x: 2
         y: 3
         opacity: 0.0
-        source: "qrc:/rpmDisk/images/letfPanel/rpmDisk/rpm_disk.png"
+        source: "qrc:/common/disk/images/common/disk/disk.png"
         transform: Rotation {
             id: disk_Rota
             angle: 90
@@ -100,7 +100,7 @@ Item {
         x: 51.5
         y: 432
         opacity: 0.0
-        source: "qrc:/rpmDisk/images/letfPanel/rpmDisk/rpm_pointer.png"
+        source: "qrc:/common/disk/images/common/disk/pointer.png"
 
         transform: Rotation {
             id: pointerRotation
@@ -129,7 +129,7 @@ Item {
             PropertyChanges { target: rpm_scale; opacity: 0.0 }
             PropertyChanges { target: rpm_number; opacity: 0.0; numCtrl: 0.0 }
             PropertyChanges { target: rpm_pointer; opacity: 0.0; }
-            PropertyChanges { target: unit; opacity: 0.0; x: 103; y: 451 }
+            PropertyChanges { target: unit; opacity: 0.0; x: 103; y: 451; scale: 1.0 }
         },
         State {
             name: "normalMode"
@@ -140,7 +140,7 @@ Item {
             PropertyChanges { target: rpm_scale; opacity: 1.0 }
             PropertyChanges { target: rpm_number; opacity: 1.0; numCtrl: 8.0 }
             PropertyChanges { target: rpm_pointer; opacity: 1.0; }
-            PropertyChanges { target: unit; opacity: 1.0; x: 103; y: 451 }
+            PropertyChanges { target: unit; opacity: 1.0; x: 103; y: 451; scale: 1.0 }
         },
         State {
             name: "functionMode"
@@ -151,7 +151,7 @@ Item {
             PropertyChanges { target: rpm_scale; opacity: 1.0 }
             PropertyChanges { target: rpm_number; opacity: 1.0; numCtrl: 8.0 }
             PropertyChanges { target: rpm_pointer; opacity: 1.0; }
-            PropertyChanges { target: unit; opacity: 1.0; x: 310; y: 590 }
+            PropertyChanges { target: unit; opacity: 1.0; x: 310; y: 590; scale: 1.2 }
         }
     ]
 
@@ -162,16 +162,19 @@ Item {
             SequentialAnimation {
                 NumberAnimation { target: rpm_disk; property: "opacity"; duration: 500 }
                 ParallelAnimation {
-                    NumberAnimation { target: disk_Rota; property: "angle"; from: 90; to: 0; duration: 1000 }
                     SequentialAnimation {
-                        PauseAnimation { duration: 200}
+                        NumberAnimation { target: disk_Rota; property: "angle"; from: 90; to: 0; duration: 1000 }
+                        PauseAnimation { duration: 400 }
+                    }
+                    SequentialAnimation {
+                        PauseAnimation { duration: 600}
                         ParallelAnimation {
                             NumberAnimation { target: rpm_scale; property: "opacity"; duration: 800 }
                             NumberAnimation { target: rpm_scale; property: "scale"; from: 0; to: 1.0; duration: 800 }
                         }
                     }
                     SequentialAnimation {
-                        PauseAnimation { duration: 200}
+                        PauseAnimation { duration: 600}
                         ParallelAnimation {
                             NumberAnimation { target: rpm_number; property: "opacity"; duration: 800 }
                             NumberAnimation { target: rpm_number; property: "numCtrl"; duration: 800 }
@@ -187,15 +190,17 @@ Item {
         Transition {
             from: "normalMode"
             to: "functionMode"
-            SequentialAnimation {
-                NumberAnimation { target: rpmDisk; properties: "scale,x,y"; duration: 500 }
+            ParallelAnimation {
+                NumberAnimation { target: rpmDisk; properties: "scale,x,y"; duration: 1000 ;easing.type: Easing.InBack}
+                NumberAnimation { target: unit; properties: "x,y,scale"; duration: 1000 ;easing.type: Easing.InBack}
             }
         },
         Transition {
             from: "functionMode"
             to: "normalMode"
-            SequentialAnimation {
-                NumberAnimation { target: rpmDisk; properties: "scale,x,y"; duration: 500 }
+            ParallelAnimation {
+                NumberAnimation { target: rpmDisk; properties: "scale,x,y"; duration: 1000; easing.type: Easing.InBack}
+                NumberAnimation { target: unit; properties: "x,y,scale"; duration: 1000 ;easing.type: Easing.InBack}
             }
         }
     ]

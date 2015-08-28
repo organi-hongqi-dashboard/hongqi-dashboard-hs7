@@ -127,7 +127,7 @@ Item {
             from: ""
             to: "normalMode"
             SequentialAnimation {
-                PauseAnimation { duration: 4000 }
+                PauseAnimation { duration: 4400 }
                 NumberAnimation { target: gearPanel; property: "opacity"; duration: 500 }
             }
         },
@@ -135,14 +135,14 @@ Item {
             from: "normalMode"
             to: "functionMode"
             SequentialAnimation {
-                NumberAnimation { target: gearPanel; properties: "scale,x,y"; duration: 500 }
+                NumberAnimation { target: gearPanel; properties: "scale,x,y"; duration: 1000; easing.type: Easing.InBack }
             }
         },
         Transition {
             from: "functionMode"
             to: "normalMode"
             SequentialAnimation {
-                NumberAnimation { target: gearPanel; properties: "scale,x,y"; duration: 500 }
+                NumberAnimation { target: gearPanel; properties: "scale,x,y"; duration: 1000;easing.type: Easing.InBack }
             }
         }
     ]

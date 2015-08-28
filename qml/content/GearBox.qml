@@ -43,24 +43,24 @@ Item {
     Image {
         id: gearP
         visible: true
-        source: "qrc:/gearPanel/images/gearPanel/gearP.png"
+        source: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearP.png"
     }
 
     Image {
         id: gearN
         visible: false
-        source: "qrc:/gearPanel/images/gearPanel/gearN.png"
+        source: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearN.png"
     }
 
     Image {
         id: gearD
         visible: false
-        source: "qrc:/gearPanel/images/gearPanel/gearD.png"
+        source: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearD.png"
     }
 
     Image {
         id: gearR
         visible: false
-        source: "qrc:/gearPanel/images/gearPanel/gearR.png"
+        source: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearR.png"
     }
 }
