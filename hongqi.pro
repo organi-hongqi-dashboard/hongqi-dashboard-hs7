@@ -72,4 +72,3 @@ RCC_DIR = build
 OBJECTS_DIR = build
 
 DISTFILES += \
-    qml/content/VoltagePanel.qml
