@@ -8,77 +8,16 @@ Item {
     property int getGear: 0
 
     function setGear() {
-        if( isAnimation == true )
+        if( isAnimation == true || getGear < 0 || getGear > 5 )
             return;
-        switch( getGear ) {
-        case 0:
-            if( gear1.state == "" ) {
-                gearBox1.getGearValue = getGear;
-                gear2.state = "";
-                gear1.state = "show";
-            } else {
-                gearBox2.getGearValue = getGear;
-                gear1.state = "";
-                gear2.state = "show";
-            }
-            break;
-        case 1:
-            if( gear1.state == "" ) {
-                gearBox1.getGearValue = getGear;
-                gear2.state = "";
-                gear1.state = "show";
-            } else {
-                gearBox2.getGearValue = getGear;
-                gear1.state = "";
-                gear2.state = "show";
-            }
-            break;
-        case 2:
-            if( gear1.state == "" ) {
-                gearBox1.getGearValue = getGear;
-                gear2.state = "";
-                gear1.state = "show";
-            } else {
-                gearBox2.getGearValue = getGear;
-                gear1.state = "";
-                gear2.state = "show";
-            }
-            break;
-        case 3:
-            if( gear1.state == "" ) {
-                gearBox1.getGearValue = getGear;
-                gear2.state = "";
-                gear1.state = "show";
-            } else {
-                gearBox2.getGearValue = getGear;
-                gear1.state = "";
-                gear2.state = "show";
-            }
-            break;
-        case 4:
-            if( gear1.state == "" ) {
-                gearBox1.getGearValue = getGear;
-                gear2.state = "";
-                gear1.state = "show";
-            } else {
-                gearBox2.getGearValue = getGear;
-                gear1.state = "";
-                gear2.state = "show";
-            }
-            break;
-        case 5:
-            if( gear1.state == "" ) {
-                gearBox1.getGearValue = getGear;
-                gear2.state = "";
-                gear1.state = "show";
-            } else {
-                gearBox2.getGearValue = getGear;
-                gear1.state = "";
-                gear2.state = "show";
-            }
-            break;
-        default:
-            break;
+        if( gear1.state == "" ) {
+            gearBox1.getGearValue = getGear;
+            gear2.state = "";
+            gear1.state = "show";
+        } else {
+            gearBox2.getGearValue = getGear;
+            gear1.state = "";
+            gear2.state = "show";
         }
     }
 

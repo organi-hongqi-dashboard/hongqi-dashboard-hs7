@@ -144,6 +144,14 @@ Rectangle {
     }
 
     Image {
+        id: iconKmPerHBig
+        x: 1333
+        y: 493
+        opacity: 0.0
+        source: "qrc:/rightPanel/images/rightDisk/iconKmPerHBig.png"
+    }
+
+    Image {
         id: rightPointer
         x: 1255
         y: 430
@@ -160,13 +168,7 @@ Rectangle {
         }
     }
 
-    Image {
-        id: iconKmPerHBig
-        x: 1333
-        y: 493
-        opacity: 0.0
-        source: "qrc:/rightPanel/images/rightDisk/iconKmPerHBig.png"
-    }
+
 
     Item {
         id: numSpeed
@@ -193,6 +195,11 @@ Rectangle {
         }
     }
 
+    CoolantTempBar {
+        id: coolantTempBar
+        state: ""
+    }
+
     states: [
         State {
             name: ""
@@ -205,6 +212,7 @@ Rectangle {
             PropertyChanges { target: iconKmPerHBig; opacity: 0.0; x: 1333; y: 493; scale: 1.0 }
             PropertyChanges { target: numSpeed; opacity: 0.0 }
             PropertyChanges { target: graduationRight2; opacity: 0.0 }
+            PropertyChanges { target: coolantTempBar; visible: false; state: "" }
         },
         State {
             name: "normalMode"
@@ -217,6 +225,7 @@ Rectangle {
             PropertyChanges { target: iconKmPerHBig; opacity: 1.0; x: 1333; y: 493; scale: 1.0 }
             PropertyChanges { target: numSpeed; opacity: 1.0 }
             PropertyChanges { target: graduationRight2; opacity: 1.0 }
+            PropertyChanges { target: coolantTempBar; visible: true; state: "normalMode" }
         },
         State {
             name: "functionMode"
@@ -229,6 +238,7 @@ Rectangle {
             PropertyChanges { target: iconKmPerHBig; opacity: 1.0; x: 1526; y: 597; scale: 1.2 }
             PropertyChanges { target: numSpeed; opacity: 1.0 }
             PropertyChanges { target: graduationRight2; opacity: 0.0 }
+            PropertyChanges { target: coolantTempBar; visible: true; state: "functionMode" }
         }
     ]
 
@@ -270,7 +280,7 @@ Rectangle {
             from: "normalMode"
             to: "functionMode"
             ParallelAnimation {
-                NumberAnimation { target: rightSpeed; properties: "scale,x,y"; duration: 1000 ;easing.type: Easing.InBack}
+                NumberAnimation { target: rightSpeed; properties: "scale,x,y"; duration: 1000;easing.type: Easing.InBack}
                 NumberAnimation { target: iconKmPerHBig; properties: "x,y,scale"; duration: 1000 ;easing.type: Easing.InBack}
                 NumberAnimation { target: speedNumIndicator; properties: "opacity, numCtrl"; duration: 1000 ;easing.type: Easing.InBack}
                 NumberAnimation { target: graduationRight2; property: "opacity"; duration: 1000 ;easing.type: Easing.InBack}

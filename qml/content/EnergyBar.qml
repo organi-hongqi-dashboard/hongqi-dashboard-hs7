@@ -1,49 +1,49 @@
 import QtQuick 2.2
 
 Item {
-	property real   column
-	property string sekuai
-	property string targetShade
+    property real   column
+    property string sekuai
+    property string targetShade
 
-	property alias level:  energyBarEffect.level
-	property alias mirror: energyBarEffect.mirror
-	property alias moving: energyBarEffect.moving
+    property alias level:  energyBarEffect.level
+    property alias mirror: energyBarEffect.mirror
+    property alias moving: energyBarEffect.moving
 
-	id: energyBar
-	width: mTargetShade.width
-	height: mTargetShade.height
+    id: energyBar
+    width: mTargetShade.width
+    height: mTargetShade.height
 
-	Image {
-		id: mSeKuai
-		visible: false
-		source: sekuai
-	}
+    Image {
+        id: mSeKuai
+        visible: false
+        source: sekuai
+    }
 
-	Image {
-		id: mTargetShade
+    Image {
+        id: mTargetShade
         visible: true
-		source: targetShade
-	}
+        source: targetShade
+    }
 
-	ShaderEffect {
-		property real level: 0
-		property real wave:  0
-		property int mirror: 0
-		property int moving: 0
+    ShaderEffect {
+        property real level: 0
+        property real wave:  0
+        property int mirror: 0
+        property int moving: 0
 
-		property real column :         energyBar.column
-		property variant sekuai :      mSeKuai
-		property variant targetShade : mTargetShade
+        property real column :         energyBar.column
+        property variant sekuai :      mSeKuai
+        property variant targetShade : mTargetShade
 
-		id: energyBarEffect
-		width: energyBar.width
-		height: energyBar.height
+        id: energyBarEffect
+        width: energyBar.width
+        height: energyBar.height
 
-		NumberAnimation on wave {
-			from: 0.0; to: 1.0; loops: Animation.Infinite; duration: 2000
-		}
+        NumberAnimation on wave {
+            from: 0.0; to: 1.0; loops: Animation.Infinite; duration: 2000
+        }
 
-		fragmentShader: "
+        fragmentShader: "
 			//precision mediump float;
 			varying highp vec2 qt_TexCoord0;
 			uniform sampler2D sekuai;
@@ -69,10 +69,10 @@ Item {
 							1.0 - coord.x < wave + 0.05)
 						colorTargetShade = colorTargetShade * (1.4 - 0.4 * cos(6.28 / 0.1 * (1.0 - coord.x - (wave - 0.05))));
 					}
-					gl_FragColor = colorTargetShade;
+                    gl_FragColor = colorTargetShade;
 				}
 				else
 				gl_FragColor = vec4(0.0, 0.0, 0.0, 0.0);
 			}"
-	}
+    }
 }

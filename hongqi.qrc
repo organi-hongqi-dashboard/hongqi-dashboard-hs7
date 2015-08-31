@@ -11,7 +11,7 @@
         <file>qml/content/Fps.qml</file>
         <file>qml/content/RightInfo.qml</file>
         <file>qml/content/LeftInfo.qml</file>
-        <file>qml/content/WaterTempBar.qml</file>
+        <file>qml/content/CoolantTempBar.qml</file>
         <file>qml/content/SpeedDisk.qml</file>
         <file>qml/content/SocBar.qml</file>
         <file>qml/content/RpmDisk.qml</file>
@@ -21,7 +21,6 @@
         <file>qml/content/CarFunction.qml</file>
         <file>qml/content/functionMode/FunctionMenu.qml</file>
         <file>qml/content/Gear.qml</file>
-        <file>qml/content/VoltagePanel.qml</file>
         <file>qml/content/SplashPanel.qml</file>
         <file>qml/content/GearPanel.qml</file>
         <file>qml/content/GearBox.qml</file>
@@ -30,9 +29,6 @@
     </qresource>
     <qresource prefix="/common">
         <file>images/common/spinner.png</file>
-        <file>images/common/redCube.png</file>
-        <file>images/common/barOutline.png</file>
-        <file>images/common/greenCube.png</file>
         <file>images/common/iconTripA.png</file>
         <file>images/common/iconKMTemp.png</file>
         <file>images/common/iconDate.png</file>
@@ -42,7 +38,6 @@
         <file>images/common/iconTime.png</file>
         <file>images/common/outlinelittle.png</file>
         <file>images/common/outlineBig.png</file>
-        <file>images/common/bg.png</file>
     </qresource>
     <qresource prefix="/letfPanel/gearPanel">
         <file>images/letfPanel/gearPanel/gearS8.png</file>
@@ -74,13 +69,6 @@
         <file>images/letfPanel/gearPanel/gearD1.png</file>
     </qresource>
     <qresource prefix="/rightPanel">
-        <file>images/coolantTemp/coolant90.png</file>
-        <file>images/coolantTemp/bottomHighlight_2.png</file>
-        <file>images/coolantTemp/tempReflection.png</file>
-        <file>images/coolantTemp/coolant130.png</file>
-        <file>images/coolantTemp/coolant50.png</file>
-        <file>images/coolantTemp/totalTempBar.png</file>
-        <file>images/coolantTemp/iconTemp.png</file>
         <file>images/rightDisk/graduationRight2.png</file>
         <file>images/rightDisk/graduationRight1.png</file>
         <file>images/rightDisk/rightPoint.png</file>
@@ -111,19 +99,12 @@
         <file>images/rightDisk/00.png</file>
     </qresource>
     <qresource prefix="/centrePanel">
-        <file>images/oilMass/9999.png</file>
-        <file>images/oilMass/8888.png</file>
-        <file>images/oilMass/7777.png</file>
-        <file>images/oilMass/6666.png</file>
-        <file>images/oilMass/5555.png</file>
-        <file>images/oilMass/4444.png</file>
-        <file>images/oilMass/3333.png</file>
-        <file>images/oilMass/2222.png</file>
-        <file>images/oilMass/1111.png</file>
-        <file>images/oilMass/0000.png</file>
-        <file>images/oilMass/bottomHighlight.png</file>
-        <file>images/oilMass/iconPercentage.png</file>
-        <file>images/oilMass/iconOilMass.png</file>
+        <file>images/centrePanel/normalUpLine.png</file>
+        <file>images/centrePanel/normalDownLine.png</file>
+        <file>images/centrePanel/functionUpLine.png</file>
+        <file>images/centrePanel/functionDownLine.png</file>
+        <file>images/centrePanel/bg.png</file>
+        <file>images/centrePanel/runningInfo.png</file>
     </qresource>
     <qresource prefix="/rpmDisk">
         <file>images/letfPanel/rpmDisk/unit.png</file>
@@ -165,23 +146,46 @@
         <file>images/menuPanel/rect_1_copy.png</file>
         <file>images/menuPanel/yellow_copy.png</file>
     </qresource>
-    <qresource prefix="/socBar">
-        <file>images/soc/soc_%.png</file>
-        <file>images/soc/soc_scale.png</file>
-        <file>images/soc/soc_unit.png</file>
-    </qresource>
-    <qresource prefix="/voltage">
-        <file>images/voltage/voltage_0%.png</file>
-        <file>images/voltage/voltage_100.png</file>
-        <file>images/voltage/voltage_scale.png</file>
-        <file>images/voltage/voltage_unit.png</file>
-    </qresource>
     <qresource prefix="/splash">
         <file>images/splash/splash.png</file>
     </qresource>
     <qresource prefix="/common/disk">
         <file>images/common/disk/pointer.png</file>
         <file>images/common/disk/disk.png</file>
+    </qresource>
+    <qresource prefix="/common/bar">
+        <file>images/common/bar/redCube.png</file>
+        <file>images/common/bar/greenCube.png</file>
+        <file>images/common/bar/barOutline.png</file>
+        <file>images/common/bar/middleLine.png</file>
+        <file>images/common/bar/9999.png</file>
+        <file>images/common/bar/8888.png</file>
+        <file>images/common/bar/7777.png</file>
+        <file>images/common/bar/6666.png</file>
+        <file>images/common/bar/5555.png</file>
+        <file>images/common/bar/4444.png</file>
+        <file>images/common/bar/3333.png</file>
+        <file>images/common/bar/2222.png</file>
+        <file>images/common/bar/1111.png</file>
+        <file>images/common/bar/0000.png</file>
+        <file>images/common/bar/iconPercentage.png</file>
+    </qresource>
+    <qresource prefix="/rightPanel/coolantTemp">
+        <file>images/rightPanel/coolantTemp/iconTemp.png</file>
+        <file>images/rightPanel/coolantTemp/coolant130.png</file>
+        <file>images/rightPanel/coolantTemp/coolant90.png</file>
+        <file>images/rightPanel/coolantTemp/coolant50.png</file>
+    </qresource>
+    <qresource prefix="/rightPanel/oilBar">
+        <file>images/rightPanel/oilBar/iconOilMass.png</file>
+    </qresource>
+    <qresource prefix="/letfPanel/socBar">
+        <file>images/letfPanel/socBar/soc_unit.png</file>
+    </qresource>
+    <qresource prefix="/letfPanel/powerKwBar">
+        <file>images/letfPanel/powerKwBar/voltage_unit.png</file>
+        <file>images/letfPanel/powerKwBar/voltage_100.png</file>
+        <file>images/letfPanel/powerKwBar/voltage_0%.png</file>
     </qresource>
     <qresource prefix="/centralPanel">
         <file>images/centralPanel/warningSymbol.png</file>

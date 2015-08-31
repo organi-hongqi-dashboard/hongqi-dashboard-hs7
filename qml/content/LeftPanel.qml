@@ -17,32 +17,29 @@ Item {
 //        id: leftInfo
 //    }
 
-//    SocBar {
-//        id: socBar
-//    }
-
-//    PowerKwBar {
-//        id: powerKwBar
-//    }
-//    VoltagePanel {
-//        id:voltagePanel
-//    }
+    SocBar {
+        id: socBar
+        state: ""
+    }
 
     states: [
         State {
             name: ""
             PropertyChanges { target: rpmDisk; visible: false; state: "" }
             PropertyChanges { target: gearPanel; visible: false; state: "" }
+            PropertyChanges { target: socBar; visible: false; state: "" }
         },
         State {
             name: "normalMode"
             PropertyChanges { target: rpmDisk; visible: true; state: "normalMode" }
             PropertyChanges { target: gearPanel; visible: true; state: "normalMode" }
+            PropertyChanges { target: socBar; visible: true; state: "normalMode" }
         },
         State {
             name: "functionMode"
             PropertyChanges { target: rpmDisk; visible: true; state: "functionMode" }
             PropertyChanges { target: gearPanel; visible: true; state: "functionMode" }
+            PropertyChanges { target: socBar; visible: true; state: "functionMode" }
         }
     ]
 }

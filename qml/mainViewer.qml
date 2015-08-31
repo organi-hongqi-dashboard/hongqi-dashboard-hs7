@@ -12,7 +12,6 @@ Window {
     Rectangle {
         id: carnation
 
-
         focus: true
         Keys.onPressed: {
             switch(event.key) {

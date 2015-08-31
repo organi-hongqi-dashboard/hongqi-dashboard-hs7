@@ -1,20 +1,19 @@
 import QtQuick 2.2
 
 Rectangle {
-    id: powerKwBar
+    id: coolantTempBar
     y: -20
-
     opacity: 0.0
-    property int valuePowerKwBar: 90
+    property int valueCoolantTemp: 90
 
     EnergyBar {
         id: bar
-        x: 255
+        x: 1453
         y: 597
         column: 0
         mirror: 0
         moving: 0
-        sekuai: valuePowerKwBar > 10 ?
+        sekuai: (valueCoolantTemp - 50) / 80.0 > 10 ?
                     "qrc:/common/bar/images/common/bar/greenCube.png" :
                     "qrc:/common/bar/images/common/bar/redCube.png"
         targetShade: "qrc:/common/bar/images/common/bar/barOutline.png"
@@ -24,7 +23,7 @@ Rectangle {
 
     Image {
         id: middleLine
-        x: 262
+        x: 1454
         y: 609
         source: "qrc:/common/bar/images/common/bar/middleLine.png"
     }
@@ -33,42 +32,45 @@ Rectangle {
         id: icon
 
         Image {
-            id: voltage_unit
-            x: 342
-            y: 570
-            source: "qrc:/letfPanel/powerKwBar/images/letfPanel/powerKwBar/voltage_unit.png"
+            id: iconTemp
+            x: 1539
+            y: 560
+            source: "qrc:/rightPanel/coolantTemp/images/rightPanel/coolantTemp/iconTemp.png"
         }
         Image {
-            id: voltage_percentage
-            x: 217
+            id: coolant50
+            x: 1414
             y: 602
-            opacity: 1.0
-            source: "qrc:/letfPanel/powerKwBar/images/letfPanel/powerKwBar/voltage_0%.png"
+            source: "qrc:/rightPanel/coolantTemp/images/rightPanel/coolantTemp/coolant50.png"
         }
         Image {
-            id: voltage_100
-            x: 462
+            id: coolant130
+            x: 1660
             y: 602
-            opacity: 1.0
-            source: "qrc:/letfPanel/powerKwBar/images/letfPanel/powerKwBar/voltage_100.png"
+            source: "qrc:/rightPanel/coolantTemp/images/rightPanel/coolantTemp/coolant130.png"
         }
-
+        Image {
+            id: coolant90
+            x: 1545
+            y: 639
+            source: "qrc:/rightPanel/coolantTemp/images/rightPanel/coolantTemp/coolant90.png"
+        }
     }
 
     states: [
         State {
             name: ""
-            PropertyChanges { target: powerKwBar; opacity: 0.0 }
+            PropertyChanges { target: coolantTempBar; opacity: 0.0 }
             PropertyChanges { target: bar; level: 0.0 }
         },
         State {
             name: "normalMode"
-            PropertyChanges { target: powerKwBar; opacity: 1.0 }
-            PropertyChanges { target: bar; level: (valuePowerKwBar / 100.0) }
+            PropertyChanges { target: coolantTempBar; opacity: 1.0 }
+            PropertyChanges { target: bar; level: ((valueCoolantTemp - 50) / 80.0) }
         },
         State {
             name: "functionMode"
-            PropertyChanges { target: powerKwBar; opacity: 0.0 }
+            PropertyChanges { target: coolantTempBar; opacity: 0.0 }
             PropertyChanges { target: bar; level: 0.0 }
         }
     ]
@@ -80,10 +82,9 @@ Rectangle {
             SequentialAnimation {
                 PauseAnimation { duration: 4400 }
                 ParallelAnimation {
-                    NumberAnimation { target: powerKwBar; property: "opacity"; duration: 500; }
-                    NumberAnimation { target: bar; property: "level"; duration: 500; }
+                    NumberAnimation { target: coolantTempBar; property: "opacity"; duration: 500 }
+                    NumberAnimation { target: bar; property: "level"; duration: 500 }
                 }
-
             }
         },
         Transition {
@@ -91,7 +92,7 @@ Rectangle {
             to: "functionMode"
             SequentialAnimation {
                 ParallelAnimation {
-                    NumberAnimation { target: powerKwBar; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
+                    NumberAnimation { target: coolantTempBar; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
                     NumberAnimation { target: bar; property: "level"; duration: 1000; easing.type: Easing.InBack }
                 }
             }
@@ -101,7 +102,7 @@ Rectangle {
             to: "normalMode"
             SequentialAnimation {
                 ParallelAnimation {
-                    NumberAnimation { target: powerKwBar; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
+                    NumberAnimation { target: coolantTempBar; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
                     NumberAnimation { target: bar; property: "level"; duration: 1000; easing.type: Easing.InBack }
                 }
             }

@@ -3,196 +3,295 @@ import QtQuick 2.2
 Rectangle {
     id: centrePanel
 
-    property string valueTime: "10:25"
-    property string valueDate: "2015-01-09"
-    property int valueOdo: 6589
-    property double valueTrip: 641.5
-    property int valueOutsideTemp: -29
-
-    // module 底图
     Image {
-        id: outlinelittle
-        x: 324
-        y: 34
+        id: bg
+        x: 78
+        y: 342
         opacity: 0.0
-        source: "qrc:/common/images/common/outlinelittle.png"
+        source: "qrc:/centrePanel/images/centrePanel/bg.png"
     }
+
+    Item {
+        id: functionLine
+        opacity: 0.0
+
+        Image {
+            id: functionUpLine
+            x: 324
+            y: 34
+            source: "qrc:/centrePanel/images/centrePanel/functionUpLine.png"
+        }
+
+        Image {
+            id: functionDownLine
+            x: 324
+            y: 586
+            source: "qrc:/centrePanel/images/centrePanel/functionDownLine.png"
+        }
+    }
+
+    Item {
+        id: normalLine
+        opacity: 0.0
+
+        Image {
+            id: normalDownLine
+            x: 71
+            y: 576
+            source: "qrc:/centrePanel/images/centrePanel/normalDownLine.png"
+        }
+        Image {
+            id: normalUpLine
+            x: 71
+            y: 14
+            source: "qrc:/centrePanel/images/centrePanel/normalUpLine.png"
+        }
+    }
+
     Image {
-        id: outlineBig
-        x: 71
-        y: 14
-        opacity: 1.0
-        transformOrigin: Item.Center
-        source: "qrc:/common/images/common/outlineBig.png"
+        id: runningInfo
+        x: 717
+        y: 254
+        opacity: 0.0
+        source: "qrc:/centrePanel/images/centrePanel/runningInfo.png"
     }
-
-    // module 日期时间
-    Item {
-        id: dateTime
-
-        Text {
-            id: numTime
-            //            x: 913
-            x: 915
-            y: 16
-            font.pixelSize: 33
-            font.family: fontName.fontCurrent
-            font.bold: true
-            color: "white"
-            text: valueTime
+    states: [
+        State {
+            name: ""
+            PropertyChanges { target: bg; opacity: 0.0 }
+            PropertyChanges { target: functionLine; opacity: 0.0 }
+            PropertyChanges { target: normalLine; opacity: 0.0 }
+            PropertyChanges { target: runningInfo; opacity: 0.0 }
+        },
+        State {
+            name: "normalMode"
+            PropertyChanges { target: bg; opacity: 1.0 }
+            PropertyChanges { target: functionLine; opacity: 0.0 }
+            PropertyChanges { target: normalLine; opacity: 1.0 }
+            PropertyChanges { target: runningInfo; opacity: 1.0 }
+        },
+        State {
+            name: "functionMode"
+            PropertyChanges { target: bg; opacity: 1.0 }
+            PropertyChanges { target: functionLine; opacity: 1.0 }
+            PropertyChanges { target: normalLine; opacity: 0.0 }
+            PropertyChanges { target: runningInfo; opacity: 0.0 }
         }
-
-
-        Text {
-            id: numDate
-            //            x: 901
-            x: 897
-            y: 53
-            font.pixelSize: 22
-            font.family: fontName.fontCurrent
-            color: "white"
-            text: valueDate
-        }
-    }
-
-    // module 下栏文字
-    Item {
-        id: bottomText
-
-        Image {
-            id: baseline
-            x: 601
-            y: 646
-            opacity: 1.0
-            source: "qrc:/common/images/common/baseline.png"
-        }
-        Image {
-            id: iconKMTemp
-            x: 840
-            y: 611
-            opacity: 1.0
-            source: "qrc:/common/images/common/iconKMTemp.png"
-        }
-
-        /* group outside temperature */
-        Item {
-            id: groupTemp
-
-            Image {
-                id: charTemp
-                x: 1157
-                y: 609
-                opacity: 1.0
-                source: "qrc:/common/images/common/charTemp.png"
+    ]
+    transitions: [
+        Transition {
+            from: ""
+            to: "normalMode"
+            SequentialAnimation {
+                PauseAnimation { duration: 4400 }
+                ParallelAnimation {
+                    NumberAnimation { target: bg; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
+                    NumberAnimation { target: functionLine; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
+                    NumberAnimation { target: normalLine; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
+                    NumberAnimation { target: runningInfo; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
+                }
+           }
+        },
+        Transition {
+            from: "normalMode"
+            to: "functionMode"
+            SequentialAnimation {
+                ParallelAnimation {
+                    NumberAnimation { target: functionLine; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
+                    NumberAnimation { target: normalLine; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
+                    NumberAnimation { target: runningInfo; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
+                }
             }
-
-            Text {
-                id: numOutsideTemp
-                text: valueOutsideTemp
-                font.pixelSize: 32
-                font.family: fontName.fontCurrent
-                color: "white"
-                //                y: 609
-                y: 600
-                //                font.letterSpacing: 3
-                font.bold: true
-                anchors.left: charTemp.right
-                //                anchors.leftMargin: 5
+        },
+        Transition {
+            from: "functionMode"
+            to: "normalMode"
+            SequentialAnimation {
+                ParallelAnimation {
+                    NumberAnimation { target: functionLine; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
+                    NumberAnimation { target: normalLine; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
+                    NumberAnimation { target: runningInfo; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
+                }
             }
         }
+    ]
 
-        /* group odo */
-        Item {
-            id: groupOdo
+//    property string valueTime: "10:25"
+//    property string valueDate: "2015-01-09"
+//    property int valueOdo: 6589
+//    property double valueTrip: 641.5
+//    property int valueOutsideTemp: -29
 
-            Image {
-                id: charOdo
-                x: 645
-                y: 609
-                opacity: 1.0
-                source: "qrc:/common/images/common/charOdo.png"
-            }
-            Text {
-                id: backOfOdo
-                text: "000000"
-                font.pixelSize: 32
-                font.family: fontName.fontCurrent
-                color: "gray"
-                //                y: 609
-                y: 600
-                font.letterSpacing: 3
-                font.bold: true
-                anchors.left: charOdo.right
-            }
-            Rectangle {
-                id: shadeForOdo
-                anchors.right: backOfOdo.right
-                y: backOfOdo.y
-                width: numOdo.width
-                height: numOdo.height
-                color: "black"
-            }
-            Text {
-                id: numOdo
-                anchors.right: backOfOdo.right
-                font.pixelSize: 32
-                font.family: fontName.fontCurrent
-                //                y: 609
-                y: 600
-                font.letterSpacing: 3
-                font.bold: true
-                color: "white"
-                text: valueOdo
-            }
-        }
+//    // module 底图
 
-        /* group trip */
-        Item {
-            id: groupTrip
 
-            Image {
-                id: iconTripA
-                x: 922
-                y: 609
-                opacity: 0.498039215686
-                source: "qrc:/common/images/common/iconTripA.png"
-            }
-            Text {
-                id: backOfTrip
-                text: "0000.0"
-                color: "gray"
-                font.pixelSize: 32
-                font.family: fontName.fontCurrent
-                font.letterSpacing: 3
-                font.bold: true
-                //                y: 609
-                y: 600
-                anchors.left: iconTripA.right
-                anchors.leftMargin: 10
-            }
-            Rectangle {
-                id: shadeForTrip
-                anchors.right: backOfTrip.right
-                y: 600
-                width: numTripA.width
-                height: numTripA.height
-                color: "black"
-            }
-            Text {
-                id: numTripA
-                anchors.right: backOfTrip.right
-                font.pixelSize: 32
-                font.family: fontName.fontCurrent
-                font.bold: true
-                //                font.weight:Font.ExtraBold
-                font.letterSpacing: 3
-                //                y: 609
-                y: 600
-                color: "white"
-                text: valueTrip
-            }
-        }
-    }
+//    // module 日期时间
+//    Item {
+//        id: dateTime
+
+//        Text {
+//            id: numTime
+//            //            x: 913
+//            x: 915
+//            y: 16
+//            font.pixelSize: 33
+//            font.family: fontName.fontCurrent
+//            font.bold: true
+//            color: "white"
+//            text: valueTime
+//        }
+
+
+//        Text {
+//            id: numDate
+//            //            x: 901
+//            x: 897
+//            y: 53
+//            font.pixelSize: 22
+//            font.family: fontName.fontCurrent
+//            color: "white"
+//            text: valueDate
+//        }
+//    }
+
+//    // module 下栏文字
+//    Item {
+//        id: bottomText
+
+//        Image {
+//            id: baseline
+//            x: 601
+//            y: 646
+//            opacity: 1.0
+//            source: "qrc:/common/images/common/baseline.png"
+//        }
+//        Image {
+//            id: iconKMTemp
+//            x: 840
+//            y: 611
+//            opacity: 1.0
+//            source: "qrc:/common/images/common/iconKMTemp.png"
+//        }
+
+//        /* group outside temperature */
+//        Item {
+//            id: groupTemp
+
+//            Image {
+//                id: charTemp
+//                x: 1157
+//                y: 609
+//                opacity: 1.0
+//                source: "qrc:/common/images/common/charTemp.png"
+//            }
+
+//            Text {
+//                id: numOutsideTemp
+//                text: valueOutsideTemp
+//                font.pixelSize: 32
+//                font.family: fontName.fontCurrent
+//                color: "white"
+//                //                y: 609
+//                y: 600
+//                //                font.letterSpacing: 3
+//                font.bold: true
+//                anchors.left: charTemp.right
+//                //                anchors.leftMargin: 5
+//            }
+//        }
+
+//        /* group odo */
+//        Item {
+//            id: groupOdo
+
+//            Image {
+//                id: charOdo
+//                x: 645
+//                y: 609
+//                opacity: 1.0
+//                source: "qrc:/common/images/common/charOdo.png"
+//            }
+//            Text {
+//                id: backOfOdo
+//                text: "000000"
+//                font.pixelSize: 32
+//                font.family: fontName.fontCurrent
+//                color: "gray"
+//                //                y: 609
+//                y: 600
+//                font.letterSpacing: 3
+//                font.bold: true
+//                anchors.left: charOdo.right
+//            }
+//            Rectangle {
+//                id: shadeForOdo
+//                anchors.right: backOfOdo.right
+//                y: backOfOdo.y
+//                width: numOdo.width
+//                height: numOdo.height
+//                color: "black"
+//            }
+//            Text {
+//                id: numOdo
+//                anchors.right: backOfOdo.right
+//                font.pixelSize: 32
+//                font.family: fontName.fontCurrent
+//                //                y: 609
+//                y: 600
+//                font.letterSpacing: 3
+//                font.bold: true
+//                color: "white"
+//                text: valueOdo
+//            }
+//        }
+
+//        /* group trip */
+//        Item {
+//            id: groupTrip
+
+//            Image {
+//                id: iconTripA
+//                x: 922
+//                y: 609
+//                opacity: 0.498039215686
+//                source: "qrc:/common/images/common/iconTripA.png"
+//            }
+//            Text {
+//                id: backOfTrip
+//                text: "0000.0"
+//                color: "gray"
+//                font.pixelSize: 32
+//                font.family: fontName.fontCurrent
+//                font.letterSpacing: 3
+//                font.bold: true
+//                //                y: 609
+//                y: 600
+//                anchors.left: iconTripA.right
+//                anchors.leftMargin: 10
+//            }
+//            Rectangle {
+//                id: shadeForTrip
+//                anchors.right: backOfTrip.right
+//                y: 600
+//                width: numTripA.width
+//                height: numTripA.height
+//                color: "black"
+//            }
+//            Text {
+//                id: numTripA
+//                anchors.right: backOfTrip.right
+//                font.pixelSize: 32
+//                font.family: fontName.fontCurrent
+//                font.bold: true
+//                //                font.weight:Font.ExtraBold
+//                font.letterSpacing: 3
+//                //                y: 609
+//                y: 600
+//                color: "white"
+//                text: valueTrip
+//            }
+//        }
+//    }
 
     //    CarFunction {
     //        id: carFunction

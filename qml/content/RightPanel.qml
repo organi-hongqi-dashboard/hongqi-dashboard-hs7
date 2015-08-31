@@ -1,4 +1,4 @@
-import QtQuick 2.2
+import QtQuick 2.3
 
 Rectangle {
 	id: rightPanel
@@ -8,30 +8,30 @@ Rectangle {
         state: ""
 	}
 
-//    RightInfo {
-//        id: rightInfo
-//    }
+    OilBar {
+        id: oilBar
+        state: ""
+    }
 
-//    OilBar {
-//        id: oilBar
-//	}
-
-//    WaterTempBar {
-//        id: waterTempBar
-//    }
+    //    RightInfo {
+    //        id: rightInfo
+    //    }
 
     states: [
         State {
             name: ""
             PropertyChanges { target: speedDisk; visible: false; state: "" }
+            PropertyChanges { target: oilBar; visible: false; state: "" }
         },
         State {
             name: "normalMode"
             PropertyChanges { target: speedDisk; visible: true; state: "normalMode" }
+            PropertyChanges { target: oilBar; visible: true; state: "normalMode" }
         },
         State {
             name: "functionMode"
             PropertyChanges { target: speedDisk; visible: true; state: "functionMode" }
+            PropertyChanges { target: oilBar; visible: true; state: "functionMode" }
         }
     ]
 }

@@ -96,6 +96,14 @@ Item {
     }
 
     Image {
+        id: unit
+        x: 103
+        y: 451
+        opacity: 0.0
+        source: "qrc:/rpmDisk/images/letfPanel/rpmDisk/unit.png"
+    }
+
+    Image {
         id: rpm_pointer
         x: 51.5
         y: 432
@@ -110,48 +118,45 @@ Item {
             Behavior on angle { SpringAnimation{ spring: 2; damping: 0.2} }
         }
     }
-    Image {
-        id: unit
-        x: 103
-        y: 451
-        opacity: 0.0
-        source: "qrc:/rpmDisk/images/letfPanel/rpmDisk/unit.png"
-    }
 
+    PowerKwBar {
+        id: powerKwBar
+        state: ""
+    }
 
     states: [
         State {
             name: ""
             PropertyChanges { target: rpmDisk; x: 0; y: 0; scale: 1.0 }
             PropertyChanges { target: disk_Rota; angle: 90 }
-
             PropertyChanges { target: rpm_disk; opacity: 0.0 }
             PropertyChanges { target: rpm_scale; opacity: 0.0 }
             PropertyChanges { target: rpm_number; opacity: 0.0; numCtrl: 0.0 }
             PropertyChanges { target: rpm_pointer; opacity: 0.0; }
             PropertyChanges { target: unit; opacity: 0.0; x: 103; y: 451; scale: 1.0 }
+            PropertyChanges { target: powerKwBar; visible: false; state: "" }
         },
         State {
             name: "normalMode"
             PropertyChanges { target: rpmDisk; x: 0; y: 0; scale: 1.0 }
             PropertyChanges { target: disk_Rota; angle: 0 }
-
             PropertyChanges { target: rpm_disk; opacity: 1.0 }
             PropertyChanges { target: rpm_scale; opacity: 1.0 }
             PropertyChanges { target: rpm_number; opacity: 1.0; numCtrl: 8.0 }
             PropertyChanges { target: rpm_pointer; opacity: 1.0; }
             PropertyChanges { target: unit; opacity: 1.0; x: 103; y: 451; scale: 1.0 }
+            PropertyChanges { target: powerKwBar; visible: true; state: "normalMode" }
         },
         State {
             name: "functionMode"
             PropertyChanges { target: rpmDisk; x: 54; y: 290; scale: 0.56 }
             PropertyChanges { target: disk_Rota; angle: 0 }
-
             PropertyChanges { target: rpm_disk; opacity: 1.0 }
             PropertyChanges { target: rpm_scale; opacity: 1.0 }
             PropertyChanges { target: rpm_number; opacity: 1.0; numCtrl: 8.0 }
             PropertyChanges { target: rpm_pointer; opacity: 1.0; }
-            PropertyChanges { target: unit; opacity: 1.0; x: 310; y: 590; scale: 1.2 }
+            PropertyChanges { target: unit; opacity: 1.0; x: 310; y: 580; scale: 1.2 }
+            PropertyChanges { target: powerKwBar; visible: true; state: "functionMode" }
         }
     ]
 

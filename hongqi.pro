@@ -20,13 +20,13 @@ QMAKE_DISTCLEAN += *_qtquickcompiler.qrc
 SOURCE_FOLDER = src
 HEADER_FOLDER = src/include
 
-INCLUDEPATH += $$HEADER_FOLDER /opt/buildroot/sources/linux/include/
+INCLUDEPATH += $$HEADER_FOLDER
 HEADERS += $$HEADER_FOLDER/carstatus.h \
     $$HEADER_FOLDER/hqcarstatus.h \
     $$HEADER_FOLDER/protocol.h \
     $$HEADER_FOLDER/serial.h \
     $$HEADER_FOLDER/ring.h \
-    src/include/fontName.h
+    $$HEADER_FOLDER/fontName.h
 
 SOURCES += $$SOURCE_FOLDER/main.cpp \
     $$SOURCE_FOLDER/carstatus.cpp \
@@ -70,5 +70,3 @@ UI_DIR = build
 MOC_DIR = build
 RCC_DIR = build
 OBJECTS_DIR = build
-
-DISTFILES += \
