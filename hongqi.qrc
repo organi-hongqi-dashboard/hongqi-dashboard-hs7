@@ -26,6 +26,7 @@
         <file>qml/content/GearPanel.qml</file>
         <file>qml/content/GearBox.qml</file>
         <file>qml/content/GearDMS.qml</file>
+        <file>qml/content/warning/CoolWaterErr.qml</file>
     </qresource>
     <qresource prefix="/common">
         <file>images/common/spinner.png</file>
@@ -181,5 +182,34 @@
     <qresource prefix="/common/disk">
         <file>images/common/disk/pointer.png</file>
         <file>images/common/disk/disk.png</file>
+    </qresource>
+    <qresource prefix="/centralPanel">
+        <file>images/centralPanel/warningSymbol.png</file>
+        <file>images/centralPanel/textRec.png</file>
+        <file>images/centralPanel/safeErr/seatBg.png</file>
+        <file>images/centralPanel/safeErr/safeBg.png</file>
+        <file>images/centralPanel/safeErr/safeBagErrText.png</file>
+        <file>images/centralPanel/oilShortErr/oilShortText.png</file>
+        <file>images/centralPanel/oilShortErr/oilGunBg.png</file>
+        <file>images/centralPanel/oilShortErr/oilFallBg.png</file>
+        <file>images/centralPanel/oilPreLowErr/oilYellow.png</file>
+        <file>images/centralPanel/oilPreLowErr/oilLowText.png</file>
+        <file>images/centralPanel/oilPreLowErr/oilLowBg.png</file>
+        <file>images/centralPanel/gearShiftTemHighErr/temBg.png</file>
+        <file>images/centralPanel/gearShiftTemHighErr/gearWhiteBg.png</file>
+        <file>images/centralPanel/gearShiftTemHighErr/gearShiftTemHighText.png</file>
+        <file>images/centralPanel/gearShiftTemHighErr/gearRedBg.png</file>
+        <file>images/centralPanel/engineErr/engineErrText.png</file>
+        <file>images/centralPanel/engineErr/engineErrBg.png</file>
+        <file>images/centralPanel/coolWaterErr/coolWaterText.png</file>
+        <file>images/centralPanel/coolWaterErr/coolWaterBg.png</file>
+        <file>images/centralPanel/chargingSysErr/chargingSysErrText.png</file>
+        <file>images/centralPanel/chargingSysErr/batterBg.png</file>
+        <file>images/centralPanel/afsErr/afsLightBg.png</file>
+        <file>images/centralPanel/afsErr/afsCloseText.png</file>
+        <file>images/centralPanel/afsErr/afsCarBg.png</file>
+        <file>images/centralPanel/absErr/absWhiteBg.png</file>
+        <file>images/centralPanel/absErr/absRedBg.png</file>
+        <file>images/centralPanel/absErr/absErrText.png</file>
     </qresource>
 </RCC>
