@@ -25,6 +25,7 @@
         <file>qml/content/SplashPanel.qml</file>
         <file>qml/content/GearPanel.qml</file>
         <file>qml/content/GearBox.qml</file>
+        <file>qml/content/GearDMS.qml</file>
     </qresource>
     <qresource prefix="/common">
         <file>images/common/spinner.png</file>
@@ -43,16 +44,33 @@
         <file>images/common/bg.png</file>
     </qresource>
     <qresource prefix="/letfPanel/gearPanel">
-        <file>images/letfPanel/gearPanel/gearScopy.png</file>
-        <file>images/letfPanel/gearPanel/gearS.png</file>
-        <file>images/letfPanel/gearPanel/gearRcopy.png</file>
+        <file>images/letfPanel/gearPanel/gearS8.png</file>
+        <file>images/letfPanel/gearPanel/gearS7.png</file>
+        <file>images/letfPanel/gearPanel/gearS6.png</file>
+        <file>images/letfPanel/gearPanel/gearS5.png</file>
+        <file>images/letfPanel/gearPanel/gearS4.png</file>
+        <file>images/letfPanel/gearPanel/gearS3.png</file>
+        <file>images/letfPanel/gearPanel/gearS2.png</file>
+        <file>images/letfPanel/gearPanel/gearS1.png</file>
         <file>images/letfPanel/gearPanel/gearR.png</file>
-        <file>images/letfPanel/gearPanel/gearPcopy.png</file>
         <file>images/letfPanel/gearPanel/gearP.png</file>
-        <file>images/letfPanel/gearPanel/gearNcopy.png</file>
         <file>images/letfPanel/gearPanel/gearN.png</file>
-        <file>images/letfPanel/gearPanel/gearDcopy.png</file>
-        <file>images/letfPanel/gearPanel/gearD.png</file>
+        <file>images/letfPanel/gearPanel/gearM8.png</file>
+        <file>images/letfPanel/gearPanel/gearM7.png</file>
+        <file>images/letfPanel/gearPanel/gearM6.png</file>
+        <file>images/letfPanel/gearPanel/gearM5.png</file>
+        <file>images/letfPanel/gearPanel/gearM4.png</file>
+        <file>images/letfPanel/gearPanel/gearM3.png</file>
+        <file>images/letfPanel/gearPanel/gearM2.png</file>
+        <file>images/letfPanel/gearPanel/gearM1.png</file>
+        <file>images/letfPanel/gearPanel/gearD8.png</file>
+        <file>images/letfPanel/gearPanel/gearD7.png</file>
+        <file>images/letfPanel/gearPanel/gearD6.png</file>
+        <file>images/letfPanel/gearPanel/gearD5.png</file>
+        <file>images/letfPanel/gearPanel/gearD4.png</file>
+        <file>images/letfPanel/gearPanel/gearD3.png</file>
+        <file>images/letfPanel/gearPanel/gearD2.png</file>
+        <file>images/letfPanel/gearPanel/gearD1.png</file>
     </qresource>
     <qresource prefix="/rightPanel">
         <file>images/coolantTemp/coolant90.png</file>

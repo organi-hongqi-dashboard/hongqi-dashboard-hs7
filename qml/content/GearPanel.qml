@@ -55,6 +55,28 @@ Item {
                 gear2.state = "show";
             }
             break;
+        case 4:
+            if( gear1.state == "" ) {
+                gearBox1.getGearValue = getGear;
+                gear2.state = "";
+                gear1.state = "show";
+            } else {
+                gearBox2.getGearValue = getGear;
+                gear1.state = "";
+                gear2.state = "show";
+            }
+            break;
+        case 5:
+            if( gear1.state == "" ) {
+                gearBox1.getGearValue = getGear;
+                gear2.state = "";
+                gear1.state = "show";
+            } else {
+                gearBox2.getGearValue = getGear;
+                gear1.state = "";
+                gear2.state = "show";
+            }
+            break;
         default:
             break;
         }
@@ -66,7 +88,7 @@ Item {
 
     Gear {
         id: gear1
-        x: 323
+        x: 250
         y: 308
 
         GearBox {
@@ -88,7 +110,7 @@ Item {
 
     Gear {
         id: gear2
-        x: 323
+        x: 250
         y: 308
 
         GearBox {
