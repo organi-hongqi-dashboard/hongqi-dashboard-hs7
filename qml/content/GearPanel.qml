@@ -7,6 +7,25 @@ Item {
     property bool isAnimation: false
     property int getGear: 0
 
+//    focus: true
+//    Keys.onPressed: {
+//        switch(event.key) {
+//        case Qt.Key_1:
+
+//            if( getGear == 5 )
+//                getGear = 0;
+//            else
+//                getGear++;
+//            break;
+//        case Qt.Key_2:
+//            if( getGear == 0 )
+//                getGear = 5;
+//            else
+//                getGear--;
+//            break;
+//        }
+//    }
+
     function setGear() {
         if( isAnimation == true || getGear < 0 || getGear > 5 )
             return;
@@ -27,7 +46,7 @@ Item {
 
     Gear {
         id: gear1
-        x: 250
+        x: 260
         y: 308
 
         GearBox {
@@ -49,7 +68,7 @@ Item {
 
     Gear {
         id: gear2
-        x: 250
+        x: 260
         y: 308
 
         GearBox {

@@ -9,7 +9,7 @@ Item {
         id: gearRot
         axis { x: 1; y: 0; z: 0 }
         angle: 90
-        origin { x: 0; y: 100 }
+        origin { x: 50; y: 100 }
     }
 
     states: [

@@ -80,6 +80,7 @@ Item {
 
     GearDMS {
         id: gearD
+        x: -20
         visible: false
         getIcon1: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearD1.png";
         getIcon2: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearD2.png";
@@ -93,6 +94,7 @@ Item {
 
     GearDMS {
         id: gearS
+        x: -20
         visible: false
         getIcon1: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearS1.png";
         getIcon2: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearS2.png";
@@ -106,6 +108,7 @@ Item {
 
     GearDMS {
         id: gearM
+        x: -20
         visible: false
         getIcon1: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearM1.png";
         getIcon2: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearM2.png";
