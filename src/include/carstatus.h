@@ -2,364 +2,232 @@
 #define CARSTATUS_H
 
 #include <QString>
+#include <QDateTime>
+#include <QByteArray>
+#include <QSerialPort>
+#include <QTimerEvent>
 
-#include <serial.h>
-
-/*
- * times for key debounce and long button
- */
-#define KEY_DEBOUNCE_TIME 2     // 2 * 100ms = 200ms
-#define KEY_LONG_TIME 15		// 15 * 100ms = 1500ms
-/*
- * times for DOOR debounce
- */
-#define DOOR_DEBOUNCE_TIME 2     // 2 * 100ms = 200ms
-
-class CarStatus : public QObject
-{
-	Q_OBJECT
-
-	// all have
-	Q_PROPERTY(uint hwVer READ hwVer NOTIFY hwVerChanged)
-	Q_PROPERTY(uint releaseVer READ releaseVer NOTIFY releaseVerChanged)
-	Q_PROPERTY(uint betaVer READ betaVer NOTIFY betaVerChanged)
-	Q_PROPERTY(uint rpm READ rpm NOTIFY rpmChanged)
-	Q_PROPERTY(QString date READ date NOTIFY dateChanged)
-	Q_PROPERTY(QString time READ time NOTIFY timeChanged)
-	Q_PROPERTY(uint speed READ speed NOTIFY speedChanged)
-	Q_PROPERTY(uint temprature READ temprature NOTIFY tempratureChanged)
-#ifdef DEBUG
-	// button info
-	Q_PROPERTY(QString key0 READ key0 NOTIFY key0Changed)
-	Q_PROPERTY(QString key1 READ key1 NOTIFY key1Changed)
-	Q_PROPERTY(QString key2 READ key2 NOTIFY key2Changed)
-	Q_PROPERTY(QString key3 READ key3 NOTIFY key3Changed)
-	Q_PROPERTY(QString key4 READ key4 NOTIFY key4Changed)
-	Q_PROPERTY(QString key5 READ key5 NOTIFY key5Changed)
-	Q_PROPERTY(QString key6 READ key6 NOTIFY key6Changed)
-	Q_PROPERTY(QString key7 READ key7 NOTIFY key7Changed)
+#include <protocol.h>
+#ifdef Todi
+#include <todi_protocol.h>
+#elif MoLiHua
+#include <molihua_protocol.h>
 #endif
-	Q_PROPERTY(uint gear READ gear NOTIFY gearChanged)
-	Q_PROPERTY(uint gearMode READ gearMode NOTIFY gearModeChanged)
-	Q_PROPERTY(uint keyStatus READ keyStatus NOTIFY keyStatusChanged)
-	Q_PROPERTY(bool leftFrontDoor READ leftFrontDoor NOTIFY leftFrontDoorChanged)
-	Q_PROPERTY(bool rightFrontDoor READ rightFrontDoor NOTIFY rightFrontDoorChanged)
-	Q_PROPERTY(bool leftRearDoor READ leftRearDoor NOTIFY leftRearDoorChanged)
-	Q_PROPERTY(bool rightRearDoor READ rightRearDoor NOTIFY rightRearDoorChanged)
-	Q_PROPERTY(bool hoodDoor READ hoodDoor NOTIFY hoodDoorChanged)
-	Q_PROPERTY(bool trunkDoor READ trunkDoor NOTIFY trunkDoorChanged)
-	Q_PROPERTY(uint odo READ odo NOTIFY odoChanged)
-	Q_PROPERTY(uint averageSpeed READ averageSpeed NOTIFY averageSpeedChanged)
-	Q_PROPERTY(uint remainMileage READ remainMileage NOTIFY remainMileageChanged)
-	Q_PROPERTY(uint trip1 READ trip1 NOTIFY trip1Changed)
-	Q_PROPERTY(uint trip2 READ trip2 NOTIFY trip2Changed)
-	Q_PROPERTY(bool averageFuelUint READ averageFuelUint NOTIFY averageFuelUintChanged)
-	Q_PROPERTY(bool instantaneousFuelUint READ instantaneousFuelUint NOTIFY instantaneousFuelUintChanged)
-	Q_PROPERTY(uint averageFuel READ averageFuel NOTIFY averageFuelChanged)
-	Q_PROPERTY(uint instantaneousFuel READ instantaneousFuel NOTIFY instantaneousFuelChanged)
-	Q_PROPERTY(uint fuel READ fuel NOTIFY fuelChanged)
-	Q_PROPERTY(uint soc READ soc NOTIFY socChanged)
-	Q_PROPERTY(uint maintenanceMileage READ maintenanceMileage NOTIFY maintenanceMileageChanged)
-	Q_PROPERTY(uint outTemprature READ outTemprature NOTIFY outTempratureChanged)
-	Q_PROPERTY(uint batteryCurrent READ batteryCurrent NOTIFY batteryCurrentChanged)
-	Q_PROPERTY(uint batteryVoltage READ batteryVoltage NOTIFY batteryVoltageChanged)
 
+/*
+ * BoolValueChangeSet:    change recv signal value normally
+ * NumValueChangeSet:     change recv signal value by range of (min, max)
+ * NumValueErrChangeSet:  change recv signal value by range of (min, max), or 0xFF... if error happen
+ */
+#define BoolValueChangeSet(name, v) do { if (m_##name != (v)) { m_##name = (v); emit name##Changed(v); }} while (0)
+#define NumValueChangeSet(name, v, min, max) do { if (qAbs(m_##name - qBound(min, v, max)) > 0.001) { m_##name = qBound(min, v, max); emit name##Changed(qBound(min, v, max)); }} while (0)
+#define NumValueErrChangeSet(name, v, min, max, e) do { if (e == v) { m_##name = (v); emit name##Changed(v);} else { if (qAbs(m_##name - qBound(min, v, max)) > 0.001) { m_##name = qBound(min, v, max); emit name##Changed(qBound(min, v, max)); }}} while (0)
 
-	// animation control
-	Q_PROPERTY(bool active READ active WRITE setActive NOTIFY activeChanged)
+class CarStatus : public QSerialPort
+{
+    Q_OBJECT
+
+    // GeneralInfo
+    Q_PROPERTY(uint tmpVersion MEMBER m_tmpVersion NOTIFY tmpVersionChanged)
+    Q_PROPERTY(uint relVersion MEMBER m_relVersion NOTIFY relVersionChanged)
+    Q_PROPERTY(uint hwVersion MEMBER m_hwVersion NOTIFY hwVersionChanged)
+    Q_PROPERTY(uint rpm MEMBER m_rpm NOTIFY rpmChanged)
+    Q_PROPERTY(uint dateTime MEMBER m_dateTime NOTIFY dateTimeChanged)
+    Q_PROPERTY(QDateTime qDateTime MEMBER m_qDateTime NOTIFY qDateTimeChanged)
+    Q_PROPERTY(QString date MEMBER m_date NOTIFY dateChanged)
+    Q_PROPERTY(QString time MEMBER m_time NOTIFY timeChanged)
+    Q_PROPERTY(uint speed MEMBER m_speed NOTIFY speedChanged)
+    Q_PROPERTY(uint waterTemp MEMBER m_waterTemp NOTIFY waterTempChanged)
+    Q_PROPERTY(bool key1 MEMBER m_key1 NOTIFY key1Changed)
+    Q_PROPERTY(bool key2 MEMBER m_key2 NOTIFY key2Changed)
+    Q_PROPERTY(bool key3 MEMBER m_key3 NOTIFY key3Changed)
+    Q_PROPERTY(bool key4 MEMBER m_key4 NOTIFY key4Changed)
+    Q_PROPERTY(bool igOn MEMBER m_igOn NOTIFY igOnChanged)
+    Q_PROPERTY(uint gear MEMBER m_gear NOTIFY gearChanged)
+    Q_PROPERTY(uint gearMode MEMBER m_gearMode NOTIFY gearModeChanged)
+    Q_PROPERTY(uint keyStatus MEMBER m_keyStatus NOTIFY keyStatusChanged)
+    Q_PROPERTY(bool lfDoor MEMBER m_lfDoor NOTIFY lfDoorChanged)
+    Q_PROPERTY(bool rfDoor MEMBER m_rfDoor NOTIFY rfDoorChanged)
+    Q_PROPERTY(bool lrDoor MEMBER m_lrDoor NOTIFY lrDoorChanged)
+    Q_PROPERTY(bool rrDoor MEMBER m_rrDoor NOTIFY rrDoorChanged)
+    Q_PROPERTY(bool hoodDoor MEMBER m_hoodDoor NOTIFY hoodDoorChanged)
+    Q_PROPERTY(bool trunkDoor MEMBER m_trunkDoor NOTIFY trunkDoorChanged)
+    Q_PROPERTY(uint odo MEMBER m_odo NOTIFY odoChanged)
+    Q_PROPERTY(uint avgSpeed MEMBER m_avgSpeed NOTIFY avgSpeedChanged)
+    Q_PROPERTY(bool avgFuelUnit MEMBER m_avgFuelUnit NOTIFY avgFuelUnitChanged)
+    Q_PROPERTY(bool instantaneousFuelUnit MEMBER m_instantaneousFuelUnit NOTIFY instantaneousFuelUnitChanged)
+    Q_PROPERTY(uint remainMileage MEMBER m_remainMileage NOTIFY remainMileageChanged)
+    Q_PROPERTY(uint trip1 MEMBER m_trip1 NOTIFY trip1Changed)
+    Q_PROPERTY(uint fuel MEMBER m_fuel NOTIFY fuelChanged)
+    Q_PROPERTY(uint trip2 MEMBER m_trip2 NOTIFY trip2Changed)
+    Q_PROPERTY(uint soc MEMBER m_soc NOTIFY socChanged)
+    Q_PROPERTY(uint maintenanceMileage MEMBER m_maintenanceMileage NOTIFY maintenanceMileageChanged)
+    Q_PROPERTY(qreal outTemp MEMBER m_outTemp NOTIFY outTempChanged)
+    Q_PROPERTY(uint avgFuel MEMBER m_avgFuel NOTIFY avgFuelChanged)
+    Q_PROPERTY(qreal instantaneousFuel MEMBER m_instantaneousFuel NOTIFY instantaneousFuelChanged)
+    Q_PROPERTY(qreal batteryCurrent MEMBER m_batteryCurrent NOTIFY batteryCurrentChanged)
+    Q_PROPERTY(qreal batteryVoltage MEMBER m_batteryVoltage NOTIFY batteryVoltageChanged)
+
+    // General SettingsInfo
+    Q_PROPERTY(bool commandReq MEMBER m_commandReq NOTIFY commandReqChanged)
+    Q_PROPERTY(bool closeReq MEMBER m_closeReq NOTIFY closeReqChanged)
+    Q_PROPERTY(bool tripClean MEMBER m_tripClean NOTIFY tripCleanChanged)
+    Q_PROPERTY(bool avgSpeedClean MEMBER m_avgSpeedClean NOTIFY avgSpeedCleanChanged)
+    Q_PROPERTY(bool avgFuelClean MEMBER m_avgFuelClean NOTIFY avgFuelCleanChanged)
+    Q_PROPERTY(bool projectMode MEMBER m_projectMode NOTIFY projectModeChanged)
+    Q_PROPERTY(uint alarmInterface MEMBER m_alarmInterface NOTIFY alarmInterfaceChanged)
+    Q_PROPERTY(uint interfaceSoundSync MEMBER m_interfaceSoundSync NOTIFY interfaceSoundSyncChanged)
+    Q_PROPERTY(uint dateTimeSet MEMBER m_dateTimeSet NOTIFY dateTimeSetChanged)
+
+    // Enable receive info from serial
+    Q_PROPERTY(bool active MEMBER m_active NOTIFY activeChanged)
+
+    // Load Special.qml of different project
+    Q_PROPERTY(QString projectName MEMBER m_projectName NOTIFY projectNameChanged)
 
 public:
-	explicit CarStatus(const QString &serialDev, QObject *parent = 0);
-    explicit CarStatus(QObject *parent = 0);
+    explicit CarStatus(const QString &serialDev, QSerialPort *parent = 0);
 
-	// all have
-	uint hwVer()const { return m_hwVer; }
-	uint releaseVer()const { return m_releaseVer; }
-	uint betaVer()const { return m_betaVer; }
-	uint rpm()const { return m_rpm; }
-	QString date()const { return m_date; }
-	QString time()const { return m_time; }
-	uint speed()const { return m_speed; }
-	uint temprature()const { return m_temprature; }
-#ifdef DEBUG
-	// button info
-	QString key0()const { return m_key0; }
-	QString key1()const { return m_key1; }
-	QString key2()const { return m_key2; }
-	QString key3()const { return m_key3; }
-	QString key4()const { return m_key4; }
-	QString key5()const { return m_key5; }
-	QString key6()const { return m_key6; }
-	QString key7()const { return m_key7; }
-#endif
-	uint gear()const { return m_gear; }
-	uint gearMode()const { return m_gearMode; }
-	uint keyStatus()const { return m_keyStatus; }
-	bool leftFrontDoor()const { return m_leftFrontDoor; }
-	bool rightFrontDoor()const { return m_rightFrontDoor; }
-	bool leftRearDoor()const { return m_leftRearDoor; }
-	bool rightRearDoor()const { return m_rightRearDoor; }
-	bool hoodDoor()const { return m_hoodDoor; }
-	bool trunkDoor()const { return m_trunkDoor; }
-	uint odo()const { return m_odo; }
-	uint averageSpeed()const { return m_averageSpeed; }
-	uint remainMileage()const { return m_remainMileage; }
-	uint trip1()const { return m_trip1; }
-	uint trip2()const { return m_trip2; }
-	bool averageFuelUint()const { return m_averageFuelUint; }
-	bool instantaneousFuelUint()const { return m_instantaneousFuelUint; }
-	uint averageFuel()const { return m_averageFuel; }
-	uint instantaneousFuel()const { return m_instantaneousFuel; }
-	uint fuel()const { return m_fuel; }
-	uint soc()const { return m_soc; }
-	uint maintenanceMileage()const { return m_maintenanceMileage; }
-	uint outTemprature()const { return m_outTemprature; }
-	uint batteryCurrent()const { return m_batteryCurrent; }
-	uint batteryVoltage()const { return m_batteryVoltage; }
-
-	// animation control
-	virtual void setActive(bool)=0;
-	bool active()const { return m_active; }
+    Q_INVOKABLE void sendSettingsFrame();
 
 signals:
-	// all have
-	void hwVerChanged(uint);
-	void releaseVerChanged(uint);
-	void betaVerChanged(uint);
-	void rpmChanged(uint);
-	void dateChanged(QString);
-	void timeChanged(QString);
-	void speedChanged(uint);
-	void tempratureChanged(uint);
-	void key0Changed(bool);
-	void key1Changed(bool);
-	void key2Changed(bool);
-	void key3Changed(bool);
-	void key4Changed(bool);
-	void key5Changed(bool);
-	void key6Changed(bool);
-	void key7Changed(bool);
-	void gearChanged(uint);
-	void gearModeChanged(uint);
-	void keyStatusChanged(uint);
-	void leftFrontDoorChanged(bool);
-	void rightFrontDoorChanged(bool);
-	void leftRearDoorChanged(bool);
-	void rightRearDoorChanged(bool);
-	void hoodDoorChanged(bool);
-	void trunkDoorChanged(bool);
-	void odoChanged(uint);
-	void averageSpeedChanged(uint);
-	void remainMileageChanged(uint);
-	void trip1Changed(uint);
-	void trip2Changed(uint);
-	void averageFuelUintChanged(bool);
-	void instantaneousFuelUintChanged(bool);
-	void averageFuelChanged(uint);
-	void instantaneousFuelChanged(uint);
-	void fuelChanged(uint);
-	void socChanged(uint);
-	void maintenanceMileageChanged(uint);
-	void outTempratureChanged(uint);
-	void batteryCurrentChanged(uint);
-	void batteryVoltageChanged(uint);
+    // GeneralInfo
+    void tmpVersionChanged(uint);
+    void relVersionChanged(uint);
+    void hwVersionChanged(uint);
+    void rpmChanged(uint);
+    void dateTimeChanged(uint);
+    void qDateTimeChanged(QDateTime);
+    void dateChanged(QString);
+    void timeChanged(QString);
+    void speedChanged(uint);
+    void waterTempChanged(uint);
+    void key1Changed(bool);
+    void key2Changed(bool);
+    void key3Changed(bool);
+    void key4Changed(bool);
+    void igOnChanged(bool);
+    void gearChanged(uint);
+    void gearModeChanged(uint);
+    void keyStatusChanged(uint);
+    void lfDoorChanged(bool);
+    void rfDoorChanged(bool);
+    void lrDoorChanged(bool);
+    void rrDoorChanged(bool);
+    void hoodDoorChanged(bool);
+    void trunkDoorChanged(bool);
+    void odoChanged(uint);
+    void avgSpeedChanged(uint);
+    void avgFuelUnitChanged(bool);
+    void instantaneousFuelUnitChanged(bool);
+    void remainMileageChanged(uint);
+    void trip1Changed(uint);
+    void fuelChanged(uint);
+    void trip2Changed(uint);
+    void socChanged(uint);
+    void maintenanceMileageChanged(uint);
+    void outTempChanged(qreal);
+    void avgFuelChanged(uint);
+    void instantaneousFuelChanged(qreal);
+    void batteryCurrentChanged(qreal);
+    void batteryVoltageChanged(qreal);
 
-	void activeChanged(bool);
+    void activeChanged(bool);
 
-	// door info
-	void sendLeftFrontDoorChanged(bool);
-	void sendLeftRearDoorChanged(bool);
-	void sendRightFrontDoorChanged(bool);
-	void sendRightRearDoorChanged(bool);
-	void sendHoodDoorChanged(bool);
-	void sendTrunkDoorChanged(bool);
+    void projectNameChanged(QString);
 
-#ifdef DEBUG
-	void key0ShowChanged(QString);
-	void key1ShowChanged(QString);
-	void key2ShowChanged(QString);
-	void key3ShowChanged(QString);
-	void key4ShowChanged(QString);
-	void key5ShowChanged(QString);
-	void key6ShowChanged(QString);
-	void key7ShowChanged(QString);
-#else
-	Q_INVOKABLE void key0Short();
-	Q_INVOKABLE void key1Short();
-	Q_INVOKABLE void key2Short();
-	Q_INVOKABLE void key3Short();
-	Q_INVOKABLE void key4Short();
-	Q_INVOKABLE void key5Short();
-	Q_INVOKABLE void key6Short();
-	Q_INVOKABLE void key7Short();
-	Q_INVOKABLE void key0Long();
-	Q_INVOKABLE void key1Long();
-	Q_INVOKABLE void key2Long();
-	Q_INVOKABLE void key3Long();
-	Q_INVOKABLE void key4Long();
-	Q_INVOKABLE void key5Long();
-	Q_INVOKABLE void key6Long();
-	Q_INVOKABLE void key7Long();
+    // General SettingsInfo
+    void commandReqChanged(bool);
+    void closeReqChanged(bool);
+    void tripCleanChanged(bool);
+    void avgSpeedCleanChanged(bool);
+    void avgFuelCleanChanged(bool);
+    void projectModeChanged(bool);
+    void alarmInterfaceChanged(uint);
+    void interfaceSoundSyncChanged(uint);
+    void dateTimeSetChanged(uint);
+
+protected:
+
+#ifdef TIMER_FREQ
+    virtual void timerEvent(QTimerEvent *event);
 #endif
+
+    void initValues();
+
+    // Set date and time to string
+    void updateTime(uint);
+
+    // GeneralInfo
+    uint m_tmpVersion;
+    uint m_relVersion;
+    uint m_hwVersion;
+    uint m_rpm;
+    uint m_dateTime;
+    QString m_date;
+    QString m_time;
+    QDateTime m_qDateTime;
+
+    uint m_speed;
+    uint m_waterTemp;
+    bool m_key1;
+    bool m_key2;
+    bool m_key3;
+    bool m_key4;
+    bool m_igOn;
+    uint m_gear;
+    uint m_gearMode;
+    uint m_keyStatus;
+    bool m_lfDoor;
+    bool m_rfDoor;
+    bool m_lrDoor;
+    bool m_rrDoor;
+    bool m_hoodDoor;
+    bool m_trunkDoor;
+    uint m_odo;
+    uint m_avgSpeed;
+    bool m_avgFuelUnit;
+    bool m_instantaneousFuelUnit;
+    uint m_remainMileage;
+    uint m_trip1;
+    uint m_fuel;
+    uint m_trip2;
+    uint m_soc;
+    uint m_maintenanceMileage;
+    qreal m_outTemp;
+    uint m_avgFuel;
+    qreal m_instantaneousFuel;
+    qreal m_batteryCurrent;
+    qreal m_batteryVoltage;
+
+    // General SettingsInfo
+    bool m_commandReq;
+    bool m_closeReq;
+    bool m_tripClean;
+    bool m_avgSpeedClean;
+    bool m_avgFuelClean;
+    bool m_projectMode;
+    uint m_alarmInterface;
+    uint m_interfaceSoundSync;
+    uint m_dateTimeSet;
+
+    bool m_active;
+
+    QString m_projectName;
+
+private slots:
+    void readSerial();
+
+protected:
+    bool sendSerial(const QByteArray &data);
 
 protected slots:
-	virtual void getGeneralSerial(GeneralInfo data)=0;
-	virtual void getSpecialSerial(SpecialInfo data)=0;
-	virtual void getMobileSerial(MobileInfo data)=0;
-	// door info
-	void leftFrontDoorDeal(bool);
-	void leftRearDoorDeal(bool);
-	void rightFrontDoorDeal(bool);
-	void rightRearDoorDeal(bool);
-	void hoodDoorDeal(bool);
-	void trunkDoorDeal(bool);
-
-	// button info
-	void key0Deal(bool);
-	void key1Deal(bool);
-	void key2Deal(bool);
-	void key3Deal(bool);
-	void key4Deal(bool);
-	void key5Deal(bool);
-	void key6Deal(bool);
-	void key7Deal(bool);
-protected:
-	virtual void initValues()=0;
-
-	void setHwVer(uint);
-	void setReleaseVer(uint);
-	void setBetaVer(uint);
-	void setRpm(uint);
-	void setDate(uint);
-	void setTime(uint);
-	void setSpeed(uint);
-	void setTemprature(uint);
-	void setKey0(bool);
-	void setKey1(bool);
-	void setKey2(bool);
-	void setKey3(bool);
-	void setKey4(bool);
-	void setKey5(bool);
-	void setKey6(bool);
-	void setKey7(bool);
-	void setGear(uint);
-	void setGearMode(uint);
-	void setKeyStatus(uint);
-	void setLeftFrontDoor(bool);
-	void setRightFrontDoor(bool);
-	void setLeftRearDoor(bool);
-	void setRightRearDoor(bool);
-	void setHoodDoor(bool);
-	void setTrunkDoor(bool);
-	void setOdo(uint);
-	void setAverageSpeed(uint);
-	void setRemainMileage(uint);
-	void setTrip1(uint);
-	void setTrip2(uint);
-	void setAverageFuelUint(bool);
-	void setInstantaneousFuelUint(bool);
-	void setAverageFuel(uint);
-	void setInstantaneousFuel(uint);
-	void setFuel(uint);
-	void setSoc(uint);
-	void setMaintenanceMileage(uint);
-	void setOutTemprature(uint);
-	void setBatteryCurrent(uint);
-	void setBatteryVoltage(uint);
-
-#ifdef DEBUG
-	void setKeyShow0(QString);
-	void setKeyShow1(QString);
-	void setKeyShow2(QString);
-	void setKeyShow3(QString);
-	void setKeyShow4(QString);
-	void setKeyShow5(QString);
-	void setKeyShow6(QString);
-	void setKeyShow7(QString);
+    virtual void getGeneralSerial(GeneralInfo data);
+#if (defined Todi) || (defined MoLiHua)
+    virtual void getSpecialSerial(SpecialInfo data);
 #endif
-	
-	// door info
-	void sendLeftFrontDoor(bool);
-	void sendLeftRearDoor(bool);
-	void sendRightFrontDoor(bool);
-	void sendRightRearDoor(bool);
-	void sendHoodDoor(bool);
-	void sendTrunkDoor(bool);
-
-	bool m_active;
-	// all have
-	uint m_hwVer;
-	uint m_releaseVer;
-	uint m_betaVer;
-	uint m_rpm;
-	QString m_date;
-	QString m_time;
-	uint m_speed;
-	uint m_temprature;
-#ifdef DEBUG
-	// button info
-	QString m_key0;
-	QString m_key1;
-	QString m_key2;
-	QString m_key3;
-	QString m_key4;
-	QString m_key5;
-	QString m_key6;
-	QString m_key7;
-#endif
-	uint m_gear;
-	uint m_gearMode;
-	uint m_keyStatus;
-	bool m_leftFrontDoor;
-	bool m_rightFrontDoor;
-	bool m_leftRearDoor;
-	bool m_rightRearDoor;
-	bool m_hoodDoor;
-	bool m_trunkDoor;
-	uint m_odo;
-	uint m_averageSpeed;
-	uint m_remainMileage;
-	uint m_trip1;
-	uint m_trip2;
-	bool m_averageFuelUint;
-	bool m_instantaneousFuelUint;
-	uint m_averageFuel;
-	uint m_instantaneousFuel;
-	uint m_fuel;
-	uint m_soc;
-	uint m_maintenanceMileage;
-	uint m_outTemprature;
-	uint m_batteryCurrent;
-	uint m_batteryVoltage;
-	
-	uint m_leftFrontDoorStep;
-	uint m_leftRearDoorStep;
-	uint m_rightFrontDoorStep;
-	uint m_rightRearDoorStep;
-	uint m_hoodDoorStep;
-	uint m_trunkDoorStep;
-
-	uint m_key0Step;
-	bool m_key0StepFlag;
-	uint m_key1Step;
-	bool m_key1StepFlag;
-	uint m_key2Step;
-	bool m_key2StepFlag;
-	uint m_key3Step;
-	bool m_key3StepFlag;
-	uint m_key4Step;
-	bool m_key4StepFlag;
-	uint m_key5Step;
-	bool m_key5StepFlag;
-	uint m_key6Step;
-	bool m_key6StepFlag;
-	uint m_key7Step;
-	bool m_key7StepFlag;
-
-	Serial *m_serial;
-
-
-	QList<u_int16_t> m_rpmList;
+private:
+    QByteArray m_recv;
 };
 
 #endif // CARSTATUS_H

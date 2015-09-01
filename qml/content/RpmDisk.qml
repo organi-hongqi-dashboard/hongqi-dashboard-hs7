@@ -6,6 +6,8 @@ Item {
     y: 0
     scale: 1.0
 
+    property int valueRpm: carStatus.rpm
+
     Image {
         id: rpm_disk
         x: 2
@@ -114,7 +116,7 @@ Item {
             id: pointerRotation
             origin.x: 308
             origin.y: -73
-            angle: 0/*38.5 * 7*/
+            angle: valueRpm * 269.5 / 7000
             Behavior on angle { SpringAnimation{ spring: 2; damping: 0.2} }
         }
     }

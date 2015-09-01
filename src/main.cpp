@@ -1,7 +1,7 @@
 #include <wait.h>
 #include <unistd.h>
 #include <signal.h>
-#include <ring.h>
+
 
 #include <QTime>
 #include <QFile>
@@ -23,7 +23,7 @@
 #endif
 
 
-#include <hqcarstatus.h>
+#include <carstatus.h>
 
 static pid_t pid;
 static bool exit_loop = true;
@@ -102,17 +102,15 @@ int server_main(int argc, char *argv[])
 	QSurfaceFormat::setDefaultFormat(format);
 #endif
 
-	HqCarStatus hqCarStatus(serial);
+	CarStatus carStatus(serial);
     MFontName fontName;
 
 	QQmlApplicationEngine engine;
-	engine.rootContext()->setContextProperty("hqCarStatus", &hqCarStatus);
+	engine.rootContext()->setContextProperty("carStatus", &carStatus);
     engine.rootContext()->setContextProperty("fontName", &fontName);
-	qmlRegisterType<Ring>("Ring", 1, 0, "Ring");
-	qmlRegisterType<HqCarStatus>("HqCarStatus", 1, 0, "HqCarStatus");
+
 
 	engine.load(QUrl(QStringLiteral("qrc:/qml/qml/mainViewer.qml")));
-
 	return app.exec();
 }
 

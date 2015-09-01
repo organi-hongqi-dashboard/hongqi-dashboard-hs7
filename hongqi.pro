@@ -22,18 +22,12 @@ HEADER_FOLDER = src/include
 
 INCLUDEPATH += $$HEADER_FOLDER
 HEADERS += $$HEADER_FOLDER/carstatus.h \
-    $$HEADER_FOLDER/hqcarstatus.h \
     $$HEADER_FOLDER/protocol.h \
-    $$HEADER_FOLDER/serial.h \
-    $$HEADER_FOLDER/ring.h \
     $$HEADER_FOLDER/fontName.h
 
 SOURCES += $$SOURCE_FOLDER/main.cpp \
     $$SOURCE_FOLDER/carstatus.cpp \
-    $$SOURCE_FOLDER/hqcarstatus.cpp \
-    $$SOURCE_FOLDER/protocol.cpp \
-    $$SOURCE_FOLDER/serial.cpp \
-    $$SOURCE_FOLDER/ring.cpp
+    $$SOURCE_FOLDER/protocol.cpp
 
 # Qml Files
 QML_FOLDER = qml/content

@@ -6,7 +6,7 @@ Rectangle {
     y: 0
     scale: 1.0
 
-    property int valueSpeed: 0
+    property int valueSpeed: carStatus.speed
 
     Image {
         id: speed_disk
@@ -163,12 +163,10 @@ Rectangle {
             origin.x: 1560 - rightPointer.x;
             origin.y: 360 - rightPointer.y;
             angle: valueSpeed * 270 / 240
-            Behavior on angle { SpringAnimation{ spring: 1.2; damping: 0.2;}
+            Behavior on angle { SpringAnimation{ spring: 1.2; damping: 0.2; }
             }
         }
     }
-
-
 
     Item {
         id: numSpeed

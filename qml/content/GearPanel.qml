@@ -5,43 +5,79 @@ Item {
     opacity: 0.0
 
     property bool isAnimation: false
-    property int getGear: 0
+    property int setGear: 0
+    property int setGearIndex: 0
+    property int gear: carStatus.gear
+    property int gearMode: carStatus.gearMode
 
-//    focus: true
-//    Keys.onPressed: {
-//        switch(event.key) {
-//        case Qt.Key_1:
+    function setGearV() {
+        switch( gear ) {
+        case 0: // P
+            setGear = 0;
+            break;
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+            setGearIndex = gear - 1;
+            switch( gearMode ) {
+            case 1: //D
+                setGear = 3;
+                break;
+            case 2: //S
+                setGear = 4;
+                break;
+            case 3: //M
+                setGear = 5;
+                break;
+            default:
+                setGear = 0;
+                break;
+            }
+            break;
+        case 0x0e: //N
+            setGear = 1;
+            break;
+        case 0x0f: //R
+            setGear = 2;
+            break;
+        default:
+            setGear = 0;
+            break;
+        }
 
-//            if( getGear == 5 )
-//                getGear = 0;
-//            else
-//                getGear++;
-//            break;
-//        case Qt.Key_2:
-//            if( getGear == 0 )
-//                getGear = 5;
-//            else
-//                getGear--;
-//            break;
-//        }
-//    }
-
-    function setGear() {
-        if( isAnimation == true || getGear < 0 || getGear > 5 )
+        if( isAnimation == true )
             return;
         if( gear1.state == "" ) {
-            gearBox1.getGearValue = getGear;
-            gear2.state = "";
-            gear1.state = "show";
+            if( gearBox2.getGearValue != gearPanel.setGear ) {
+                gearBox1.getGearValue = setGear;
+                gearBox1.getGearIndex = setGearIndex;
+                gear2.state = "";
+                gear1.state = "show";
+            }
+            else
+                gearBox2.getGearIndex = setGearIndex;
         } else {
-            gearBox2.getGearValue = getGear;
-            gear1.state = "";
-            gear2.state = "show";
+            if( gearBox1.getGearValue != gearPanel.setGear ) {
+                gearBox2.getGearValue = setGear;
+                gearBox2.getGearIndex = setGearIndex;
+                gear1.state = "";
+                gear2.state = "show";
+            }
+            else
+                gearBox1.getGearIndex = setGearIndex;
         }
     }
 
-    onGetGearChanged: {
-        setGear();
+    onGearChanged: {
+        setGearV();
+    }
+
+    onGearModeChanged: {
+        setGearV();
     }
 
     Gear {
@@ -52,6 +88,7 @@ Item {
         GearBox {
             id: gearBox1
             getGearValue: 0
+            getGearIndex: 0
         }
         state: "show"
 
@@ -60,9 +97,8 @@ Item {
                 isAnimation = true;
             else {
                 isAnimation = false;
-                if( gearBox1.getGearValue != gearPanel.getGear )
-                    setGear();
-            }
+                if( gearBox1.getGearValue != gearPanel.setGear )
+                    setGearV();}
         }
     }
 
@@ -82,8 +118,8 @@ Item {
                 isAnimation = true;
             else {
                 isAnimation = false;
-                if( gearBox2.getGearValue != gearPanel.getGear )
-                    setGear();
+                if( gearBox2.getGearValue != gearPanel.setGear )
+                    setGearV();
             }
         }
     }
