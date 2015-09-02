@@ -17,7 +17,7 @@
         <file>qml/content/RpmDisk.qml</file>
         <file>qml/content/PowerKwBar.qml</file>
         <file>qml/content/OilBar.qml</file>
-        <file>qml/content/CarInfo.qml</file>
+        <file>qml/content/CarTipsIcon.qml</file>
         <file>qml/content/CarFunction.qml</file>
         <file>qml/content/functionMode/FunctionMenu.qml</file>
         <file>qml/content/Gear.qml</file>
@@ -31,13 +31,9 @@
         <file>images/common/spinner.png</file>
         <file>images/common/iconTripA.png</file>
         <file>images/common/iconKMTemp.png</file>
-        <file>images/common/iconDate.png</file>
         <file>images/common/charTemp.png</file>
         <file>images/common/charOdo.png</file>
         <file>images/common/baseline.png</file>
-        <file>images/common/iconTime.png</file>
-        <file>images/common/outlinelittle.png</file>
-        <file>images/common/outlineBig.png</file>
     </qresource>
     <qresource prefix="/letfPanel/gearPanel">
         <file>images/letfPanel/gearPanel/gearS8.png</file>
@@ -215,5 +211,52 @@
         <file>images/centralPanel/absErr/absWhiteBg.png</file>
         <file>images/centralPanel/absErr/absRedBg.png</file>
         <file>images/centralPanel/absErr/absErrText.png</file>
+    </qresource>
+    <qresource prefix="/carTipsIcon">
+        <file>images/carTipsIcon/unknownKeyLight.png</file>
+        <file>images/carTipsIcon/tirePressWarning.png</file>
+        <file>images/carTipsIcon/tirePressRed.png</file>
+        <file>images/carTipsIcon/sysBattErr.png</file>
+        <file>images/carTipsIcon/stopAndGoYellow.png</file>
+        <file>images/carTipsIcon/stopAndGoWhite.png</file>
+        <file>images/carTipsIcon/stopAndGoGreen.png</file>
+        <file>images/carTipsIcon/steeringColumnLockErrLight.png</file>
+        <file>images/carTipsIcon/scmSysErrLight.png</file>
+        <file>images/carTipsIcon/refrigerantLowLight.png</file>
+        <file>images/carTipsIcon/refillCleanFluidLight.png</file>
+        <file>images/carTipsIcon/rearFogLight.png</file>
+        <file>images/carTipsIcon/powerSteerErrLight.png</file>
+        <file>images/carTipsIcon/positionLight.png</file>
+        <file>images/carTipsIcon/passiveEntrySysErrLight.png</file>
+        <file>images/carTipsIcon/nightVisionLight.png</file>
+        <file>images/carTipsIcon/mainErrLight.png</file>
+        <file>images/carTipsIcon/lightErrLight.png</file>
+        <file>images/carTipsIcon/ldwYellow.png</file>
+        <file>images/carTipsIcon/ldwRed.png</file>
+        <file>images/carTipsIcon/ldwGreen.png</file>
+        <file>images/carTipsIcon/keyBatLowLight.png</file>
+        <file>images/carTipsIcon/ignitionSwitchErrLight.png</file>
+        <file>images/carTipsIcon/highBeamLight.png</file>
+        <file>images/carTipsIcon/headlampAdjustErrLight.png</file>
+        <file>images/carTipsIcon/gearboxLight.png</file>
+        <file>images/carTipsIcon/frontFogLight.png</file>
+        <file>images/carTipsIcon/fourWD.png</file>
+        <file>images/carTipsIcon/fcwNoticeLight.png</file>
+        <file>images/carTipsIcon/fcwErrLight.png</file>
+        <file>images/carTipsIcon/fcwCloseErrLight.png</file>
+        <file>images/carTipsIcon/epbErrLight.png</file>
+        <file>images/carTipsIcon/engineOilLight.png</file>
+        <file>images/carTipsIcon/changeBrakePadsLight.png</file>
+        <file>images/carTipsIcon/ccsYellow.png</file>
+        <file>images/carTipsIcon/ccsGreen.png</file>
+        <file>images/carTipsIcon/bluetoothLight.png</file>
+        <file>images/carTipsIcon/autoLightsWiperErrLight.png</file>
+        <file>images/carTipsIcon/autoHoldErrLight.png</file>
+        <file>images/carTipsIcon/afsOff.png</file>
+        <file>images/carTipsIcon/accYellow.png</file>
+        <file>images/carTipsIcon/accRed.png</file>
+        <file>images/carTipsIcon/accGreen.png</file>
+        <file>images/carTipsIcon/abaErrLight.png</file>
+        <file>images/carTipsIcon/abaCloseLight.png</file>
     </qresource>
 </RCC>

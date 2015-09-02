@@ -8,7 +8,6 @@ Rectangle {
         visible: false
         state: ""
     }
-
     RightPanel {
         id: rightPanel
         visible: false
@@ -20,6 +19,9 @@ Rectangle {
         state: ""
     }
 
+    CarTipsIcon {
+        id: carTipsIcon
+    }
 
     states: [
         State {

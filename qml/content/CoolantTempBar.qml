@@ -4,7 +4,7 @@ Rectangle {
     id: coolantTempBar
     y: -20
     opacity: 0.0
-    property int valueCoolantTemp: 90
+    property int valueCoolantTemp: carStatus.waterTemp
 
     EnergyBar {
         id: bar
