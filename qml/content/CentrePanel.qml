@@ -5,6 +5,94 @@ Rectangle {
 
     property string valueTime: carStatus.time
     property string valueDate: carStatus.date
+    property int valueOdo: carStatus.odo
+    property real valueTrip: carStatus.trip1
+    property int valueOutsideTemp: carStatus.outTemp - 40
+
+    property int getAverageFuel: carStatus.avgFuel
+    property int getInstantaneousFuel: carStatus.instantaneousFuel
+    property bool getAverageFuelUint: carStatus.avgFuelUnit
+    property bool getInstantaneousFuelUint: carStatus.instantaneousFuelUnit
+    property int getRemainMileage: carStatus.remainMileage
+
+    property int zeroOdoNum: 0
+    property int iOdo: 0
+    onValueOdoChanged: {
+        zeroOdoNum = 0;
+        iOdo = valueOdo;
+        while( iOdo != 0 ){
+            zeroOdoNum++;
+            iOdo /= 10;
+        }
+
+        zeroOdoNum = 6 - zeroOdoNum;
+        switch(zeroOdoNum) {
+        case 0:
+            odoZero.text = "";
+            break;
+        case 1:
+            odoZero.text = "0";
+            break;
+        case 2:
+            odoZero.text = "00";
+            break;
+        case 3:
+            odoZero.text = "000";
+            break;
+        case 4:
+            odoZero.text = "0000";
+            break;
+        case 5:
+            odoZero.text = "00000";
+            break;
+        default:
+            odoZero.text = "000000";
+            break;
+        }
+
+        if( valueOdo == 0 || valueOdo > 999999 )
+            odoV.text = "";
+        else
+            odoV.text = valueOdo;
+    }
+
+    property int zeroTripNum: 0
+    property int iTrip: 0
+    onValueTripChanged: {
+        zeroTripNum = 0;
+        iTrip = valueTrip;
+        while( iTrip != 0 ){
+            zeroTripNum++;
+            iTrip /= 10;
+        }
+
+        zeroTripNum = 5 - zeroTripNum;
+        switch(zeroTripNum) {
+        case 0:
+            tripZero.text = "";
+            break;
+        case 1:
+            tripZero.text = "0";
+            break;
+        case 2:
+            tripZero.text = "00";
+            break;
+        case 3:
+            tripZero.text = "000";
+            break;
+        case 4:
+            tripZero.text = "000";
+            break;
+        default:
+            tripZero.text = "0000.0";
+            break;
+        }
+
+        if( valueTrip == 0 || valueTrip > 99999 )
+            tripV.text = "";
+        else
+            tripV.text = (valueTrip * 0.1).toFixed(1);
+    }
 
     Image {
         id: bg
@@ -57,6 +145,87 @@ Rectangle {
         y: 254
         opacity: 0.0
         source: "qrc:/centrePanel/images/centrePanel/runningInfo.png"
+
+        Item {
+            id: avgFuel
+            anchors.left: runningInfo.left
+            anchors.leftMargin: 380
+            y: 40
+            Image {
+                id: avgFuelUnit_100km
+                opacity: 0.5
+                visible: getAverageFuelUint
+                source: "qrc:/centrePanel/images/centrePanel/100km.png"
+            }
+
+            Image {
+                id: avgFuelUnit_h
+                opacity: 0.5
+                visible: !getAverageFuelUint
+                source: "qrc:/centrePanel/images/centrePanel/h.png"
+            }
+            Text {
+                id: averageFuelV
+                anchors.right: avgFuel.left
+                anchors.rightMargin: 35
+                y: -12
+                font.family: fontName.fontCurrent
+                font.pixelSize: 28
+                font.italic: true
+                color: "#ffe5c1"
+                text: (centrePanel.getAverageFuel >= 0 && centrePanel.getAverageFuel <= 300) ? (centrePanel.getAverageFuel*0.1).toFixed(1) : qsTr("--.-")
+            }
+        }
+
+        Item {
+            id: instantaneousFuelUnit
+            anchors.left: runningInfo.left
+            anchors.leftMargin: 380
+            y: 111
+            Image {
+                id: instantaneousFuelUnit_100km
+                opacity: 0.5
+                visible: getInstantaneousFuelUint
+                source: "qrc:/centrePanel/images/centrePanel/100km.png"
+            }
+
+            Image {
+                id: instantaneousFuelUnit_h
+                opacity: 0.5
+                visible: !getInstantaneousFuelUint
+                source: "qrc:/centrePanel/images/centrePanel/h.png"
+            }
+            Text {
+                id: instantaneousFuel
+                anchors.right: instantaneousFuelUnit.left
+                anchors.rightMargin: 35
+                y: -12
+                font.family: fontName.fontCurrent
+                font.pixelSize: 28
+                font.italic: true
+                color: "#ffe5c1"
+                text: (centrePanel.getInstantaneousFuel >= 0 && centrePanel.getInstantaneousFuel <= 450) ? (centrePanel.getInstantaneousFuel*0.1).toFixed(1) : qsTr("--.-")
+            }
+        }
+
+        Item {
+            id: remainMileage
+            anchors.left: runningInfo.left
+            anchors.leftMargin: 380
+            y: 111 + 69
+
+            Text {
+                id: remainMileageV
+                anchors.right: remainMileage.left
+                anchors.rightMargin: 35
+                y: -12
+                font.family: fontName.fontCurrent
+                font.pixelSize: 28
+                font.italic: true
+                color: "#ffe5c1"
+                text: (centrePanel.getRemainMileage >= 0 && centrePanel.getRemainMileage <= 999) ? centrePanel.getRemainMileage : qsTr("---")
+            }
+        }
     }
 
     Item {
@@ -68,7 +237,7 @@ Rectangle {
             y: 5
             font.pixelSize: 36
             font.family: fontName.fontCurrent
-            //font.bold: true
+            font.bold: true
             color: "white"
             text: valueTime
         }
@@ -81,6 +250,149 @@ Rectangle {
             font.family: fontName.fontCurrent
             color: "white"
             text: valueDate
+        }
+    }
+
+    Item {
+        id: bottomText
+
+        Image {
+            id: baseline
+            x: 601
+            y: 646
+            opacity: 1.0
+            source: "qrc:/centrePanel/images/centrePanel/baseline.png"
+        }
+
+        Item {
+            id: temp
+
+            Image {
+                id: tempIcon
+                x: 1151
+                y: 609
+                opacity: 1.0
+                source: "qrc:/centrePanel/images/centrePanel/tempIcon.png"
+            }
+
+            Image {
+                id: cTempIcon
+                x: 1251
+                y: 611
+                opacity: 1.0
+                width: 20
+                height: 19
+                source: "qrc:/centrePanel/images/centrePanel/cTempIcon.png"
+            }
+
+            Text {
+                id: tempV
+                text: valueOutsideTemp
+                font.pixelSize: 32
+                font.family: fontName.fontCurrent
+                color: "white"
+                y: 597
+                font.letterSpacing: 1
+                // font.bold: true
+                anchors.right: cTempIcon.left
+                anchors.rightMargin: 5
+            }
+        }
+
+        Item {
+            id: odo
+
+            Image {
+                id: odoIcon
+                x: 645
+                y: 609
+                opacity: 1.0
+                source: "qrc:/centrePanel/images/centrePanel/odoIcon.png"
+            }
+
+            Image {
+                id: odoKmIcon
+                x: 840
+                y: 611
+                opacity: 1.0
+                width: 30
+                height: 19
+                source: "qrc:/centrePanel/images/centrePanel/kmIcon.png"
+            }
+
+            Text {
+                id: odoV
+                text: ""
+                font.pixelSize: 32
+                font.family: fontName.fontCurrent
+                color: "white"
+                y: 597
+                font.letterSpacing: 1
+                // font.bold: true
+                anchors.right: odoKmIcon.left
+                anchors.rightMargin: 5
+            }
+
+            Text {
+                id: odoZero
+                text: "000000"
+                font.pixelSize: 32
+                font.family: fontName.fontCurrent
+                color: "gray"
+                y: 597
+                font.letterSpacing: 1
+                // font.bold: true
+                anchors.right: odoV.left
+                anchors.rightMargin: 1
+            }
+        }
+
+        Item {
+            id: trip
+
+            Image {
+                id: tripAIcon
+                x: 922
+                y: 609
+                opacity: 0.5
+                source: "qrc:/centrePanel/images/centrePanel/tripAIcon.png"
+            }
+
+            Image {
+                id: tripKmIcon
+                x: 1068
+                y: 611
+                opacity: 1.0
+                width: 30
+                height: 19
+                source: "qrc:/centrePanel/images/centrePanel/kmIcon.png"
+            }
+
+            Text {
+                id: tripV
+                text: ""
+                font.pixelSize: 32
+                font.family: fontName.fontCurrent
+                color: "white"
+                y: 597
+                font.letterSpacing: 1
+                // font.bold: true
+                anchors.right: tripKmIcon.left
+                anchors.rightMargin: 5
+            }
+
+            Text {
+                id: tripZero
+                text: "0000.0"
+                font.pixelSize: 32
+                font.family: fontName.fontCurrent
+                color: "gray"
+                y: 597
+                font.letterSpacing: 1
+                // font.bold: true
+                anchors.right: tripV.left
+                anchors.rightMargin: 1
+            }
         }
     }
 
@@ -119,7 +431,7 @@ Rectangle {
                     NumberAnimation { target: normalLine; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
                     NumberAnimation { target: runningInfo; property: "opacity"; duration: 1000; easing.type: Easing.InBack }
                 }
-           }
+            }
         },
         Transition {
             from: "normalMode"
@@ -144,152 +456,6 @@ Rectangle {
             }
         }
     ]
-
-
-    property int valueOdo: 6589
-    property double valueTrip: 641.5
-    property int valueOutsideTemp: -29
-
-
-
-    // module 下栏文字
-    Item {
-        id: bottomText
-
-        Image {
-            id: baseline
-            x: 601
-            y: 646
-            opacity: 1.0
-            source: "qrc:/common/images/common/baseline.png"
-        }
-        Image {
-            id: iconKMTemp
-            x: 840
-            y: 611
-            opacity: 1.0
-            source: "qrc:/common/images/common/iconKMTemp.png"
-        }
-
-        /* group outside temperature */
-        Item {
-            id: groupTemp
-
-            Image {
-                id: charTemp
-                x: 1157
-                y: 609
-                opacity: 1.0
-                source: "qrc:/common/images/common/charTemp.png"
-            }
-
-            Text {
-                id: numOutsideTemp
-                text: valueOutsideTemp
-                font.pixelSize: 32
-                font.family: fontName.fontCurrent
-                color: "white"
-                //                y: 609
-                y: 600
-                //                font.letterSpacing: 3
-                font.bold: true
-                anchors.left: charTemp.right
-                //                anchors.leftMargin: 5
-            }
-        }
-
-        /* group odo */
-        Item {
-            id: groupOdo
-
-            Image {
-                id: charOdo
-                x: 645
-                y: 609
-                opacity: 1.0
-                source: "qrc:/common/images/common/charOdo.png"
-            }
-            Text {
-                id: backOfOdo
-                text: "000000"
-                font.pixelSize: 32
-                font.family: fontName.fontCurrent
-                color: "gray"
-                //                y: 609
-                y: 600
-                font.letterSpacing: 3
-                font.bold: true
-                anchors.left: charOdo.right
-            }
-            Rectangle {
-                id: shadeForOdo
-                anchors.right: backOfOdo.right
-                y: backOfOdo.y
-                width: numOdo.width
-                height: numOdo.height
-                color: "black"
-            }
-            Text {
-                id: numOdo
-                anchors.right: backOfOdo.right
-                font.pixelSize: 32
-                font.family: fontName.fontCurrent
-                //                y: 609
-                y: 600
-                font.letterSpacing: 3
-                font.bold: true
-                color: "white"
-                text: valueOdo
-            }
-        }
-
-        /* group trip */
-        Item {
-            id: groupTrip
-
-            Image {
-                id: iconTripA
-                x: 922
-                y: 609
-                opacity: 0.498039215686
-                source: "qrc:/common/images/common/iconTripA.png"
-            }
-            Text {
-                id: backOfTrip
-                text: "0000.0"
-                color: "gray"
-                font.pixelSize: 32
-                font.family: fontName.fontCurrent
-                font.letterSpacing: 3
-                font.bold: true
-                //                y: 609
-                y: 600
-                anchors.left: iconTripA.right
-                anchors.leftMargin: 10
-            }
-            Rectangle {
-                id: shadeForTrip
-                anchors.right: backOfTrip.right
-                y: 600
-                width: numTripA.width
-                height: numTripA.height
-                color: "black"
-            }
-            Text {
-                id: numTripA
-                anchors.right: backOfTrip.right
-                font.pixelSize: 32
-                font.family: fontName.fontCurrent
-                font.bold: true
-                //                font.weight:Font.ExtraBold
-                font.letterSpacing: 3
-                //                y: 609
-                y: 600
-                color: "white"
-                text: valueTrip
-            }
-        }
-    }
 
     //    CarFunction {
     //        id: carFunction

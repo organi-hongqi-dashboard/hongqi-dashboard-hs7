@@ -24,7 +24,7 @@ Rectangle {
 
     Image {
         id: middleLine
-        x: 262
+        x: 256
         y: 609
         source: "qrc:/common/bar/images/common/bar/middleLine.png"
     }

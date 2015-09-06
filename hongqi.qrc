@@ -29,11 +29,6 @@
     </qresource>
     <qresource prefix="/common">
         <file>images/common/spinner.png</file>
-        <file>images/common/iconTripA.png</file>
-        <file>images/common/iconKMTemp.png</file>
-        <file>images/common/charTemp.png</file>
-        <file>images/common/charOdo.png</file>
-        <file>images/common/baseline.png</file>
     </qresource>
     <qresource prefix="/letfPanel/gearPanel">
         <file>images/letfPanel/gearPanel/gearS8.png</file>
@@ -101,6 +96,14 @@
         <file>images/centrePanel/functionDownLine.png</file>
         <file>images/centrePanel/bg.png</file>
         <file>images/centrePanel/runningInfo.png</file>
+        <file>images/centrePanel/tripAIcon.png</file>
+        <file>images/centrePanel/tempIcon.png</file>
+        <file>images/centrePanel/odoIcon.png</file>
+        <file>images/centrePanel/kmIcon.png</file>
+        <file>images/centrePanel/cTempIcon.png</file>
+        <file>images/centrePanel/baseline.png</file>
+        <file>images/centrePanel/100km.png</file>
+        <file>images/centrePanel/h.png</file>
     </qresource>
     <qresource prefix="/rpmDisk">
         <file>images/letfPanel/rpmDisk/unit.png</file>
