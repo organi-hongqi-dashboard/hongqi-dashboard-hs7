@@ -22,8 +22,8 @@ Item {
     // private
     Image {
         id: batterBg
-        x: 906
-        y: 323
+        x: 872
+        y: 395
         opacity: 1.0
         source: "qrc:/centralPanel/images/centralPanel/chargingSysErr/batterBg.png"
     }

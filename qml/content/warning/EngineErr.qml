@@ -21,8 +21,8 @@ Item {
     // private
     Image {
         id: engineErrBg
-        x: 821
-        y: 291
+        x: 765
+        y: 213
         opacity: 1.0
         source: "qrc:/centralPanel/images/centralPanel/engineErr/engineErrBg.png"
     }
@@ -31,7 +31,7 @@ Item {
         x: 881
         y: 258
         opacity: 1.0
-        source: "qrc:centralPanel/images/centralPanel/engineErr/engineErrText.png"
+        source: "qrc:/centralPanel/images/centralPanel/engineErr/engineErrText.png"
     }
 
     ParallelAnimation {

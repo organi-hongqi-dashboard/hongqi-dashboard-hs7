@@ -1,7 +1,7 @@
 import QtQuick 2.2
 
 Item {
-    id: afsErr
+    id: epbErr
 
     // common
     Image {
@@ -21,25 +21,25 @@ Item {
 
     // private
     Image {
-        id: afsLightBg
-        x: 645
-        y: 324
+        id: epbBg
+        x: 755
+        y: 246
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/afsErr/afsLightBg.png"
+        source: "qrc:/centralPanel/images/centralPanel/epbErr/epbBg.png"
     }
     Image {
-        id: afsCarBg
-        x: 875
-        y: 326
+        id: cautionBg
+        x: 907
+        y: 442
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/afsErr/afsCarBg.png"
+        source: "qrc:/centralPanel/images/centralPanel/epbErr/cautionBg.png"
     }
     Image {
-        id: afsCloseText
-        x: 888
+        id: epbErrText
+        x: 897
         y: 258
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/afsErr/afsCloseText.png"
+        source: "qrc:/centralPanel/images/centralPanel/epbErr/epbErrText.png"
     }
 
     ParallelAnimation {
@@ -50,19 +50,19 @@ Item {
             loops: 2
         }
         SequentialAnimation {
-            NumberAnimation { target: afsLightBg; property: "opacity"; from: 1.0; to: 0; duration: 800 }
-            NumberAnimation { target: afsLightBg; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+            NumberAnimation { target: cautionBg; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+            NumberAnimation { target: cautionBg; property: "opacity"; from: 0; to: 1.0; duration: 800 }
             loops:Animation.Infinite
         }
     }
     states: [
         State {
             name: ""
-            PropertyChanges { target: afsErr; opacity: 0.0 }
+            PropertyChanges { target: epbErr; opacity: 0.0 }
         },
         State {
             name: "show"
-            PropertyChanges { target: afsErr; opacity: 1.0 }
+            PropertyChanges { target: epbErr; opacity: 1.0 }
 
         }
     ]
@@ -72,7 +72,7 @@ Item {
             from: ""
             to: "show"
             SequentialAnimation {
-                NumberAnimation{ target: afsErr; property: "opacity"; duration: 500 }
+                NumberAnimation{ target: epbErr; property: "opacity"; duration: 500 }
             }
         }
     ]

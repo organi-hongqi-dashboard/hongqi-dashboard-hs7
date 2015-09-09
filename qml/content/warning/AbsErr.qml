@@ -25,7 +25,7 @@ Item {
         x: 761
         y: 354
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/absWhiteBg.png"
+        source: "qrc:/centralPanel/images/centralPanel/absErr/absWhiteBg.png"
     }
     Image {
         id: absRedBg
@@ -63,7 +63,6 @@ Item {
         State {
             name: "show"
             PropertyChanges { target: absErr; opacity: 1.0 }
-
         }
     ]
 
