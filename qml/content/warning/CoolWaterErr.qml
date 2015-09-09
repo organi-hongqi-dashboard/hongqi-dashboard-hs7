@@ -17,10 +17,19 @@ Item {
         opacity: 1.0
         source: "qrc:/centralPanel/images/centralPanel/warningSymbol.png"
     }
+
+
+    Image {
+        id: redBack
+        x: 821
+        y: 254
+        opacity: 1.0
+        source: "qrc:/centralPanel/images/centralPanel/coolWaterErr/redBack.png"
+    }
     Image {
         id: coolWaterBg
-        x: 819
-        y: 247
+        x: 861
+        y: 338
         opacity: 1.0
         source: "qrc:/centralPanel/images/centralPanel/coolWaterErr/coolWaterBg.png"
     }
@@ -40,8 +49,8 @@ Item {
             loops: 2
         }
         SequentialAnimation {
-            NumberAnimation { target: coolWaterBg; property: "opacity"; from: 1.0; to: 0; duration: 800 }
-            NumberAnimation { target: coolWaterBg; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+            NumberAnimation { target: redBack; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+            NumberAnimation { target: redBack; property: "opacity"; from: 0; to: 1.0; duration: 800 }
             loops:Animation.Infinite
         }
     }

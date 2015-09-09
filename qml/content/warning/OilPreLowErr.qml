@@ -21,25 +21,35 @@ Item {
 
     // private
     Image {
-        id: oilYellow
-        x: 894
-        y: 338
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/oilPreLowErr/oilYellow.png"
-    }
-    Image {
-        id: oilLowBg
-        x: 939
-        y: 406
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/oilPreLowErr/oilLowBg.png"
-    }
-    Image {
         id: oilLowText
         x: 866
         y: 258
         opacity: 1.0
         source: "qrc:/centralPanel/images/centralPanel/oilPreLowErr/oilLowText.png"
+    }
+
+    Image {
+        id: pressLow
+        x: 894
+        y: 338
+        opacity: 1.0
+        source: "qrc:/centralPanel/images/centralPanel/oilPreLowErr/pressLow.png"
+    }
+
+    Image {
+        id: pointer
+        x: 969
+        y: 451
+        opacity: 1.0
+        source: "qrc:/centralPanel/images/centralPanel/oilPreLowErr/pointer.png"
+
+        transform: Rotation {
+            id: pointerRotation
+            origin.x: 34
+            origin.y: 10
+            angle: 0
+            Behavior on angle { NumberAnimation{ duration: 300 } }
+        }
     }
 
     ParallelAnimation {
@@ -50,8 +60,8 @@ Item {
             loops: 2
         }
         SequentialAnimation {
-            NumberAnimation { target: oilLowBg; property: "opacity"; from: 1.0; to: 0; duration: 800 }
-            NumberAnimation { target: oilLowBg; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+            NumberAnimation { target: pointerRotation; property: "angle"; from: 0; to: 60; duration: 400 }
+            NumberAnimation { target: pointerRotation; property: "angle"; from: 60; to: 0; duration: 400 }
             loops:Animation.Infinite
         }
     }

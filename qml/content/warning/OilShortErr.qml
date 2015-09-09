@@ -50,9 +50,10 @@ Item {
             loops: 2
         }
         SequentialAnimation {
-            NumberAnimation { target: oilFallBg; property: "y"; from: 406; to: 446; duration: 800 }
+            NumberAnimation { target: oilFallBg; property: "y"; from: 406; to: 456; duration: 800 }
             NumberAnimation { target: oilFallBg; property: "opacity"; from: 1.0; to: 0; duration: 0 }
-            NumberAnimation { target: oilFallBg; property: "y"; from: 446; to: 406; duration: 800 }
+            NumberAnimation { target: oilFallBg; property: "y"; from: 456; to: 406; duration: 800 }
+            NumberAnimation { target: oilFallBg; property: "opacity"; from: 0; to: 1.0; duration: 0 }
             loops:Animation.Infinite
         }
     }

@@ -22,15 +22,15 @@ Item {
     // private
     Image {
         id: gearWhiteBg
-        x: 881
-        y: 343
+        x: 871
+        y: 339
         opacity: 1.0
         source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/gearWhiteBg.png"
     }
     Image {
         id: gearRedBg
-        x: 881
-        y: 343
+        x: 781
+        y: 241
         opacity: 1.0
         source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/gearRedBg.png"
     }
@@ -58,6 +58,7 @@ Item {
         }
         SequentialAnimation {
             NumberAnimation { target: gearRedBg; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+            PauseAnimation { duration: 300 }
             NumberAnimation { target: gearRedBg; property: "opacity"; from: 0; to: 1.0; duration: 800 }
             loops:Animation.Infinite
         }
