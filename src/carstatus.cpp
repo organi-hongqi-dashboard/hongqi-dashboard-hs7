@@ -47,6 +47,8 @@ void CarStatus::initValues()
     m_projectName = "Todi";
 #elif MoLiHua
     m_projectName = "MoLiHua";
+#elif Carnation
+    m_projectName = "Carnation";
 #else
     m_projectName = "NULL";
 #endif
@@ -146,7 +148,7 @@ void CarStatus::readSerial()
                     else { m_recv.remove(0, 1); continue; }
                 }
             }
-#if (defined Todi) || (defined MoLiHua)
+#if (defined Todi) || (defined MoLiHua) || (defined Carnation)
             /* deal special frame */
             else if (magicFrame->length == SPECIAL_INFO_LEN && magicFrame->magic == MAGIC_SPECIAL_UP) {
                 if (m_recv.length() >= SPECIAL_FRAME_LEN && (uint8_t)0x55 == (uint8_t)m_recv[SPECIAL_FRAME_LEN-1]) {
@@ -229,7 +231,7 @@ void CarStatus::getGeneralSerial(GeneralInfo data)
         updateTime(data.dateTime);
     }
 }
-#if (defined Todi) || (defined MoLiHua)
+#if (defined Todi) || (defined MoLiHua) || (defined Carnation)
 void CarStatus::getSpecialSerial(SpecialInfo data)
 {
     Q_UNUSED(data);

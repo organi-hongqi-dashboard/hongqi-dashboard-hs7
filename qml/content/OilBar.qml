@@ -5,7 +5,7 @@ Rectangle {
     x: 0
     opacity: 0.0
 
-    property int valueOilMass: carStatus.fuel
+    property int valueOilMass: CarStatus.fuel
 
     EnergyBar {
         id: bar

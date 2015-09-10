@@ -7,8 +7,8 @@ Item {
     property bool isAnimation: false
     property int setGear: 0
     property int setGearIndex: 0
-    property int gear: carStatus.gear
-    property int gearMode: carStatus.gearMode
+    property int gear: CarStatus.gear
+    property int gearMode: CarStatus.gearMode
 
     function setGearV() {
         switch( gear ) {

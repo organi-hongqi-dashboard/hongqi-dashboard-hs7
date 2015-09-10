@@ -6,7 +6,7 @@ Item {
     y: 0
     scale: 1.0
 
-    property int valueRpm: carStatus.rpm
+    property int valueRpm: CarStatus.rpm
 
     Image {
         id: rpm_disk

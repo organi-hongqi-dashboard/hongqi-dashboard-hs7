@@ -29,6 +29,15 @@ SOURCES += $$SOURCE_FOLDER/main.cpp \
     $$SOURCE_FOLDER/carstatus.cpp \
     $$SOURCE_FOLDER/protocol.cpp
 
+# Add Carnation Custom Module
+CONFIG += Carnation_Spe_Protocol
+Carnation_Spe_Protocol {
+DEFINES += Carnation
+HEADERS += \
+        $$HEADER_FOLDER/carnation_protocol.h \
+        $$HEADER_FOLDER/carnation_carstatus.h
+    SOURCES += $$SOURCE_FOLDER/carnation_carstatus.cpp
+}
 # Qml Files
 QML_FOLDER = qml/content
 OTHER_FILES += qml/mainViewer.qml \
@@ -64,7 +73,3 @@ UI_DIR = build
 MOC_DIR = build
 RCC_DIR = build
 OBJECTS_DIR = build
-
-DISTFILES += \
-    qml/content/warning/BrakingErr.qml \
-    qml/content/warning/EpbErr.qml

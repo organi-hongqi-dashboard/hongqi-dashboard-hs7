@@ -22,8 +22,15 @@
 #include <QSurfaceFormat>
 #endif
 
-
+#ifdef Todi
+#include <todi_carstatus.h>
+#elif MoLiHua
+#include <molihua_carstatus.h>
+#elif Carnation
+#include <carnation_carstatus.h>
+#else
 #include <carstatus.h>
+#endif
 
 static pid_t pid;
 static bool exit_loop = true;
@@ -102,11 +109,19 @@ int server_main(int argc, char *argv[])
 	QSurfaceFormat::setDefaultFormat(format);
 #endif
 
-	CarStatus carStatus(serial);
+#ifdef Todi
+    TodiCarStatus carStatus(serial);
+#elif MoLiHua
+    MoLiHuaCarStatus carStatus(serial);
+#elif Carnation
+    CarnationCarStatus carStatus(serial);
+#else
+    CarStatus carStatus(serial);
+#endif
     MFontName fontName;
 
 	QQmlApplicationEngine engine;
-	engine.rootContext()->setContextProperty("carStatus", &carStatus);
+	engine.rootContext()->setContextProperty("CarStatus", &carStatus);
     engine.rootContext()->setContextProperty("fontName", &fontName);
 
 

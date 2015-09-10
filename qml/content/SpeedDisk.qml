@@ -6,7 +6,7 @@ Rectangle {
     y: 0
     scale: 1.0
 
-    property int valueSpeed: carStatus.speed
+    property int valueSpeed: CarStatus.speed
 
     Image {
         id: speed_disk

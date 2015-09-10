@@ -3,17 +3,17 @@ import QtQuick 2.2
 Rectangle {
     id: centrePanel
 
-    property string valueTime: carStatus.time
-    property string valueDate: carStatus.date
-    property int valueOdo: carStatus.odo
-    property real valueTrip: carStatus.trip1
-    property int valueOutsideTemp: carStatus.outTemp - 40
+    property string valueTime: CarStatus.time
+    property string valueDate: CarStatus.date
+    property int valueOdo: CarStatus.odo
+    property real valueTrip: CarStatus.trip1
+    property int valueOutsideTemp: CarStatus.outTemp - 40
 
-    property int getAverageFuel: carStatus.avgFuel
-    property int getInstantaneousFuel: carStatus.instantaneousFuel
-    property bool getAverageFuelUint: carStatus.avgFuelUnit
-    property bool getInstantaneousFuelUint: carStatus.instantaneousFuelUnit
-    property int getRemainMileage: carStatus.remainMileage
+    property int getAverageFuel: CarStatus.avgFuel
+    property int getInstantaneousFuel: CarStatus.instantaneousFuel
+    property bool getAverageFuelUint: CarStatus.avgFuelUnit
+    property bool getInstantaneousFuelUint: CarStatus.instantaneousFuelUnit
+    property int getRemainMileage: CarStatus.remainMileage
 
     property int zeroOdoNum: 0
     property int iOdo: 0

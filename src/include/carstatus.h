@@ -12,6 +12,8 @@
 #include <todi_protocol.h>
 #elif MoLiHua
 #include <molihua_protocol.h>
+#elif Carnation
+#include <carnation_protocol.h>
 #endif
 
 /*
@@ -223,7 +225,7 @@ protected:
 
 protected slots:
     virtual void getGeneralSerial(GeneralInfo data);
-#if (defined Todi) || (defined MoLiHua)
+#if (defined Todi) || (defined MoLiHua) || (defined Carnation)
     virtual void getSpecialSerial(SpecialInfo data);
 #endif
 private:
