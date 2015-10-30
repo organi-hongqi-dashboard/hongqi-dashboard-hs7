@@ -26,6 +26,21 @@
         <file>qml/content/GearBox.qml</file>
         <file>qml/content/GearDMS.qml</file>
         <file>qml/content/warning/CoolWaterErr.qml</file>
+        <file>qml/content/warning/AbsErr.qml</file>
+        <file>qml/content/warning/AfsErr.qml</file>
+        <file>qml/content/warning/BrakingErr.qml</file>
+        <file>qml/content/warning/ChargingSysErr.qml</file>
+        <file>qml/content/warning/EngineErr.qml</file>
+        <file>qml/content/warning/EpbErr.qml</file>
+        <file>qml/content/warning/GearShiftTemHighErr.qml</file>
+        <file>qml/content/warning/OilPreLowErr.qml</file>
+        <file>qml/content/warning/OilShortErr.qml</file>
+        <file>qml/content/warning/SafeErr.qml</file>
+        <file>qml/content/warning/BrakingMoreErr.qml</file>
+        <file>qml/content/warning/CoolErr.qml</file>
+        <file>qml/content/warning/EspErr.qml</file>
+        <file>qml/content/warning/GearErr.qml</file>
+        <file>qml/content/warning/WasteGasMonitoringSysErr.qml</file>
     </qresource>
     <qresource prefix="/common">
         <file>images/common/spinner.png</file>

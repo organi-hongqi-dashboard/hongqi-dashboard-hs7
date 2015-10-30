@@ -1,15 +1,15 @@
 import QtQuick 2.2
 
 Item {
-    id: absErr
+	id: brakingMoreErr
 
     // common
-    Image {
+	Image {
         id: textRec
         x: 697
         y: 233
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/textRec.png"
+		source: "qrc:/centralPanel/images/centralPanel/textRec.png"
     }
     Image {
         id: warningSymbol
@@ -34,13 +34,17 @@ Item {
         opacity: 1.0
         source: "qrc:/centralPanel/images/centralPanel/absErr/absRedBg.png"
     }
-    Image {
-        id: absErrText
-        x: 910
-        y: 258
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/absErr/absErrText.png"
-    }
+
+	Text {
+		x: 910
+		y: 258
+		anchors.centerIn: textRec
+		color: "white"
+		font.pixelSize: 32
+		font.family: fontName.fontCurrent
+		opacity: 1.0
+		text: qsTr("ESP故障!")
+	}
 
     ParallelAnimation {
         running: true
@@ -58,11 +62,11 @@ Item {
 	states: [
 		State {
 			name: ""
-			PropertyChanges { target: absErr; opacity: 0.0 }
+			PropertyChanges { target: brakingMoreErr; opacity: 0.0 }
 		},
 		State {
 			name: "show"
-			PropertyChanges { target: absErr; opacity: 1.0 }
+			PropertyChanges { target: brakingMoreErr; opacity: 1.0 }
 
 		}
 	]
@@ -72,7 +76,7 @@ Item {
 			from: ""
 			to: "show"
 			SequentialAnimation {
-				NumberAnimation{ target: absErr; property: "opacity"; duration: 500 }
+				NumberAnimation{ target: brakingMoreErr; property: "opacity"; duration: 500 }
 			}
 		}
 	]

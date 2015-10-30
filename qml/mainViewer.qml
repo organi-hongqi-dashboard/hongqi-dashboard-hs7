@@ -1,6 +1,7 @@
 import QtQuick 2.2
 import QtQuick.Window 2.2
 import "content"
+import "content/warning"
 
 Window {
     id: main
@@ -46,6 +47,10 @@ Window {
             id: mainPanel
             state: ""
         }
+
+		WasteGasMonitoringSysErr {
+			state: "show"
+		}
 
 
         Component.onCompleted: {
