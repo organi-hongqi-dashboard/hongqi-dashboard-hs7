@@ -8,6 +8,13 @@ CarnationCarStatus::CarnationCarStatus(const QString &serialDev, QSerialPort *pa
     : CarStatus(serialDev, parent)
 {
     initValues();
+
+    /* For middle Tips show */
+    m_timer = new QTimer(this);
+    connect(m_timer, SIGNAL(timeout()), this, SLOT(updateERR()));
+
+    m_checkTimer = new QTimer(this);
+    connect(m_checkTimer, SIGNAL(timeout()), this, SLOT(dealCheckKey()));
 }
 
 void CarnationCarStatus::initValues()
@@ -15,19 +22,86 @@ void CarnationCarStatus::initValues()
     // SpecialInfo
     m_leftHandDrive = false;
     m_rightHandDrive = false;
-    m_brakeSystemFailure = false;
-    m_chargeFault = false;
-    m_oilPressureLow = false;
+    m_highBeam = false;
+    m_dippedBeam = false;
+    m_positionLight = false;
+    m_frontFogLight = false;
+    m_rearFogLight = false;
+    m_auxiliaryHighBeam = false;
+
+    m_safetyBeltLight = false;
+    m_airBagLight = false;
+    m_engineFaultLight = false;
     m_absFault = false;
-    m_epbFault = false;
-    m_engineFault = false;
-    m_milFault = false;
-    m_espFault = false;
-    m_srsFault = false;
-    m_gearBoxFault = false;
+    m_oilPressureLow = false;
+    m_batteryFaultLight = false;
+    m_brakeSystemFailure = false;
+    m_parkingLight = false;
+
+    m_oilLowLight = false;
+    m_coolantLowLight = false;
+    m_espLight = false;
+    m_espOffLight = false;
+    m_afsOffLight = false;
+    m_milLight = false;
+
+    m_breakSystemPic = false;
+    m_brakeFluidPic = false;
+    m_addOilPic = false;
+    m_batteryFaultPic = false;
+    m_oilPressureLowPic = false;
+    m_coolantSystemErrPic = false;
+    m_absFaultPic = false;
+    m_epbFaultPic = false;
+
+    m_engineCtlFaultPic = false;
+    m_exhaustEmissionPic = false;
+    m_espFaultPic = false;
+    m_airBagFaultPic = false;
+    m_speedChangerErrPic = false;
+    m_speedChaTempHighPic = false;
 
     // Special SettingsInfo
     // TODO: nothing to do
+
+    // Tips
+    m_errType = NULL_ERR;
+    m_warningTipSrc = "";
+
+    warning_tip_str[NULL_ERR] = "";
+    warning_tip_str[BREAK_SYS_PIC] = "qrc:/qml/qml/content/warning/BrakingMoreErr.qml";
+    warning_tip_str[BREAK_FLUID_PIC] = "qrc:/qml/qml/content/warning/CoolWaterErr.qml";
+    warning_tip_str[ADD_OIL_PIC] = "qrc:/qml/qml/content/warning/OilShortErr.qml";
+    warning_tip_str[BATTERY_FAULT_PIC] = "qrc:/qml/qml/content/warning/ChargingSysErr.qml";
+    warning_tip_str[OIL_PRESSURE_LOW_PIC] = "qrc:/qml/qml/content/warning/OilPreLowErr.qml";
+    warning_tip_str[COLLANT_SYS_ERR_PIC] = "qrc:/qml/qml/content/warning/CoolErr.qml";
+    warning_tip_str[ABS_FAULT_PIC] = "qrc:/qml/qml/content/warning/AbsErr.qml";
+    warning_tip_str[EPB_FAULT_PIC] = "qrc:/qml/qml/content/warning/EpbErr.qml";
+    warning_tip_str[ENGINE_CTL_FAULT_PIC] = "qrc:/qml/qml/content/warning/EngineErr.qml";
+    warning_tip_str[EXHAUST_EMISSING_PIC] = "qrc:/qml/qml/content/warning/WasteGasMonitoringSysErr.qml";
+    warning_tip_str[ESP_FAULT_PIC] = "qrc:/qml/qml/content/warning/EspErr.qml";
+    warning_tip_str[AIRBAG_FAULT_PIC] = "qrc:/qml/qml/content/warning/SafeErr.qml";
+    warning_tip_str[SPEED_CHANGER_ERR_PIC] = "qrc:/qml/qml/content/warning/GearErr.qml";
+    warning_tip_str[SPEED_CHA_TEMP_HIGH_PIC] = "qrc:/qml/qml/content/warning/GearShiftTemHighErr.qml";
+    warning_tip_str[MAX_WARNING_TIPS] = "";
+
+    m_preTipList.clear();
+    m_tipedList.clear();
+    m_isTipedList = false;
+
+    m_timer = NULL;
+    m_checkTimer = NULL;
+    m_checkIndex = 0;
+
+    // button
+    m_key1Step = 0;
+    m_key1StepFlag = false;
+    m_key2Step = 0;
+    m_key2StepFlag = false;
+    m_key3Step = 0;
+    m_key3StepFlag = false;
+    m_key4Step = 0;
+    m_key4StepFlag = false;
 }
 
 /*
@@ -43,6 +117,9 @@ void CarnationCarStatus::getGeneralSerial(GeneralInfo data)
         NumValueChangeSet(dateTime,data.dateTime, (uint32_t) 0, (uint32_t) 0xFFFFFFFF);
         NumValueChangeSet(speed, data.speed, (uint8_t) 0, (uint8_t) 240);
         NumValueChangeSet(waterTemp, data.waterTemp, (uint8_t) 50, (uint8_t) 130);
+        dealErrButtonShow(key1, data.key1);
+        BoolValueChangeSet(key2, data.key2);
+        BoolValueChangeSet(key3, data.key3);
         BoolValueChangeSet(key4, data.key4);
         BoolValueChangeSet(igOn, data.igOn);
         BoolValueChangeSet(gear, data.gear);
@@ -121,16 +198,44 @@ void CarnationCarStatus::getSpecialSerial(SpecialInfo data)
     if (m_active) {
         BoolValueChangeSet(leftHandDrive, data.leftHandDrive);
         BoolValueChangeSet(rightHandDrive, data.rightHandDrive);
-        BoolValueChangeSet(brakeSystemFailure, data.brakeSystemFailure);
-        BoolValueChangeSet(chargeFault, data.chargeFault);
-        BoolValueChangeSet(oilPressureLow, data.oilPressureLow);
+        BoolValueChangeSet(highBeam, data.highBeam);
+        BoolValueChangeSet(dippedBeam, data.dippedBeam);
+        BoolValueChangeSet(positionLight, data.positionLight);
+        BoolValueChangeSet(frontFogLight, data.frontFogLight);
+        BoolValueChangeSet(rearFogLight, data.rearFogLight);
+        BoolValueChangeSet(auxiliaryHighBeam, data.auxiliaryHighBeam);
+
+        BoolValueChangeSet(safetyBeltLight, data.safetyBeltLight);
+        BoolValueChangeSet(airBagLight, data.airBagLight);
+        BoolValueChangeSet(engineFaultLight, data.engineFaultLight);
         BoolValueChangeSet(absFault, data.absFault);
-        BoolValueChangeSet(epbFault, data.epbFault);
-        BoolValueChangeSet(engineFault, data.engineFault);
-        BoolValueChangeSet(milFault, data.milFault);
-        BoolValueChangeSet(espFault, data.espFault);
-        BoolValueChangeSet(srsFault, data.srsFault);
-        BoolValueChangeSet(gearBoxFault, data.gearBoxFault);
+        BoolValueChangeSet(oilPressureLow, data.oilPressureLow);
+        BoolValueChangeSet(batteryFaultLight, data.batteryFaultLight);
+        BoolValueChangeSet(brakeSystemFailure, data.brakeSystemFailure);
+        BoolValueChangeSet(parkingLight, data.parkingLight);
+
+        BoolValueChangeSet(oilLowLight, data.oilLowLight);
+        BoolValueChangeSet(coolantLowLight, data.coolantLowLight);
+        BoolValueChangeSet(espLight, data.espLight);
+        BoolValueChangeSet(espOffLight, data.espOffLight);
+        BoolValueChangeSet(afsOffLight, data.afsOffLight);
+        BoolValueChangeSet(milLight, data.milLight);
+
+        dealErrShow(breakSystemPic, data.breakSystemPic, BREAK_SYS_PIC);
+        dealErrShow(brakeFluidPic, data.brakeFluidPic, BREAK_FLUID_PIC);
+        dealErrShow(addOilPic, data.addOilPic, ADD_OIL_PIC);
+        dealErrShow(batteryFaultPic, data.batteryFaultPic, BATTERY_FAULT_PIC);
+        dealErrShow(oilPressureLowPic, data.oilPressureLowPic, OIL_PRESSURE_LOW_PIC);
+        dealErrShow(coolantSystemErrPic, data.coolantSystemErrPic, COLLANT_SYS_ERR_PIC);
+        dealErrShow(absFaultPic, data.absFaultPic, ABS_FAULT_PIC);
+        dealErrShow(epbFaultPic, data.epbFaultPic, EPB_FAULT_PIC);
+
+        dealErrShow(engineCtlFaultPic, data.engineCtlFaultPic, ENGINE_CTL_FAULT_PIC);
+        dealErrShow(exhaustEmissionPic, data.exhaustEmissionPic, EXHAUST_EMISSING_PIC);
+        dealErrShow(espFaultPic, data.espFaultPic, ESP_FAULT_PIC);
+        dealErrShow(airBagFaultPic, data.airBagFaultPic, AIRBAG_FAULT_PIC);
+        dealErrShow(speedChangerErrPic, data.speedChangerErrPic, SPEED_CHANGER_ERR_PIC);
+        dealErrShow(speedChaTempHighPic, data.speedChaTempHighPic, SPEED_CHA_TEMP_HIGH_PIC);
     }
 
 #ifdef DEBUG
@@ -153,3 +258,346 @@ void CarnationCarStatus::timerEvent(QTimerEvent *event)
     sendSettingsFrame();
 }
 #endif
+
+/* For middle tips show */
+void CarnationCarStatus::showCheckErr()  // deal key press
+{
+    if (m_errType == NULL_ERR || m_isTipedList == true) {
+        if (m_tipedList.size() == 0)
+        {
+            return;
+        }
+        m_isTipedList = true;
+        m_errType = (WARNING_TIPS)m_tipedList[m_checkIndex];
+        m_warningTipSrc = warning_tip_str[m_errType];
+        emit warningTipSrcChanged(m_warningTipSrc);
+        // send m_errType to MCU, sync the interface and sound.
+        // where there is a interface show, there is a sound.
+        m_interfaceSoundSync = m_errType;
+        sendSettingsFrame();
+
+        m_checkTimer->start(5000);
+        ++m_checkIndex;
+        if( m_checkIndex >= m_tipedList.size())
+            m_checkIndex = 0;
+    }
+}
+
+void CarnationCarStatus::dealCheckKey()     // for time out event
+{
+    m_checkTimer->stop();
+    m_checkIndex = 0;
+    m_isTipedList = false;
+    m_errType = NULL_ERR;
+
+    if(m_preTipList.size() > 0) {
+        m_errType = (WARNING_TIPS)m_preTipList[0];
+        m_warningTipSrc = warning_tip_str[m_errType];
+        emit warningTipSrcChanged(m_warningTipSrc);
+        // send m_errType to MCU, sync the interface and sound.
+        // where there is a interface show, there is a sound.
+        m_interfaceSoundSync = m_errType;
+        sendSettingsFrame();
+
+        m_timer->start(5000);
+        return;
+    } else {
+        m_warningTipSrc = warning_tip_str[m_errType];
+        emit warningTipSrcChanged(m_warningTipSrc);
+    }
+}
+
+void CarnationCarStatus::updateERR()
+{
+#ifdef ANIMOTION_DEBUG
+    if( m_errType >= MAX_WARNING_TIPS )
+        m_errType = (WARNING_TIPS)(NULL_ERR + 1);
+    else
+        m_errType = (WARNING_TIPS)(m_errType + 1);
+    m_warningTipSrc = warning_tip_str[m_errType];
+    emit warningTipSrcChanged(m_warningTipSrc);
+#else
+
+    // pop list m_preTipList and insert list m_tipedList
+    insertList(&m_tipedList, popList(&m_preTipList));
+
+    if( m_preTipList.size() == 0 )
+    {
+        m_timer->stop();
+        m_errType = NULL_ERR;
+        m_warningTipSrc = warning_tip_str[m_errType];
+        emit warningTipSrcChanged(m_warningTipSrc);
+    }
+    else
+    {
+        m_errType = (WARNING_TIPS)m_preTipList[0];
+        m_warningTipSrc = warning_tip_str[m_errType];
+        emit warningTipSrcChanged(m_warningTipSrc);
+        // send m_errType to MCU, sync the interface and sound.
+        // where there is a interface show, there is a sound.
+        m_interfaceSoundSync = m_errType;
+        sendSettingsFrame();
+    }
+
+
+#endif
+}
+void CarnationCarStatus::insertList(QList<uint> *list, uint idn)
+{
+    int i = 0;
+    for (; i < list->size(); i++) {
+        if (list->at(i) == idn)
+            return;
+
+        if (list->at(i) > idn)
+            break;
+    }
+
+    list->insert(i, idn);
+}
+
+void CarnationCarStatus::removeList(QList<uint> *list, uint idn)
+{
+    list->removeAll(idn);
+    if (list->isEmpty())
+        list->clear();
+}
+
+uint CarnationCarStatus::popList(QList<uint> *list)
+{
+    if (list->isEmpty())
+        return 0;
+
+    return list->takeFirst();
+}
+
+/* note: in func insertList, we have ordered the list by errType. The object
+ *      with smaller errType will be shown first and it will interrupt other
+ *      object which is being shown, but the one who is interrupted will be
+ *      shown later again. */
+void CarnationCarStatus::dealErrList(bool isInsert, WARNING_TIPS errType)
+{
+//    qDebug() << "isInsert: " << isInsert << "errType: " << errType;
+    if(isInsert) {
+        insertList(&m_preTipList, (uint)errType);
+        if( errType == m_preTipList[0]
+                && m_isTipedList == false) {
+            m_errType = (WARNING_TIPS)m_preTipList[0];
+            m_warningTipSrc = warning_tip_str[m_errType];
+            emit warningTipSrcChanged(m_warningTipSrc);
+            // send m_errType to MCU, sync the interface and sound.
+            // where there is a interface show, there is a sound.
+            m_interfaceSoundSync = m_errType;
+            sendSettingsFrame();
+
+            m_timer->start(5000);
+        }
+    } else {
+        removeList(&m_preTipList, errType);
+        removeList(&m_tipedList, errType);
+    }
+}
+
+/* anti shake and showCheckErr */
+void CarnationCarStatus::key1Deal(bool v)
+{
+    if (m_key1Step == 0 && v)
+        ++m_key1Step;
+
+    // key debounce
+    if (m_key1Step >= 1 && m_key1Step < KEY_DEBOUNCE_TIME) {
+        if(!v) {
+            m_key1Step = 0;
+        }
+        ++m_key1Step;
+    }
+
+    // LongKey deal
+    if (m_key1Step >= KEY_DEBOUNCE_TIME && m_key1Step < KEY_LONG_TIME) {
+        if (!v) {
+            if (m_key1StepFlag) {
+                // the key is shortButton
+                m_key1Step = 0;
+
+                // deal check list and emit signal to qml
+                showCheckErr();
+            }
+            m_key1StepFlag = true;
+        }
+        else {
+            m_key1StepFlag = false;
+        }
+        ++m_key1Step;
+    }
+
+    if (m_key1Step == KEY_LONG_TIME && v) {
+        // the key is LongButton
+        ++m_key1Step;
+
+        // deal check list and emit signal to qml
+        showCheckErr();
+    }
+
+    if (m_key1Step == KEY_LONG_TIME + 1 && !v) {
+        m_key1Step = 0;
+    }
+}
+
+void CarnationCarStatus::key2Deal(bool v)
+{
+    if (m_key2Step == 0 && v)
+        ++m_key2Step;
+
+    // key debounce
+    if (m_key2Step >= 1 && m_key2Step < KEY_DEBOUNCE_TIME) {
+        if(!v) {
+            m_key2Step = 0;
+        }
+        ++m_key2Step;
+    }
+
+    // LongKey deal
+    if (m_key2Step >= KEY_DEBOUNCE_TIME && m_key2Step < KEY_LONG_TIME) {
+        if (!v) {
+            if (m_key2StepFlag) {
+                // the key is shortButton
+                m_key2Step = 0;
+#ifdef DEBUG
+                setKeyShow2("ShortButton");
+#else
+//                emit key2Short();
+                showCheckErr();
+#endif
+            }
+            m_key2StepFlag = true;
+        }
+        else {
+            m_key2StepFlag = false;
+        }
+        ++m_key2Step;
+    }
+
+    if (m_key2Step == KEY_LONG_TIME && v) {
+        // the key is LongButton
+        ++m_key2Step;
+#ifdef DEBUG
+        setKeyShow2("LongButton");
+#else
+//        emit key2Long();
+        showCheckErr();
+#endif
+    }
+
+    if (m_key2Step == KEY_LONG_TIME + 1 && !v) {
+        m_key2Step = 0;
+#ifdef DEBUG
+        setKeyShow2("NONE");
+#endif
+    }
+}
+
+void CarnationCarStatus::key3Deal(bool v)
+{
+    if (m_key3Step == 0 && v)
+        ++m_key3Step;
+
+    // key debounce
+    if (m_key3Step >= 1 && m_key3Step < KEY_DEBOUNCE_TIME) {
+        if(!v) {
+            m_key3Step = 0;
+        }
+        ++m_key3Step;
+    }
+
+    // LongKey deal
+    if (m_key3Step >= KEY_DEBOUNCE_TIME && m_key3Step < KEY_LONG_TIME) {
+        if (!v) {
+            if (m_key3StepFlag) {
+                // the key is shortButton
+                m_key3Step = 0;
+#ifdef DEBUG
+                setKeyShow3("ShortButton");
+#else
+//                emit key3Short();
+                showCheckErr();
+#endif
+            }
+            m_key3StepFlag = true;
+        }
+        else {
+            m_key3StepFlag = false;
+        }
+        ++m_key3Step;
+    }
+
+    if (m_key3Step == KEY_LONG_TIME && v) {
+        // the key is LongButton
+        ++m_key3Step;
+#ifdef DEBUG
+        setKeyShow3("LongButton");
+#else
+//        emit key3Long();
+        showCheckErr();
+#endif
+    }
+
+    if (m_key3Step == KEY_LONG_TIME + 1 && !v) {
+        m_key3Step = 0;
+#ifdef DEBUG
+        setKeyShow3("NONE");
+#endif
+    }
+}
+
+void CarnationCarStatus::key4Deal(bool v)
+{
+    if (m_key4Step == 0 && v)
+        ++m_key4Step;
+
+    // key debounce
+    if (m_key4Step >= 1 && m_key4Step < KEY_DEBOUNCE_TIME) {
+        if(!v) {
+            m_key4Step = 0;
+        }
+        ++m_key4Step;
+    }
+
+    // LongKey deal
+    if (m_key4Step >= KEY_DEBOUNCE_TIME && m_key4Step < KEY_LONG_TIME) {
+        if (!v) {
+            if (m_key4StepFlag) {
+                // the key is shortButton
+                m_key4Step = 0;
+#ifdef DEBUG
+                setKeyShow4("ShortButton");
+#else
+//                emit key4Short();
+                showCheckErr();
+#endif
+            }
+            m_key4StepFlag = true;
+        }
+        else {
+            m_key4StepFlag = false;
+        }
+        ++m_key4Step;
+    }
+
+    if (m_key4Step == KEY_LONG_TIME && v) {
+        // the key is LongButton
+        ++m_key4Step;
+#ifdef DEBUG
+        setKeyShow4("LongButton");
+#else
+//        emit key4Long();
+        showCheckErr();
+#endif
+    }
+
+    if (m_key4Step == KEY_LONG_TIME + 1 && !v) {
+        m_key4Step = 0;
+#ifdef DEBUG
+        setKeyShow4("NONE");
+#endif
+    }
+}

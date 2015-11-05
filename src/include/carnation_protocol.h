@@ -10,18 +10,48 @@ typedef struct {
     uint8_t
         leftHandDrive       : 1,    // byte0: 0
         rightHandDrive      : 1,    // byte0: 1
-        brakeSystemFailure  : 1,    // byte0: 2
-        chargeFault         : 1,    // byte0: 3
-        oilPressureLow      : 1,    // byte0: 4
-        absFault            : 1,    // byte0: 5
-        epbFault            : 1,    // byte0: 6
-        engineFault         : 1;    // byte0: 7
+        highBeam            : 1,    // byte0: 2
+        dippedBeam          : 1,    // byte0: 3
+        positionLight       : 1,    // byte0: 4
+        frontFogLight       : 1,    // byte0: 5
+        rearFogLight        : 1,    // byte0: 6
+        auxiliaryHighBeam   : 1;    // byte0: 7
     uint8_t
-        milFault            : 1,    // byte1: 0
-        espFault            : 1,    // byte1: 1
-        srsFault            : 1,    // byte1: 2
-        gearBoxFault        : 1,    // byte1: 3
-        remain1             : 4;    // byte1: 4 ~ 7
+        safetyBeltLight     : 1,    // byte1: 0
+        airBagLight         : 1,    // byte1: 1
+        engineFaultLight    : 1,    // byte1: 2
+        absFault            : 1,    // byte1: 3
+        oilPressureLow      : 1,    // byte1: 4
+        batteryFaultLight   : 1,    // byte1: 5
+        brakeSystemFailure  : 1,    // byte1: 6
+        parkingLight        : 1;    // byte1: 7
+    uint8_t
+        oilLowLight         : 1,    // byte2: 0
+        coolantLowLight     : 1,    // byte2: 1
+        espLight            : 1,    // byte2: 2
+        espOffLight         : 1,    // byte2: 3
+        afsOffLight         : 1,    // byte2: 4
+        milLight            : 1,    // byte2: 5
+        remain1             : 2;    // byte2: 6 - 7
+    uint8_t
+        remain2;    // byte0: 7
+    uint8_t
+        breakSystemPic      : 1,    // byte3: 0
+        brakeFluidPic       : 1,    // byte3: 1
+        addOilPic           : 1,    // byte3: 2
+        batteryFaultPic     : 1,    // byte3: 3
+        oilPressureLowPic   : 1,    // byte3: 4
+        coolantSystemErrPic : 1,    // byte3: 5
+        absFaultPic         : 1,    // byte3: 6
+        epbFaultPic         : 1;    // byte3: 7
+    uint8_t
+        engineCtlFaultPic   : 1,    // byte4: 0
+        exhaustEmissionPic  : 1,    // byte4: 1
+        espFaultPic         : 1,    // byte4: 2
+        airBagFaultPic      : 1,    // byte4: 3
+        speedChangerErrPic  : 1,    // byte4: 4
+        speedChaTempHighPic : 1,    // byte4: 5    // speed changer temperature high
+        remain3             : 2;    // byte4: 6 - 7
 }__attribute__((packed)) SpecialInfo;
 
 /*

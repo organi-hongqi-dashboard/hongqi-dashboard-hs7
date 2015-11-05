@@ -25,6 +25,7 @@
 #define NumValueChangeSet(name, v, min, max) do { if (qAbs(m_##name - qBound(min, v, max)) > 0.001) { m_##name = qBound(min, v, max); emit name##Changed(qBound(min, v, max)); }} while (0)
 #define NumValueErrChangeSet(name, v, min, max, e) do { if (e == v) { m_##name = (v); emit name##Changed(v);} else { if (qAbs(m_##name - qBound(min, v, max)) > 0.001) { m_##name = qBound(min, v, max); emit name##Changed(qBound(min, v, max)); }}} while (0)
 
+
 class CarStatus : public QSerialPort
 {
     Q_OBJECT

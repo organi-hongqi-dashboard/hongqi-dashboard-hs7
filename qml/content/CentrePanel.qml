@@ -396,6 +396,28 @@ Rectangle {
         }
     }
 
+    // tips
+//    centreWarning.warningSource = CarStatus.warningTipSrc
+
+    CentreWarning {
+        id: centreWarning
+        state: ""
+        onWarningSourceChanged: {
+//            centreWarning.warningSource = CarStatus.warningTipSrc
+            if( centreWarning.warningSource == "" ) {
+                centrePanel.state = "normalMode";
+            } else {
+                centrePanel.state = "warningMode";
+            }
+        }
+    }
+
+    property string ssssSource: CarStatus.warningTipSrc
+    onSsssSourceChanged: {
+        centreWarning.warningSource = CarStatus.warningTipSrc
+    }
+
+
     states: [
         State {
             name: ""
@@ -403,6 +425,7 @@ Rectangle {
             PropertyChanges { target: functionLine; opacity: 0.0 }
             PropertyChanges { target: normalLine; opacity: 0.0 }
             PropertyChanges { target: runningInfo; opacity: 0.0 }
+            PropertyChanges { target: centreWarning; opacity: 0.0 }
         },
         State {
             name: "normalMode"
@@ -410,6 +433,7 @@ Rectangle {
             PropertyChanges { target: functionLine; opacity: 0.0 }
             PropertyChanges { target: normalLine; opacity: 1.0 }
             PropertyChanges { target: runningInfo; opacity: 1.0 }
+            PropertyChanges { target: centreWarning; opacity: 0.0 }
         },
         State {
             name: "functionMode"
@@ -417,6 +441,15 @@ Rectangle {
             PropertyChanges { target: functionLine; opacity: 1.0 }
             PropertyChanges { target: normalLine; opacity: 0.0 }
             PropertyChanges { target: runningInfo; opacity: 0.0 }
+            PropertyChanges { target: centreWarning; opacity: 0.0 }
+        },
+        State {
+            name: "warningMode"
+            PropertyChanges { target: bg; opacity: 1.0 }
+            PropertyChanges { target: functionLine; opacity: 1.0 }
+            PropertyChanges { target: normalLine; opacity: 0.0 }
+            PropertyChanges { target: runningInfo; opacity: 0.0 }
+            PropertyChanges { target: centreWarning; opacity: 1.0 }
         }
     ]
     transitions: [

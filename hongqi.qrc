@@ -41,6 +41,7 @@
         <file>qml/content/warning/EspErr.qml</file>
         <file>qml/content/warning/GearErr.qml</file>
         <file>qml/content/warning/WasteGasMonitoringSysErr.qml</file>
+        <file>qml/content/CentreWarning.qml</file>
     </qresource>
     <qresource prefix="/common">
         <file>images/common/spinner.png</file>
@@ -227,6 +228,12 @@
         <file>images/centralPanel/absErr/absWhiteBg.png</file>
         <file>images/centralPanel/absErr/absRedBg.png</file>
         <file>images/centralPanel/absErr/absErrText.png</file>
+        <file>images/centralPanel/oilPreLowErr/pressLow.png</file>
+        <file>images/centralPanel/oilPreLowErr/pointer.png</file>
+        <file>images/centralPanel/coolWaterErr/redBack.png</file>
+        <file>images/centralPanel/epbErr/epbErrText.png</file>
+        <file>images/centralPanel/epbErr/epbBg.png</file>
+        <file>images/centralPanel/epbErr/cautionBg.png</file>
     </qresource>
     <qresource prefix="/carTipsIcon">
         <file>images/carTipsIcon/unknownKeyLight.png</file>

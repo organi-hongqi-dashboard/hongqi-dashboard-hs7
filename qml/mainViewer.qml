@@ -48,10 +48,6 @@ Window {
             state: ""
         }
 
-		WasteGasMonitoringSysErr {
-			state: "show"
-		}
-
 
         Component.onCompleted: {
             splashPanel.state = "show"
