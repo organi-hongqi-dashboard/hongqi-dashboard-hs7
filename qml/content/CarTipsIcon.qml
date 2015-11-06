@@ -27,6 +27,7 @@ Rectangle {
     property bool espOffLightValue: CarStatus.espOffLight
     property bool afsOffLightValue: CarStatus.afsOffLight
     property bool milLightValue: CarStatus.milLight
+    property bool gearboxErrLightValue: CarStatus.gearboxErrLight
 
     property bool breakSystemPicValue: CarStatus.breakSystemPic
     property bool brakeFluidPicValue: CarStatus.brakeFluidPic
@@ -43,6 +44,21 @@ Rectangle {
     property bool airBagFaultPicValue: CarStatus.airBagFaultPic
     property bool speedChangerErrPicValue: CarStatus.speedChangerErrPic
     property bool speedChaTempHighPicValue: CarStatus.speedChaTempHighPic
+
+    Image {
+        id: leftHandDrive
+        x: 584
+        y: 22
+        opacity: true == leftHandDriveValue ? 1.0 : 0.0
+        source: "qrc:/carTipsIcon/images/carTipsIcon/leftHandDrive.png"
+    }
+    Image {
+        id: rightHandDrive
+        x: 1283
+        y: 22
+        opacity: true == rightHandDriveValue ? 1.0 : 0.0
+        source: "qrc:/carTipsIcon/images/carTipsIcon/rightHandDrive.png"
+    }
 
 //    Image {
 //        id: ldwGreen
@@ -237,7 +253,7 @@ Rectangle {
         id: gearboxLight
         x: 1245
         y: 660
-        opacity: speedChangerErrPicValue ? 1.0 : 0.0
+        opacity: gearboxErrLightValue ? 1.0 : 0.0
         width: 49
         height: 48
         source: "qrc:/carTipsIcon/images/carTipsIcon/gearboxLight.png"
@@ -399,7 +415,7 @@ Rectangle {
         id: engineOilLight
         x: 1787
         y: 676
-        opacity: oilLowLightValue ? 1.0 : 0.0
+        opacity: oilPressureLowValue ? 1.0 : 0.0
         width: 56
         height: 22
         source: "qrc:/carTipsIcon/images/carTipsIcon/engineOilLight.png"
@@ -408,7 +424,7 @@ Rectangle {
         id: epbErrLight
         x: 1852
         y: 622
-        opacity: epbFaultPicValue ? 1.0 : 0.0
+        opacity: parkingLightValue ? 1.0 : 0.0
         width: 48
         height: 33
         source: "qrc:/carTipsIcon/images/carTipsIcon/epbErrLight.png"

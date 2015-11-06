@@ -245,6 +245,11 @@ Rectangle {
             from: ""
             to: "normalMode"
             SequentialAnimation {
+                ScriptAction {
+                    script: {
+                        CarStatus.active = false;
+                    }
+                }
                 NumberAnimation { target: speed_disk; property: "opacity"; duration: 500 }
                 ParallelAnimation {
                     SequentialAnimation {
@@ -272,6 +277,11 @@ Rectangle {
                 NumberAnimation { target: rightPointRotation; property: "angle"; from: 0; to: 270; duration: 800 }
                 NumberAnimation { target: rightPointRotation; property: "angle"; from: 270; to: 0; duration: 800 }
                 NumberAnimation { target: numSpeed; property: "opacity"; duration: 500 }
+                ScriptAction {
+                    script: {
+                        CarStatus.active = true;
+                    }
+                }
             }
         },
         Transition {

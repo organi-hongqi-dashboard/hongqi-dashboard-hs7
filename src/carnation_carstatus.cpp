@@ -44,6 +44,7 @@ void CarnationCarStatus::initValues()
     m_espOffLight = false;
     m_afsOffLight = false;
     m_milLight = false;
+    m_gearboxErrLight =false;
 
     m_breakSystemPic = false;
     m_brakeFluidPic = false;
@@ -135,15 +136,15 @@ void CarnationCarStatus::getGeneralSerial(GeneralInfo data)
         NumValueChangeSet(avgSpeed, data.avgSpeed, (uint32_t) 0, (uint32_t) 240);
         BoolValueChangeSet(avgFuelUnit, data.avgFuelUnit);
         BoolValueChangeSet(instantaneousFuelUnit, data.instantaneousFuelUnit);
-        NumValueErrChangeSet(remainMileage, data.remainMileage, (uint16_t) 50, (uint16_t) 999, 0xFFFF);
+        NumValueErrChangeSet(remainMileage, data.remainMileage, (uint16_t) 0, (uint16_t) 999, 0xFFFF);
         NumValueErrChangeSet(trip1, data.trip1, (uint32_t) 0, (uint32_t) 9999, 0xFFFFFF);
         NumValueChangeSet(fuel, data.fuel, (uint32_t) 0, (uint32_t) 100);
         NumValueErrChangeSet(trip2, data.trip2, (uint32_t) 0, (uint32_t) 9999, 0xFFFFFF);
         NumValueChangeSet(soc, data.soc, (uint32_t) 0, (uint32_t) 100);
         NumValueChangeSet(maintenanceMileage, data.maintenanceMileage, (uint16_t) 0, (uint16_t) 50000);
-        NumValueChangeSet(outTemp, data.outTemp * 0.1 + (-40), (double) 0, (double) 164.5);
+        NumValueErrChangeSet(outTemp, data.outTemp * 0.1 + (-40), (double) 0, (double) 164.5, 0xFFFF);
         NumValueErrChangeSet(avgFuel, data.avgFuel, (uint16_t)0, (uint16_t) 300, 0xFFFF);
-        NumValueChangeSet(instantaneousFuel, data.instantaneousFuel * 0.1 + 0, (double) 0, (double) 45);
+        NumValueErrChangeSet(instantaneousFuel, data.instantaneousFuel * 0.1 + 0, (double) 0, (double) 45, 0xFFFF);
         NumValueChangeSet(batteryCurrent, data.batteryCurrent * 0.1 + (-500), (double)0, (double) 2000);
         NumValueChangeSet(batteryVoltage, data.batteryVoltage * 0.1 + 0, (double) 0, (double) 100);
 
@@ -220,6 +221,7 @@ void CarnationCarStatus::getSpecialSerial(SpecialInfo data)
         BoolValueChangeSet(espOffLight, data.espOffLight);
         BoolValueChangeSet(afsOffLight, data.afsOffLight);
         BoolValueChangeSet(milLight, data.milLight);
+        BoolValueChangeSet(gearboxErrLight, data.gearboxErrLight);
 
         dealErrShow(breakSystemPic, data.breakSystemPic, BREAK_SYS_PIC);
         dealErrShow(brakeFluidPic, data.brakeFluidPic, BREAK_FLUID_PIC);
@@ -273,7 +275,7 @@ void CarnationCarStatus::showCheckErr()  // deal key press
         emit warningTipSrcChanged(m_warningTipSrc);
         // send m_errType to MCU, sync the interface and sound.
         // where there is a interface show, there is a sound.
-        m_interfaceSoundSync = m_errType;
+        m_alarmInterface = m_errType;
         sendSettingsFrame();
 
         m_checkTimer->start(5000);
@@ -296,7 +298,7 @@ void CarnationCarStatus::dealCheckKey()     // for time out event
         emit warningTipSrcChanged(m_warningTipSrc);
         // send m_errType to MCU, sync the interface and sound.
         // where there is a interface show, there is a sound.
-        m_interfaceSoundSync = m_errType;
+        m_alarmInterface = m_errType;
         sendSettingsFrame();
 
         m_timer->start(5000);
@@ -335,7 +337,7 @@ void CarnationCarStatus::updateERR()
         emit warningTipSrcChanged(m_warningTipSrc);
         // send m_errType to MCU, sync the interface and sound.
         // where there is a interface show, there is a sound.
-        m_interfaceSoundSync = m_errType;
+        m_alarmInterface = m_errType;
         sendSettingsFrame();
     }
 
@@ -387,7 +389,7 @@ void CarnationCarStatus::dealErrList(bool isInsert, WARNING_TIPS errType)
             emit warningTipSrcChanged(m_warningTipSrc);
             // send m_errType to MCU, sync the interface and sound.
             // where there is a interface show, there is a sound.
-            m_interfaceSoundSync = m_errType;
+            m_alarmInterface = m_errType;
             sendSettingsFrame();
 
             m_timer->start(5000);

@@ -13,7 +13,7 @@ Rectangle {
         column: 0
         mirror: 0
         moving: 0
-        sekuai: (valueCoolantTemp - 50) / 80.0 > 10 ?
+        sekuai: (valueCoolantTemp - 50) / 80.0 > 0.1 ?
                     "qrc:/common/bar/images/common/bar/greenCube.png" :
                     "qrc:/common/bar/images/common/bar/redCube.png"
         targetShade: "qrc:/common/bar/images/common/bar/barOutline.png"

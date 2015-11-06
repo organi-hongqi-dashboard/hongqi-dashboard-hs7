@@ -14,7 +14,7 @@ Rectangle {
         column: 0
         mirror: 0
         moving: 0
-        sekuai: valueOilMass > 10 ?
+        sekuai: valueOilMass > 12 ?
                     "qrc:/common/bar/images/common/bar/greenCube.png" :
                     "qrc:/common/bar/images/common/bar/redCube.png"
         targetShade: "qrc:/common/bar/images/common/bar/barOutline.png"

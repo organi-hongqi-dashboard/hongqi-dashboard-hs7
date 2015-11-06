@@ -7,10 +7,10 @@ Rectangle {
     property string valueDate: CarStatus.date
     property int valueOdo: CarStatus.odo
     property real valueTrip: CarStatus.trip1
-    property int valueOutsideTemp: CarStatus.outTemp - 40
+    property real valueOutsideTemp: CarStatus.outTemp
 
     property int getAverageFuel: CarStatus.avgFuel
-    property int getInstantaneousFuel: CarStatus.instantaneousFuel
+    property real getInstantaneousFuel: CarStatus.instantaneousFuel
     property bool getAverageFuelUint: CarStatus.avgFuelUnit
     property bool getInstantaneousFuelUint: CarStatus.instantaneousFuelUnit
     property int getRemainMileage: CarStatus.remainMileage
@@ -204,7 +204,7 @@ Rectangle {
                 font.pixelSize: 28
                 font.italic: true
                 color: "#ffe5c1"
-                text: (centrePanel.getInstantaneousFuel >= 0 && centrePanel.getInstantaneousFuel <= 450) ? (centrePanel.getInstantaneousFuel*0.1).toFixed(1) : qsTr("--.-")
+                text: (centrePanel.getInstantaneousFuel >= 0 && centrePanel.getInstantaneousFuel <= 45) ? centrePanel.getInstantaneousFuel.toFixed(1) : qsTr("--.-")
             }
         }
 
@@ -287,7 +287,7 @@ Rectangle {
 
             Text {
                 id: tempV
-                text: valueOutsideTemp
+                text: valueOutsideTemp.toFixed(0) != 0xFFFF ? valueOutsideTemp.toFixed(0) : qsTr("--")
                 font.pixelSize: 32
                 font.family: fontName.fontCurrent
                 color: "white"
@@ -446,8 +446,8 @@ Rectangle {
         State {
             name: "warningMode"
             PropertyChanges { target: bg; opacity: 1.0 }
-            PropertyChanges { target: functionLine; opacity: 1.0 }
-            PropertyChanges { target: normalLine; opacity: 0.0 }
+            PropertyChanges { target: functionLine; opacity: 0.0 }
+            PropertyChanges { target: normalLine; opacity: 1.0 }
             PropertyChanges { target: runningInfo; opacity: 0.0 }
             PropertyChanges { target: centreWarning; opacity: 1.0 }
         }

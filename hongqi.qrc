@@ -281,5 +281,7 @@
         <file>images/carTipsIcon/accGreen.png</file>
         <file>images/carTipsIcon/abaErrLight.png</file>
         <file>images/carTipsIcon/abaCloseLight.png</file>
+        <file>images/carTipsIcon/rightHandDrive.png</file>
+        <file>images/carTipsIcon/leftHandDrive.png</file>
     </qresource>
 </RCC>

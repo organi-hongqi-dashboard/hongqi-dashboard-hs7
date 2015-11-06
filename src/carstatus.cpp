@@ -41,7 +41,7 @@ CarStatus::CarStatus(const QString &serialDev, QSerialPort *parent)
 
 void CarStatus::initValues()
 {
-    m_active = true;
+    m_active = false;
 
 #ifdef Todi
     m_projectName = "Todi";

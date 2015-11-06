@@ -10,9 +10,9 @@ DEFINES += HONGQI_RECV
 DEFINES += HONGQI
 DEFINES += TIMER_FREQ
 
-#CONFIG(release, debug|release) {
-#    DEFINES += QT_NO_DEBUG_OUTPUT
-#}
+CONFIG(release, debug|release) {
+    DEFINES += QT_NO_DEBUG_OUTPUT
+}
 CONFIG += qtquickcompiler
 QMAKE_DISTCLEAN += *_qtquickcompiler.qrc
 

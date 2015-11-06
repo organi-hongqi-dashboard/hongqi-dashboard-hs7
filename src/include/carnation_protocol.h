@@ -32,7 +32,8 @@ typedef struct {
         espOffLight         : 1,    // byte2: 3
         afsOffLight         : 1,    // byte2: 4
         milLight            : 1,    // byte2: 5
-        remain1             : 2;    // byte2: 6 - 7
+        gearboxErrLight     : 1,    // byte2: 7
+        remain1             : 1;    // byte2: 7
     uint8_t
         remain2;    // byte0: 7
     uint8_t

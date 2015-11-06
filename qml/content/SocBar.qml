@@ -6,7 +6,7 @@ Rectangle {
 
     opacity: 0.0
 
-    property int valueSocMass: 50
+    property int valueSocMass: CarStatus.soc
 
     EnergyBar {
         id: bar

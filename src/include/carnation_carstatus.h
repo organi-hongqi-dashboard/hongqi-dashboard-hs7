@@ -47,6 +47,7 @@ class CarnationCarStatus : public CarStatus
     Q_PROPERTY(bool espOffLight MEMBER m_espOffLight NOTIFY espOffLightChanged)
     Q_PROPERTY(bool afsOffLight MEMBER m_afsOffLight NOTIFY afsOffLightChanged)
     Q_PROPERTY(bool milLight MEMBER m_milLight NOTIFY milLightChanged)
+    Q_PROPERTY(bool gearboxErrLight MEMBER m_gearboxErrLight NOTIFY gearboxErrLightChanged)
 
     Q_PROPERTY(bool breakSystemPic MEMBER m_breakSystemPic NOTIFY breakSystemPicChanged)
     Q_PROPERTY(bool brakeFluidPic MEMBER m_brakeFluidPic NOTIFY brakeFluidPicChanged)
@@ -123,11 +124,14 @@ public:
 
     void showCheckErr();
 
+/* emit twice, one emit qml source for centre warning panel,
+ *             one emit change signal for warning light */
 #define dealErrShow(name, v, errType) \
     do { \
         if (m_##name != (v)) { \
             m_##name = (v); \
             dealErrList((v), (errType)); \
+            emit name##Changed(v); \
         } \
     } while (0)
 
@@ -164,6 +168,7 @@ signals:
     void espOffLightChanged(bool);
     void afsOffLightChanged(bool);
     void milLightChanged(bool);
+    void gearboxErrLightChanged(bool);
 
     void breakSystemPicChanged(bool);
     void brakeFluidPicChanged(bool);
@@ -239,6 +244,7 @@ protected:
     bool m_espOffLight;
     bool m_afsOffLight;
     bool m_milLight;
+    bool m_gearboxErrLight;
 
     bool m_breakSystemPic;
     bool m_brakeFluidPic;
