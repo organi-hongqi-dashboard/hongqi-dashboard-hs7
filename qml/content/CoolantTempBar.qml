@@ -5,6 +5,7 @@ Rectangle {
     y: -20
     opacity: 0.0
     property int valueCoolantTemp: CarStatus.waterTemp
+    property bool flagCoolantHighTempPic: CarStatus.coolantHighTempPic
 
     EnergyBar {
         id: bar
@@ -13,9 +14,9 @@ Rectangle {
         column: 0
         mirror: 0
         moving: 0
-        sekuai: (valueCoolantTemp - 50) / 80.0 > 0.1 ?
-                    "qrc:/common/bar/images/common/bar/greenCube.png" :
-                    "qrc:/common/bar/images/common/bar/redCube.png"
+        sekuai: flagCoolantHighTempPic ?
+                    "qrc:/common/bar/images/common/bar/redCube.png" :
+                    "qrc:/common/bar/images/common/bar/greenCube.png"
         targetShade: "qrc:/common/bar/images/common/bar/barOutline.png"
         level: 0.0
         Behavior on level { SpringAnimation { spring: 2; damping: 0.2 } }
