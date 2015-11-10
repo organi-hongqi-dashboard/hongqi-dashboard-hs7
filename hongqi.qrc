@@ -234,6 +234,9 @@
         <file>images/centralPanel/epbErr/epbErrText.png</file>
         <file>images/centralPanel/epbErr/epbBg.png</file>
         <file>images/centralPanel/epbErr/cautionBg.png</file>
+        <file>images/centralPanel/brakingErr/triBG.png</file>
+        <file>images/centralPanel/brakingErr/displayBG.png</file>
+        <file>images/centralPanel/brakingErr/brakeLevelLowText.png</file>
     </qresource>
     <qresource prefix="/carTipsIcon">
         <file>images/carTipsIcon/unknownKeyLight.png</file>

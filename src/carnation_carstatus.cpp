@@ -61,6 +61,7 @@ void CarnationCarStatus::initValues()
     m_airBagFaultPic = false;
     m_speedChangerErrPic = false;
     m_speedChaTempHighPic = false;
+    m_coolantHighTempPic = false;
 
     // Special SettingsInfo
     // TODO: nothing to do
@@ -71,7 +72,7 @@ void CarnationCarStatus::initValues()
 
     warning_tip_str[NULL_ERR] = "";
     warning_tip_str[BREAK_SYS_PIC] = "qrc:/qml/qml/content/warning/BrakingMoreErr.qml";
-    warning_tip_str[BREAK_FLUID_PIC] = "qrc:/qml/qml/content/warning/CoolWaterErr.qml";
+    warning_tip_str[BREAK_FLUID_PIC] = "qrc:/qml/qml/content/warning/BrakingErr.qml";
     warning_tip_str[ADD_OIL_PIC] = "qrc:/qml/qml/content/warning/OilShortErr.qml";
     warning_tip_str[BATTERY_FAULT_PIC] = "qrc:/qml/qml/content/warning/ChargingSysErr.qml";
     warning_tip_str[OIL_PRESSURE_LOW_PIC] = "qrc:/qml/qml/content/warning/OilPreLowErr.qml";
@@ -84,6 +85,7 @@ void CarnationCarStatus::initValues()
     warning_tip_str[AIRBAG_FAULT_PIC] = "qrc:/qml/qml/content/warning/SafeErr.qml";
     warning_tip_str[SPEED_CHANGER_ERR_PIC] = "qrc:/qml/qml/content/warning/GearErr.qml";
     warning_tip_str[SPEED_CHA_TEMP_HIGH_PIC] = "qrc:/qml/qml/content/warning/GearShiftTemHighErr.qml";
+    warning_tip_str[COOLANT_HIGH_TEMP_PIC] = "qrc:/qml/qml/content/warning/CoolWaterErr.qml";
     warning_tip_str[MAX_WARNING_TIPS] = "";
 
     m_preTipList.clear();
@@ -142,9 +144,11 @@ void CarnationCarStatus::getGeneralSerial(GeneralInfo data)
         NumValueErrChangeSet(trip2, data.trip2, (uint32_t) 0, (uint32_t) 9999, 0xFFFFFF);
         NumValueChangeSet(soc, data.soc, (uint32_t) 0, (uint32_t) 100);
         NumValueChangeSet(maintenanceMileage, data.maintenanceMileage, (uint16_t) 0, (uint16_t) 50000);
-        NumValueErrChangeSet(outTemp, data.outTemp * 0.1 + (-40), (double) 0, (double) 164.5, 0xFFFF);
-        NumValueErrChangeSet(avgFuel, data.avgFuel, (uint16_t)0, (uint16_t) 300, 0xFFFF);
-        NumValueErrChangeSet(instantaneousFuel, data.instantaneousFuel * 0.1 + 0, (double) 0, (double) 45, 0xFFFF);
+        NumValueErrChangeSet(outTemp, data.outTemp, (uint16_t) 0, (uint16_t) 2045, 0xFFFF);
+        NumValueErrChangeSet(avgFuel, data.avgFuel, (uint16_t)0, (uint16_t) 300, (uint16_t) 0xFFFF);
+        NumValueErrChangeSet(instantaneousFuel, data.instantaneousFuel, (uint16_t) 0, (uint16_t) 450, 0xFFFF);
+        qDebug() << "instantaneousFuel: " << m_instantaneousFuel;
+        qDebug() << "outTemp: " << m_outTemp;
         NumValueChangeSet(batteryCurrent, data.batteryCurrent * 0.1 + (-500), (double)0, (double) 2000);
         NumValueChangeSet(batteryVoltage, data.batteryVoltage * 0.1 + 0, (double) 0, (double) 100);
 
@@ -238,6 +242,7 @@ void CarnationCarStatus::getSpecialSerial(SpecialInfo data)
         dealErrShow(airBagFaultPic, data.airBagFaultPic, AIRBAG_FAULT_PIC);
         dealErrShow(speedChangerErrPic, data.speedChangerErrPic, SPEED_CHANGER_ERR_PIC);
         dealErrShow(speedChaTempHighPic, data.speedChaTempHighPic, SPEED_CHA_TEMP_HIGH_PIC);
+        dealErrShow(coolantHighTempPic, data.coolantHighTempPic, COOLANT_HIGH_TEMP_PIC);
     }
 
 #ifdef DEBUG
@@ -304,6 +309,11 @@ void CarnationCarStatus::dealCheckKey()     // for time out event
         m_timer->start(5000);
         return;
     } else {
+        // send m_errType to MCU, sync the interface and sound.
+        // where there is a interface show, there is a sound.
+        m_alarmInterface = m_errType;
+        sendSettingsFrame();
+
         m_warningTipSrc = warning_tip_str[m_errType];
         emit warningTipSrcChanged(m_warningTipSrc);
     }
@@ -327,6 +337,11 @@ void CarnationCarStatus::updateERR()
     {
         m_timer->stop();
         m_errType = NULL_ERR;
+        // send m_errType to MCU, sync the interface and sound.
+        // where there is a interface show, there is a sound.
+        m_alarmInterface = m_errType;
+        sendSettingsFrame();
+
         m_warningTipSrc = warning_tip_str[m_errType];
         emit warningTipSrcChanged(m_warningTipSrc);
     }
@@ -379,7 +394,6 @@ uint CarnationCarStatus::popList(QList<uint> *list)
  *      shown later again. */
 void CarnationCarStatus::dealErrList(bool isInsert, WARNING_TIPS errType)
 {
-//    qDebug() << "isInsert: " << isInsert << "errType: " << errType;
     if(isInsert) {
         insertList(&m_preTipList, (uint)errType);
         if( errType == m_preTipList[0]

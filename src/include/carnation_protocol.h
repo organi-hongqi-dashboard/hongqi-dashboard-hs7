@@ -52,7 +52,8 @@ typedef struct {
         airBagFaultPic      : 1,    // byte4: 3
         speedChangerErrPic  : 1,    // byte4: 4
         speedChaTempHighPic : 1,    // byte4: 5    // speed changer temperature high
-        remain3             : 2;    // byte4: 6 - 7
+        coolantHighTempPic  : 1,
+        remain3             : 1;    // byte4: 6 - 7
 }__attribute__((packed)) SpecialInfo;
 
 /*

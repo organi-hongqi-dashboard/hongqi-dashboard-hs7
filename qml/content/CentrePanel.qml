@@ -7,10 +7,10 @@ Rectangle {
     property string valueDate: CarStatus.date
     property int valueOdo: CarStatus.odo
     property real valueTrip: CarStatus.trip1
-    property real valueOutsideTemp: CarStatus.outTemp
+    property real valueOutsideTemp: CarStatus.outTemp * 0.1 - 40
 
     property int getAverageFuel: CarStatus.avgFuel
-    property real getInstantaneousFuel: CarStatus.instantaneousFuel
+    property real getInstantaneousFuel: CarStatus.instantaneousFuel * 0.1
     property bool getAverageFuelUint: CarStatus.avgFuelUnit
     property bool getInstantaneousFuelUint: CarStatus.instantaneousFuelUnit
     property int getRemainMileage: CarStatus.remainMileage
@@ -287,7 +287,7 @@ Rectangle {
 
             Text {
                 id: tempV
-                text: valueOutsideTemp.toFixed(0) != 0xFFFF ? valueOutsideTemp.toFixed(0) : qsTr("--")
+                text: (valueOutsideTemp >= -40 && valueOutsideTemp <= 165) ? valueOutsideTemp.toFixed(0) : qsTr("---")
                 font.pixelSize: 32
                 font.family: fontName.fontCurrent
                 color: "white"

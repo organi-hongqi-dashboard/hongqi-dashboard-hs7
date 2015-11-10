@@ -64,6 +64,7 @@ class CarnationCarStatus : public CarStatus
     Q_PROPERTY(bool airBagFaultPic MEMBER m_airBagFaultPic NOTIFY airBagFaultPicChanged)
     Q_PROPERTY(bool speedChangerErrPic MEMBER m_speedChangerErrPic NOTIFY speedChangerErrPicChanged)
     Q_PROPERTY(bool speedChaTempHighPic MEMBER m_speedChaTempHighPic NOTIFY speedChaTempHighPicChanged)
+    Q_PROPERTY(bool coolantHighTempPic MEMBER m_coolantHighTempPic NOTIFY coolantHighTempPicChanged)
 
     // Special SettingsInfo
     // TODO: nothing to do
@@ -94,6 +95,7 @@ public:
                         AIRBAG_FAULT_PIC,
                         SPEED_CHANGER_ERR_PIC,
                         SPEED_CHA_TEMP_HIGH_PIC,
+                        COOLANT_HIGH_TEMP_PIC,
 
                         MAX_WARNING_TIPS
                       };
@@ -185,6 +187,7 @@ signals:
     void airBagFaultPicChanged(bool);
     void speedChangerErrPicChanged(bool);
     void speedChaTempHighPicChanged(bool);
+    void coolantHighTempPicChanged(bool);
 
     // Special SettingsInfo
     // TODO: nothing to do
@@ -261,6 +264,7 @@ protected:
     bool m_airBagFaultPic;
     bool m_speedChangerErrPic;
     bool m_speedChaTempHighPic;
+    bool m_coolantHighTempPic;
 
     // Special SettingsInfo
     // TODO: nothing to do
