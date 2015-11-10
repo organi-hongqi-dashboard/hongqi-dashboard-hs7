@@ -95,4 +95,9 @@ typedef struct {
 #define SPECSETTINGS_INFO_LEN  (const int)(sizeof(SpecSettingsInfo))
 #define SPECSETTINGS_FRAME_LEN (const int)(sizeof(SpecSettingsFrame))
 
+/*
+ * app version
+ */
+#define CARNATION_APP_VERSION   "1.0.0"
+
 #endif // CARNATION_SPE_PROTOCOL_H
