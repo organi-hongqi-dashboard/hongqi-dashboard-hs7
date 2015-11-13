@@ -26,6 +26,7 @@ Item {
         }
     }
 
+
     Image {
         id: rpm_scale
         x: 45
@@ -107,19 +108,19 @@ Item {
 
     Image {
         id: rpm_pointer
-        x: 51.5
-        y: 432
+        x: 92
+        y: 457
         opacity: 0.0
         source: "qrc:/common/disk/images/common/disk/pointer.png"
-
         transform: Rotation {
             id: pointerRotation
-            origin.x: 308
-            origin.y: -73
-            angle: valueRpm * 269.5 / 7000
-            Behavior on angle { SpringAnimation{ spring: 2; damping: 0.2} }
+            origin.x: 267	//359 - rpm_pointer.x
+            origin.y: -98	//359 - rpm_pointer.y
+            angle: valueRpm * 270.0 / 7000.0
+            Behavior on angle { SpringAnimation{ spring: 1.2; damping: 0.2;} }
         }
     }
+
 
     PowerKwBar {
         id: powerKwBar

@@ -47,17 +47,52 @@ Rectangle {
 
     Image {
         id: leftHandDrive
-        x: 584
-        y: 22
+        x: 570
+        y: 20
         opacity: true == leftHandDriveValue ? 1.0 : 0.0
         source: "qrc:/carTipsIcon/images/carTipsIcon/leftHandDrive.png"
     }
     Image {
         id: rightHandDrive
-        x: 1283
-        y: 22
+        x: 1298
+        y: 20
         opacity: true == rightHandDriveValue ? 1.0 : 0.0
         source: "qrc:/carTipsIcon/images/carTipsIcon/rightHandDrive.png"
+    }
+    Image {
+        id: absErrLight
+        x: 952
+        y: 664
+        opacity: true == absFaultValue ? 1.0 : 0.0
+        source: "qrc:/carTipsIcon/images/carTipsIcon/absErrLight.png"
+    }
+    Image {
+        id: breakSysErrLight
+        x: 1018
+        y: 663
+        opacity: true == brakeSystemFailureValue ? 1.0 : 0.0
+        source: "qrc:/carTipsIcon/images/carTipsIcon/breakSysErrLight.png"
+    }
+    Image {
+        id: airbagErrLight
+        x: 829
+        y: 662
+        opacity: true == airBagLightValue ? 1.0 : 0.0
+        source: "qrc:/carTipsIcon/images/carTipsIcon/airbagErrLight.png"
+    }
+    Image {
+        id: espErrLight
+        x: 769
+        y: 662
+        opacity: true == espLightValue ? 1.0 : 0.0
+        source: "qrc:/carTipsIcon/images/carTipsIcon/espErrLight.png"
+    }
+    Image {
+        id: engineErrLight
+        x: 1084
+        y: 667
+        opacity: true == engineFaultLightValue ? 1.0 : 0.0
+        source: "qrc:/carTipsIcon/images/carTipsIcon/engineErrLight.png"
     }
 
 //    Image {

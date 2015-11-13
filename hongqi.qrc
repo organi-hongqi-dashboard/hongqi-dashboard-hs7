@@ -286,5 +286,10 @@
         <file>images/carTipsIcon/abaCloseLight.png</file>
         <file>images/carTipsIcon/rightHandDrive.png</file>
         <file>images/carTipsIcon/leftHandDrive.png</file>
+        <file>images/carTipsIcon/absErrLight.png</file>
+        <file>images/carTipsIcon/airbagErrLight.png</file>
+        <file>images/carTipsIcon/breakSysErrLight.png</file>
+        <file>images/carTipsIcon/engineErrLight.png</file>
+        <file>images/carTipsIcon/espErrLight.png</file>
     </qresource>
 </RCC>

@@ -153,20 +153,20 @@ Rectangle {
 
     Image {
         id: rightPointer
-        x: 1255
-        y: 430
+        x: 1296
+        y: 453
         opacity: 0.0
         source: "qrc:/common/disk/images/common/disk/pointer.png"
 
         transform: Rotation {
             id: rightPointRotation
-            origin.x: 1560 - rightPointer.x;
-            origin.y: 360 - rightPointer.y;
-            angle: valueSpeed * 270 / 240
-            Behavior on angle { SpringAnimation{ spring: 1.2; damping: 0.2; }
-            }
+            origin.x: 264//1560 - rightPointer.x;
+            origin.y: -93 //360 - rightPointer.y;
+            angle: valueSpeed * 270.0 / 240.0
+            Behavior on angle { SpringAnimation{ spring: 1.2; damping: 0.2; }}
         }
     }
+
 
     Item {
         id: numSpeed

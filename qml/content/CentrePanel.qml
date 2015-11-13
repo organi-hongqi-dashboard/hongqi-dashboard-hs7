@@ -96,8 +96,8 @@ Rectangle {
 
     Image {
         id: bg
-        x: 78
-        y: 342
+        x: 448
+        y: 252
         opacity: 0.0
         source: "qrc:/centrePanel/images/centrePanel/bg.png"
     }
