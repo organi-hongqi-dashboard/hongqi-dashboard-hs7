@@ -97,8 +97,9 @@ void CarStatus::initValues()
     // General SettingsInfo
     m_commandReq = true;
     m_closeReq = false;
-    m_tripClean = false;
-    m_avgSpeedClean = false;
+	m_tripClean = false;
+	m_tripClean2 = false;
+	m_avgSpeedClean = false;
     m_avgFuelClean = false;
     m_projectMode = false;
     m_alarmInterface = 0;
@@ -263,6 +264,10 @@ void CarStatus::sendSettingsFrame()
     if (m_tripClean && m_trip1 == 0)
         m_tripClean = false;
     settingsFrame.settingsInfo.tripClean = m_tripClean;
+
+	if (m_tripClean2 && m_trip2 == 0)
+		m_tripClean2 = false;
+	settingsFrame.settingsInfo.tripClean2 = m_tripClean2;
 
     if (m_avgSpeedClean && m_avgSpeed == 0)
         m_avgSpeedClean = false;

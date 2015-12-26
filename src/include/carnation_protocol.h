@@ -28,14 +28,14 @@ typedef struct {
     uint8_t
         oilLowLight         : 1,    // byte2: 0
         coolantLowLight     : 1,    // byte2: 1
-        espLight            : 1,    // byte2: 2
-        espOffLight         : 1,    // byte2: 3
+		espLight            : 2,    // byte2: 2 - 3
         afsOffLight         : 1,    // byte2: 4
         milLight            : 1,    // byte2: 5
-        gearboxErrLight     : 1,    // byte2: 7
-        remain1             : 1;    // byte2: 7
+		gearboxErrLight     : 1,    // byte2: 6
+		changeBrakePadsLight: 1;    // byte2: 7
     uint8_t
-        remain2;    // byte0: 7
+		electronicParkingLight: 1,    // byte3: 0
+		remain2             : 7;    // byte3: 1-7
     uint8_t
         breakSystemPic      : 1,    // byte3: 0
         brakeFluidPic       : 1,    // byte3: 1
@@ -52,8 +52,12 @@ typedef struct {
         airBagFaultPic      : 1,    // byte4: 3
         speedChangerErrPic  : 1,    // byte4: 4
         speedChaTempHighPic : 1,    // byte4: 5    // speed changer temperature high
-        coolantHighTempPic  : 1,
-        remain3             : 1;    // byte4: 6 - 7
+        coolantHighTempPic  : 1,// byte4: 6
+        tcsErrPic             : 1;    // byte4: 7
+    uint8_t
+        changeBrakeFrontPic    : 1,
+        changeBrakeRearPic     :1,
+        remain4             : 6;    // byte4: 6 - 7
 }__attribute__((packed)) SpecialInfo;
 
 /*

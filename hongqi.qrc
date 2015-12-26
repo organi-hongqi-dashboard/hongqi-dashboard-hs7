@@ -42,6 +42,9 @@
         <file>qml/content/warning/GearErr.qml</file>
         <file>qml/content/warning/WasteGasMonitoringSysErr.qml</file>
         <file>qml/content/CentreWarning.qml</file>
+        <file>qml/content/warning/changeBrakeFront.qml</file>
+        <file>qml/content/warning/changeBrakeRear.qml</file>
+        <file>qml/content/warning/TcsErr.qml</file>
     </qresource>
     <qresource prefix="/common">
         <file>images/common/spinner.png</file>
@@ -120,6 +123,7 @@
         <file>images/centrePanel/baseline.png</file>
         <file>images/centrePanel/100km.png</file>
         <file>images/centrePanel/h.png</file>
+        <file>images/centrePanel/tripBIcon.png</file>
     </qresource>
     <qresource prefix="/rpmDisk">
         <file>images/letfPanel/rpmDisk/unit.png</file>
@@ -193,6 +197,7 @@
     </qresource>
     <qresource prefix="/rightPanel/oilBar">
         <file>images/rightPanel/oilBar/iconOilMass.png</file>
+        <file>images/rightPanel/oilBar/oilBoxPoint.png</file>
     </qresource>
     <qresource prefix="/letfPanel/socBar">
         <file>images/letfPanel/socBar/soc_unit.png</file>
@@ -237,6 +242,8 @@
         <file>images/centralPanel/brakingErr/triBG.png</file>
         <file>images/centralPanel/brakingErr/displayBG.png</file>
         <file>images/centralPanel/brakingErr/brakeLevelLowText.png</file>
+        <file>images/centralPanel/changebreak/brake.png</file>
+        <file>images/centralPanel/changebreak/brakeRed.png</file>
     </qresource>
     <qresource prefix="/carTipsIcon">
         <file>images/carTipsIcon/unknownKeyLight.png</file>
@@ -291,5 +298,6 @@
         <file>images/carTipsIcon/breakSysErrLight.png</file>
         <file>images/carTipsIcon/engineErrLight.png</file>
         <file>images/carTipsIcon/espErrLight.png</file>
+        <file>images/carTipsIcon/breakSys.png</file>
     </qresource>
 </RCC>

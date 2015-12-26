@@ -6,14 +6,16 @@ Rectangle {
     property string valueTime: CarStatus.time
     property string valueDate: CarStatus.date
     property int valueOdo: CarStatus.odo
-    property real valueTrip: CarStatus.trip1
-    property real valueOutsideTemp: CarStatus.outTemp * 0.1 - 40
+	property real valueTrip: CarStatus.trip1
+	property real valueTrip2: CarStatus.trip2
+	property real valueOutsideTemp: CarStatus.outTemp * 0.1 - 40
 
     property int getAverageFuel: CarStatus.avgFuel
     property real getInstantaneousFuel: CarStatus.instantaneousFuel * 0.1
     property bool getAverageFuelUint: CarStatus.avgFuelUnit
     property bool getInstantaneousFuelUint: CarStatus.instantaneousFuelUnit
     property int getRemainMileage: CarStatus.remainMileage
+	property int tripAB: CarStatus.tripAB;
 
     property int zeroOdoNum: 0
     property int iOdo: 0
@@ -59,6 +61,8 @@ Rectangle {
     property int zeroTripNum: 0
     property int iTrip: 0
     onValueTripChanged: {
+		if( tripAB == 1 )
+			return;
         zeroTripNum = 0;
         iTrip = valueTrip;
         while( iTrip != 0 ){
@@ -93,6 +97,46 @@ Rectangle {
         else
             tripV.text = (valueTrip * 0.1).toFixed(1);
     }
+
+	property int zeroTripNum2: 0
+	property int iTrip2: 0
+	onValueTrip2Changed: {
+		if( tripAB == 0 )
+			return;
+		zeroTripNum2 = 0;
+		iTrip2 = valueTrip2;
+		while( iTrip2 != 0 ){
+			zeroTripNum2++;
+			iTrip2 /= 10;
+		}
+
+		zeroTripNum2 = 5 - zeroTripNum2;
+		switch(zeroTripNum2) {
+		case 0:
+			tripZero.text = "";
+			break;
+		case 1:
+			tripZero.text = "0";
+			break;
+		case 2:
+			tripZero.text = "00";
+			break;
+		case 3:
+			tripZero.text = "000";
+			break;
+		case 4:
+			tripZero.text = "000";
+			break;
+		default:
+			tripZero.text = "0000.0";
+			break;
+		}
+
+		if( valueTrip2 == 0 || valueTrip2 > 99999 )
+			tripV.text = "";
+		else
+			tripV.text = (valueTrip2 * 0.1).toFixed(1);
+	}
 
     Image {
         id: bg
@@ -355,7 +399,8 @@ Rectangle {
                 x: 922
                 y: 609
                 opacity: 0.5
-                source: "qrc:/centrePanel/images/centrePanel/tripAIcon.png"
+				source: (centrePanel.tripAB == 1) ? "qrc:/centrePanel/images/centrePanel/tripBIcon.png"
+						: "qrc:/centrePanel/images/centrePanel/tripAIcon.png"
             }
 
             Image {
@@ -497,4 +542,104 @@ Rectangle {
     //    CarInfo {
     //        id: carInfo
     //    }
+
+	focus: true
+	Keys.onPressed: {
+		switch(event.key) {
+		case Qt.Key_1:
+
+			buttonShort();
+			break;
+		case Qt.Key_2:
+			buttonLong();
+
+			break;
+		}
+	}
+	function buttonShort() {
+		if( tripAB == 0) {
+			tripAB = 1;
+			zeroTripNum2 = 0;
+			iTrip2 = valueTrip2;
+			while( iTrip2 != 0 ){
+				zeroTripNum2++;
+				iTrip2 /= 10;
+			}
+
+			zeroTripNum2 = 5 - zeroTripNum2;
+			switch(zeroTripNum2) {
+			case 0:
+				tripZero.text = "";
+				break;
+			case 1:
+				tripZero.text = "0";
+				break;
+			case 2:
+				tripZero.text = "00";
+				break;
+			case 3:
+				tripZero.text = "000";
+				break;
+			case 4:
+				tripZero.text = "000";
+				break;
+			default:
+				tripZero.text = "0000.0";
+				break;
+			}
+
+			if( valueTrip2 == 0 || valueTrip2 > 99999 )
+				tripV.text = "";
+			else
+				tripV.text = (valueTrip2 * 0.1).toFixed(1);
+		}
+		else {
+			tripAB = 0;
+			zeroTripNum = 0;
+			iTrip = valueTrip;
+			while( iTrip != 0 ){
+				zeroTripNum++;
+				iTrip /= 10;
+			}
+
+			zeroTripNum = 5 - zeroTripNum;
+			switch(zeroTripNum) {
+			case 0:
+				tripZero.text = "";
+				break;
+			case 1:
+				tripZero.text = "0";
+				break;
+			case 2:
+				tripZero.text = "00";
+				break;
+			case 3:
+				tripZero.text = "000";
+				break;
+			case 4:
+				tripZero.text = "000";
+				break;
+			default:
+				tripZero.text = "0000.0";
+				break;
+			}
+
+			if( valueTrip == 0 || valueTrip > 99999 )
+				tripV.text = "";
+			else
+				tripV.text = (valueTrip * 0.1).toFixed(1);
+		}
+	}
+
+	function buttonLong() {
+		if( tripAB == 0 )
+			CarStatus.tripClear = true;
+		else
+			CarStatus.tripClean2 = true;
+	}
+
+	Component.onCompleted: {
+		CarStatus.okButtonShort.connect(buttonShort);
+		CarStatus.okButtonLong.connect(buttonLong);
+	}
 }

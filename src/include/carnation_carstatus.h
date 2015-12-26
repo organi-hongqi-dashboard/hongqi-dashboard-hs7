@@ -43,11 +43,13 @@ class CarnationCarStatus : public CarStatus
 
     Q_PROPERTY(bool oilLowLight MEMBER m_oilLowLight NOTIFY oilLowLightChanged)
     Q_PROPERTY(bool coolantLowLight MEMBER m_coolantLowLight NOTIFY coolantLowLightChanged)
-    Q_PROPERTY(bool espLight MEMBER m_espLight NOTIFY espLightChanged)
-    Q_PROPERTY(bool espOffLight MEMBER m_espOffLight NOTIFY espOffLightChanged)
+	Q_PROPERTY(int espLight MEMBER m_espLight NOTIFY espLightChanged)
+//    Q_PROPERTY(bool espOffLight MEMBER m_espOffLight NOTIFY espOffLightChanged)
     Q_PROPERTY(bool afsOffLight MEMBER m_afsOffLight NOTIFY afsOffLightChanged)
     Q_PROPERTY(bool milLight MEMBER m_milLight NOTIFY milLightChanged)
-    Q_PROPERTY(bool gearboxErrLight MEMBER m_gearboxErrLight NOTIFY gearboxErrLightChanged)
+	Q_PROPERTY(bool gearboxErrLight MEMBER m_gearboxErrLight NOTIFY gearboxErrLightChanged)
+	Q_PROPERTY(bool changeBrakePadsLight MEMBER m_changeBrakePadsLight NOTIFY changeBrakePadsLightChanged)
+	Q_PROPERTY(bool electronicParkingLight MEMBER m_electronicParkingLight NOTIFY electronicParkingLightChanged)
 
     Q_PROPERTY(bool breakSystemPic MEMBER m_breakSystemPic NOTIFY breakSystemPicChanged)
     Q_PROPERTY(bool brakeFluidPic MEMBER m_brakeFluidPic NOTIFY brakeFluidPicChanged)
@@ -65,6 +67,10 @@ class CarnationCarStatus : public CarStatus
     Q_PROPERTY(bool speedChangerErrPic MEMBER m_speedChangerErrPic NOTIFY speedChangerErrPicChanged)
     Q_PROPERTY(bool speedChaTempHighPic MEMBER m_speedChaTempHighPic NOTIFY speedChaTempHighPicChanged)
     Q_PROPERTY(bool coolantHighTempPic MEMBER m_coolantHighTempPic NOTIFY coolantHighTempPicChanged)
+	Q_PROPERTY(int tripAB MEMBER m_tripAB NOTIFY tripABChanged)
+    Q_PROPERTY(bool tcsErrPic MEMBER m_tcsErrPic NOTIFY tcsErrPicChanged)
+    Q_PROPERTY(bool changeBrakeFrontPic MEMBER m_changeBrakeFrontPic NOTIFY changeBrakeFrontPicChanged)
+    Q_PROPERTY(bool changeBrakeRearPic MEMBER m_changeBrakeRearPic NOTIFY changeBrakeRearPicChanged)
 
     // Special SettingsInfo
     // TODO: nothing to do
@@ -80,12 +86,12 @@ public:
 
     enum WARNING_TIPS { NULL_ERR,
 
-                        BREAK_SYS_PIC,
-                        BREAK_FLUID_PIC,
-                        ADD_OIL_PIC,
+						BREAK_SYS_PIC, //制动系统严重故障
+						BREAK_FLUID_PIC,//制动液液位过低
+						ADD_OIL_PIC,//请加油！
                         BATTERY_FAULT_PIC,
-                        OIL_PRESSURE_LOW_PIC,
-                        COLLANT_SYS_ERR_PIC,
+						OIL_PRESSURE_LOW_PIC, //机油压力过低
+						COLLANT_SYS_ERR_PIC, //冷却液系统故障
                         ABS_FAULT_PIC,
                         EPB_FAULT_PIC,
 
@@ -96,6 +102,9 @@ public:
                         SPEED_CHANGER_ERR_PIC,
                         SPEED_CHA_TEMP_HIGH_PIC,
                         COOLANT_HIGH_TEMP_PIC,
+                        TCS_ERR_PIC,
+                        CHANGE_BRAKE_FRONT_PIC,
+                        CHANGE_BRAKE_REAR_PIC,
 
                         MAX_WARNING_TIPS
                       };
@@ -166,11 +175,13 @@ signals:
 
     void oilLowLightChanged(bool);
     void coolantLowLightChanged(bool);
-    void espLightChanged(bool);
-    void espOffLightChanged(bool);
+	void espLightChanged(int);
+//    void espOffLightChanged(bool);
     void afsOffLightChanged(bool);
     void milLightChanged(bool);
-    void gearboxErrLightChanged(bool);
+	void gearboxErrLightChanged(bool);
+	void changeBrakePadsLightChanged(bool);
+	void electronicParkingLightChanged(bool);
 
     void breakSystemPicChanged(bool);
     void brakeFluidPicChanged(bool);
@@ -188,6 +199,10 @@ signals:
     void speedChangerErrPicChanged(bool);
     void speedChaTempHighPicChanged(bool);
     void coolantHighTempPicChanged(bool);
+	void tripABChanged(int);
+    void tcsErrPicChanged(bool);
+    void changeBrakeFrontPicChanged(bool);
+    void changeBrakeRearPicChanged(bool);
 
     // Special SettingsInfo
     // TODO: nothing to do
@@ -201,6 +216,9 @@ signals:
     void key2Changed(bool);
     void key3Changed(bool);
     void key4Changed(bool);
+
+	Q_INVOKABLE void okButtonShort();
+	Q_INVOKABLE void okButtonLong();
 
 protected slots:
     // TODO: nothing to do
@@ -243,11 +261,13 @@ protected:
 
     bool m_oilLowLight;
     bool m_coolantLowLight;
-    bool m_espLight;
-    bool m_espOffLight;
+	int m_espLight;
+//    bool m_espOffLight;
     bool m_afsOffLight;
     bool m_milLight;
-    bool m_gearboxErrLight;
+	bool m_gearboxErrLight;
+	bool m_changeBrakePadsLight;
+	bool m_electronicParkingLight;
 
     bool m_breakSystemPic;
     bool m_brakeFluidPic;
@@ -265,6 +285,10 @@ protected:
     bool m_speedChangerErrPic;
     bool m_speedChaTempHighPic;
     bool m_coolantHighTempPic;
+    bool m_tcsErrPic;
+    bool m_changeBrakeFrontPic;
+    bool m_changeBrakeRearPic;
+
 
     // Special SettingsInfo
     // TODO: nothing to do
@@ -302,6 +326,8 @@ protected:
     bool m_key3StepFlag;
     uint m_key4Step;
     bool m_key4StepFlag;
+
+	int m_tripAB;
 
 protected slots:
     virtual void getGeneralSerial(GeneralInfo data);

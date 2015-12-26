@@ -11,7 +11,7 @@ Rectangle {
     property string getIcon5: ""
     property string getIcon6: ""
     property string getIcon7: ""
-    //property string getIcon8: ""
+	property string getIcon8: ""
     property int getIndex: 0
 
     ListModel {
@@ -26,7 +26,7 @@ Rectangle {
         appModel.append({"icon": gearDMSPanel.getIcon5});
         appModel.append({"icon": gearDMSPanel.getIcon6});
         appModel.append({"icon": gearDMSPanel.getIcon7});
-        //appModel.append({"icon": gearDMSPanel.getIcon8});
+		appModel.append({"icon": gearDMSPanel.getIcon8});
     }
 
     Component {

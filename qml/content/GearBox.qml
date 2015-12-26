@@ -91,7 +91,7 @@ Item {
         getIcon5: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearD5.png";
         getIcon6: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearD6.png";
         getIcon7: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearD7.png";
-        //getIcon8: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearD8.png";
+		getIcon8: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearD8.png";
     }
 
     GearDMS {
@@ -106,7 +106,7 @@ Item {
         getIcon5: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearS5.png";
         getIcon6: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearS6.png";
         getIcon7: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearS7.png";
-        //getIcon8: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearS8.png";
+		getIcon8: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearS8.png";
     }
 
     GearDMS {
@@ -121,7 +121,7 @@ Item {
         getIcon5: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearM5.png";
         getIcon6: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearM6.png";
         getIcon7: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearM7.png";
-        //getIcon8: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearM8.png";
+		getIcon8: "qrc:/letfPanel/gearPanel/images/letfPanel/gearPanel/gearM8.png";
     }
 
     Image {

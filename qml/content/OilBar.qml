@@ -65,6 +65,14 @@ Rectangle {
             source: "qrc:/rightPanel/oilBar/images/rightPanel/oilBar/iconOilMass.png"
         }
 
+        Image {
+            id: oilBoxPoint
+            x: 1266
+            y: 552
+            opacity: 1.0
+            source: "qrc:/rightPanel/oilBar/images/rightPanel/oilBar/oilBoxPoint.png"
+        }
+
     }
 
     states: [

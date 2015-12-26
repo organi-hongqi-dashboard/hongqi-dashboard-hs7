@@ -15,6 +15,9 @@ CarnationCarStatus::CarnationCarStatus(const QString &serialDev, QSerialPort *pa
 
     m_checkTimer = new QTimer(this);
     connect(m_checkTimer, SIGNAL(timeout()), this, SLOT(dealCheckKey()));
+
+	connect(this, SIGNAL(key2Changed(bool)), this, SLOT(key2Deal(bool)));
+
 }
 
 void CarnationCarStatus::initValues()
@@ -40,11 +43,13 @@ void CarnationCarStatus::initValues()
 
     m_oilLowLight = false;
     m_coolantLowLight = false;
-    m_espLight = false;
-    m_espOffLight = false;
+	m_espLight = 0;
+//    m_espOffLight = false;
     m_afsOffLight = false;
     m_milLight = false;
-    m_gearboxErrLight =false;
+	m_gearboxErrLight =false;
+	m_changeBrakePadsLight =false;
+	m_electronicParkingLight =false;
 
     m_breakSystemPic = false;
     m_brakeFluidPic = false;
@@ -62,6 +67,9 @@ void CarnationCarStatus::initValues()
     m_speedChangerErrPic = false;
     m_speedChaTempHighPic = false;
     m_coolantHighTempPic = false;
+    m_tcsErrPic = false;
+    m_changeBrakeFrontPic = false;
+    m_changeBrakeRearPic = false;
 
     // Special SettingsInfo
     // TODO: nothing to do
@@ -86,6 +94,9 @@ void CarnationCarStatus::initValues()
     warning_tip_str[SPEED_CHANGER_ERR_PIC] = "qrc:/qml/qml/content/warning/GearErr.qml";
     warning_tip_str[SPEED_CHA_TEMP_HIGH_PIC] = "qrc:/qml/qml/content/warning/GearShiftTemHighErr.qml";
     warning_tip_str[COOLANT_HIGH_TEMP_PIC] = "qrc:/qml/qml/content/warning/CoolWaterErr.qml";
+    warning_tip_str[TCS_ERR_PIC] = "qrc:/qml/qml/content/warning/TcsErr.qml";
+    warning_tip_str[CHANGE_BRAKE_FRONT_PIC] = "qrc:/qml/qml/content/warning/changeBrakeFront.qml";
+    warning_tip_str[CHANGE_BRAKE_REAR_PIC] = "qrc:/qml/qml/content/warning/changeBrakeRear.qml";
     warning_tip_str[MAX_WARNING_TIPS] = "";
 
     m_preTipList.clear();
@@ -222,10 +233,12 @@ void CarnationCarStatus::getSpecialSerial(SpecialInfo data)
         BoolValueChangeSet(oilLowLight, data.oilLowLight);
         BoolValueChangeSet(coolantLowLight, data.coolantLowLight);
         BoolValueChangeSet(espLight, data.espLight);
-        BoolValueChangeSet(espOffLight, data.espOffLight);
-        BoolValueChangeSet(afsOffLight, data.afsOffLight);
-        BoolValueChangeSet(milLight, data.milLight);
-        BoolValueChangeSet(gearboxErrLight, data.gearboxErrLight);
+		//BoolValueChangeSet(espOffLight, data.espOffLight);
+		BoolValueChangeSet(afsOffLight, data.afsOffLight);
+		BoolValueChangeSet(milLight, data.milLight);
+		BoolValueChangeSet(gearboxErrLight, data.gearboxErrLight);
+		BoolValueChangeSet(changeBrakePadsLight, data.changeBrakePadsLight);
+		BoolValueChangeSet(electronicParkingLight, data.electronicParkingLight);
 
         dealErrShow(breakSystemPic, data.breakSystemPic, BREAK_SYS_PIC);
         dealErrShow(brakeFluidPic, data.brakeFluidPic, BREAK_FLUID_PIC);
@@ -243,6 +256,10 @@ void CarnationCarStatus::getSpecialSerial(SpecialInfo data)
         dealErrShow(speedChangerErrPic, data.speedChangerErrPic, SPEED_CHANGER_ERR_PIC);
         dealErrShow(speedChaTempHighPic, data.speedChaTempHighPic, SPEED_CHA_TEMP_HIGH_PIC);
         dealErrShow(coolantHighTempPic, data.coolantHighTempPic, COOLANT_HIGH_TEMP_PIC);
+        dealErrShow(tcsErrPic, data.tcsErrPic, TCS_ERR_PIC);
+        dealErrShow(changeBrakeFrontPic, data.changeBrakeFrontPic, CHANGE_BRAKE_FRONT_PIC);
+        dealErrShow(changeBrakeRearPic, data.changeBrakeRearPic, CHANGE_BRAKE_REAR_PIC);
+
     }
 
 #ifdef DEBUG
@@ -481,8 +498,8 @@ void CarnationCarStatus::key2Deal(bool v)
 #ifdef DEBUG
                 setKeyShow2("ShortButton");
 #else
-//                emit key2Short();
-                showCheckErr();
+				emit okButtonShort();
+				//showCheckErr();
 #endif
             }
             m_key2StepFlag = true;
@@ -499,8 +516,7 @@ void CarnationCarStatus::key2Deal(bool v)
 #ifdef DEBUG
         setKeyShow2("LongButton");
 #else
-//        emit key2Long();
-        showCheckErr();
+		emit okButtonLong();
 #endif
     }
 

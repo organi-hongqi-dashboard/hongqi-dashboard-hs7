@@ -74,8 +74,9 @@ class CarStatus : public QSerialPort
     // General SettingsInfo
     Q_PROPERTY(bool commandReq MEMBER m_commandReq NOTIFY commandReqChanged)
     Q_PROPERTY(bool closeReq MEMBER m_closeReq NOTIFY closeReqChanged)
-    Q_PROPERTY(bool tripClean MEMBER m_tripClean NOTIFY tripCleanChanged)
-    Q_PROPERTY(bool avgSpeedClean MEMBER m_avgSpeedClean NOTIFY avgSpeedCleanChanged)
+	Q_PROPERTY(bool tripClean MEMBER m_tripClean NOTIFY tripCleanChanged)
+	Q_PROPERTY(bool tripClean2 MEMBER m_tripClean2 NOTIFY tripClean2Changed)
+	Q_PROPERTY(bool avgSpeedClean MEMBER m_avgSpeedClean NOTIFY avgSpeedCleanChanged)
     Q_PROPERTY(bool avgFuelClean MEMBER m_avgFuelClean NOTIFY avgFuelCleanChanged)
     Q_PROPERTY(bool projectMode MEMBER m_projectMode NOTIFY projectModeChanged)
     Q_PROPERTY(uint alarmInterface MEMBER m_alarmInterface NOTIFY alarmInterfaceChanged)
@@ -142,8 +143,9 @@ signals:
     // General SettingsInfo
     void commandReqChanged(bool);
     void closeReqChanged(bool);
-    void tripCleanChanged(bool);
-    void avgSpeedCleanChanged(bool);
+	void tripCleanChanged(bool);
+	void tripClean2Changed(bool);
+	void avgSpeedCleanChanged(bool);
     void avgFuelCleanChanged(bool);
     void projectModeChanged(bool);
     void alarmInterfaceChanged(uint);
@@ -206,8 +208,9 @@ protected:
     // General SettingsInfo
     bool m_commandReq;
     bool m_closeReq;
-    bool m_tripClean;
-    bool m_avgSpeedClean;
+	bool m_tripClean;
+	bool m_tripClean2;
+	bool m_avgSpeedClean;
     bool m_avgFuelClean;
     bool m_projectMode;
     uint m_alarmInterface;

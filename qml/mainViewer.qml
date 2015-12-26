@@ -13,19 +13,19 @@ Window {
     Rectangle {
         id: carnation
 
-        focus: true
-        Keys.onPressed: {
-            switch(event.key) {
-            case Qt.Key_1:
+//        focus: true
+//        Keys.onPressed: {
+//            switch(event.key) {
+//            case Qt.Key_1:
 
-                mainPanel.state = "functionMode"
-                break;
-            case Qt.Key_2:
-                mainPanel.state = "normalMode"
+//                mainPanel.state = "functionMode"
+//                break;
+//            case Qt.Key_2:
+//                mainPanel.state = "normalMode"
 
-                break;
-            }
-        }
+//                break;
+//            }
+//        }
 
         //        Fps {
         //            id: fps
