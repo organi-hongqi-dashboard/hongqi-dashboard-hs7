@@ -42,8 +42,8 @@
         <file>qml/content/warning/GearErr.qml</file>
         <file>qml/content/warning/WasteGasMonitoringSysErr.qml</file>
         <file>qml/content/CentreWarning.qml</file>
-        <file>qml/content/warning/changeBrakeFront.qml</file>
-        <file>qml/content/warning/changeBrakeRear.qml</file>
+        <file>qml/content/warning/ChangeBrakeFront.qml</file>
+        <file>qml/content/warning/ChangeBrakeRear.qml</file>
         <file>qml/content/warning/TcsErr.qml</file>
     </qresource>
     <qresource prefix="/common">

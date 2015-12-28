@@ -21,8 +21,9 @@ Item {
         case 4:
         case 5:
         case 6:
-        case 7:
-            setGearIndex = gear - 1;
+		case 7:
+		case 8:
+			setGearIndex = gear - 1;
             switch( gearMode ) {
             case 1: //D
                 setGear = 3;

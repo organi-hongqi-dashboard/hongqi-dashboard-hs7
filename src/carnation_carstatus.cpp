@@ -95,8 +95,8 @@ void CarnationCarStatus::initValues()
     warning_tip_str[SPEED_CHA_TEMP_HIGH_PIC] = "qrc:/qml/qml/content/warning/GearShiftTemHighErr.qml";
     warning_tip_str[COOLANT_HIGH_TEMP_PIC] = "qrc:/qml/qml/content/warning/CoolWaterErr.qml";
     warning_tip_str[TCS_ERR_PIC] = "qrc:/qml/qml/content/warning/TcsErr.qml";
-    warning_tip_str[CHANGE_BRAKE_FRONT_PIC] = "qrc:/qml/qml/content/warning/changeBrakeFront.qml";
-    warning_tip_str[CHANGE_BRAKE_REAR_PIC] = "qrc:/qml/qml/content/warning/changeBrakeRear.qml";
+	warning_tip_str[CHANGE_BRAKE_FRONT_PIC] = "qrc:/qml/qml/content/warning/ChangeBrakeFront.qml";
+	warning_tip_str[CHANGE_BRAKE_REAR_PIC] = "qrc:/qml/qml/content/warning/ChangeBrakeRear.qml";
     warning_tip_str[MAX_WARNING_TIPS] = "";
 
     m_preTipList.clear();
