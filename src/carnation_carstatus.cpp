@@ -15,9 +15,6 @@ CarnationCarStatus::CarnationCarStatus(const QString &serialDev, QSerialPort *pa
 
     m_checkTimer = new QTimer(this);
     connect(m_checkTimer, SIGNAL(timeout()), this, SLOT(dealCheckKey()));
-
-	connect(this, SIGNAL(key2Changed(bool)), this, SLOT(key2Deal(bool)));
-
 }
 
 void CarnationCarStatus::initValues()
@@ -132,7 +129,7 @@ void CarnationCarStatus::getGeneralSerial(GeneralInfo data)
         NumValueChangeSet(speed, data.speed, (uint8_t) 0, (uint8_t) 240);
         NumValueChangeSet(waterTemp, data.waterTemp, (uint8_t) 50, (uint8_t) 130);
         dealErrButtonShow(key1, data.key1);
-        BoolValueChangeSet(key2, data.key2);
+        dealErrButtonShow(key2, data.key2);
         BoolValueChangeSet(key3, data.key3);
         BoolValueChangeSet(key4, data.key4);
         BoolValueChangeSet(igOn, data.igOn);

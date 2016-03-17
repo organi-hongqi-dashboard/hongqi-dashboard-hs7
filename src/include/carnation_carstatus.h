@@ -149,7 +149,7 @@ public:
 #define dealErrButtonShow(name, v) \
     do { \
         m_##name = (v); \
-        key1Deal((v)); \
+        name##Deal((v)); \
     } while (0)
 
 
