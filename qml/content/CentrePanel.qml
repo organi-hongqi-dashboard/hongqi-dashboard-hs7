@@ -633,7 +633,7 @@ Rectangle {
 
 	function buttonLong() {
 		if( tripAB == 0 )
-			CarStatus.tripClear = true;
+            CarStatus.tripClean = true;
 		else
 			CarStatus.tripClean2 = true;
 	}
