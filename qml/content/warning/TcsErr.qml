@@ -4,61 +4,59 @@ Item {
 	id: brakingMoreErr
 
     // common
-	Image {
-        id: textRec
-        x: 697
-        y: 233
-        opacity: 1.0
-		source: "qrc:/centralPanel/images/centralPanel/textRec.png"
-    }
-    Image {
-        id: warningSymbol
-        x: 775
-        y: 251
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/warningSymbol.png"
-    }
+//    Image {
+//        id: frameRec
+//        x: 709
+//        y: 253
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/frameRec.png"
+//    }
+//    Image {
+//        id: picLight
+//        x: 576
+//        y: 414
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picLight.png"
+//    }
+//    Image {
+//        id: picCar
+//        x: 669
+//        y: 390
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picCar.png"
+//    }
+//    Image {
+//        id: picWarn
+//        x: 869
+//        y: 504
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picWarn.png"
+//    }
 
    // private
     Image {
-        id: absWhiteBg
-        x: 761
-        y: 354
+        id: picTcsIcon
+        x: 917
+        y: 193
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/absErr/absWhiteBg.png"
+        source: "qrc:/warningPic/images/warningPic/picTcsIcon.png"
     }
     Image {
-        id: absRedBg
-        x: 725
-        y: 328
+        id: textTCS
+        x: 891
+        y: 308
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/absErr/absRedBg.png"
+        source: "qrc:/warningPic/images/warningPic/textTCS.png"
     }
 
-	Text {
-		x: 910
-		y: 258
-		anchors.centerIn: textRec
-		color: "white"
-		font.pixelSize: 32
-		font.family: fontName.fontCurrent
-		opacity: 1.0
-        text: qsTr("TCS故障!")
-	}
-
-    ParallelAnimation {
-        running: true
-        SequentialAnimation {
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 1.0; to: 0; duration: 300 }
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 0; to: 1.0; duration: 300 }
-            loops: 2
-        }
-        SequentialAnimation {
-            NumberAnimation { target: absRedBg; property: "opacity"; from: 1.0; to: 0; duration: 800 }
-            NumberAnimation { target: absRedBg; property: "opacity"; from: 0; to: 1.0; duration: 800 }
-            loops:Animation.Infinite
-        }
-    }
+//    ParallelAnimation {
+//        running: true
+//        SequentialAnimation {
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+//            loops:Animation.Infinite
+//        }
+//    }
 	states: [
 		State {
 			name: ""

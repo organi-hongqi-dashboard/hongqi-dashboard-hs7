@@ -4,49 +4,59 @@ Item {
     id: engineErr
 
     // common
+//    Image {
+//        id: frameRec
+//        x: 709
+//        y: 253
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/frameRec.png"
+//    }
+//    Image {
+//        id: picLight
+//        x: 576
+//        y: 414
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picLight.png"
+//    }
+//    Image {
+//        id: picCar
+//        x: 669
+//        y: 390
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picCar.png"
+//    }
+//    Image {
+//        id: picWarn
+//        x: 869
+//        y: 504
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picWarn.png"
+//    }
+
+   // private
     Image {
-        id: textRec
-        x: 697
-        y: 233
+        id: picMotorIcon
+        x: 907
+        y: 200
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/textRec.png"
+        source: "qrc:/warningPic/images/warningPic/picMotorIcon.png"
     }
     Image {
-        id: warningSymbol
-        x: 775
-        y: 251
+        id: textMotorSys
+        x: 818
+        y: 308
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/warningSymbol.png"
-    }
-    // private
-    Image {
-        id: engineErrBg
-        x: 765
-        y: 213
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/engineErr/engineErrBg.png"
-    }
-    Image {
-        id: engineErrText
-        x: 881
-        y: 258
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/engineErr/engineErrText.png"
+        source: "qrc:/warningPic/images/warningPic/textMotorSys.png"
     }
 
-    ParallelAnimation {
-        running: true
-        SequentialAnimation {
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 1.0; to: 0; duration: 300 }
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 0; to: 1.0; duration: 300 }
-            loops: 2
-        }
-        SequentialAnimation {
-            NumberAnimation { target: engineErrBg; property: "opacity"; from: 1.0; to: 0; duration: 800 }
-            NumberAnimation { target: engineErrBg; property: "opacity"; from: 0; to: 1.0; duration: 800 }
-            loops:Animation.Infinite
-        }
-    }
+//    ParallelAnimation {
+//        running: true
+//        SequentialAnimation {
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+//            loops:Animation.Infinite
+//        }
+//    }
     states: [
         State {
             name: ""

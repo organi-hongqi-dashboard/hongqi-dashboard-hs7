@@ -4,67 +4,59 @@ Item {
     id: oilPreLowErr
 
     // common
+//    Image {
+//        id: frameRec
+//        x: 709
+//        y: 253
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/frameRec.png"
+//    }
+//    Image {
+//        id: picLight
+//        x: 576
+//        y: 414
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picLight.png"
+//    }
+//    Image {
+//        id: picCar
+//        x: 669
+//        y: 390
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picCar.png"
+//    }
+//    Image {
+//        id: picWarn
+//        x: 869
+//        y: 504
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picWarn.png"
+//    }
+
+   // private
     Image {
-        id: textRec
-        x: 697
-        y: 233
+        id: picOilPressureIcon
+        x: 889
+        y: 211
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/textRec.png"
+        source: "qrc:/warningPic/images/warningPic/picOilPressureIcon.png"
     }
     Image {
-        id: warningSymbol
-        x: 775
-        y: 251
+        id: textOilPressureLow
+        x: 863
+        y: 308
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/warningSymbol.png"
+        source: "qrc:/warningPic/images/warningPic/textOilPressureLow.png"
     }
 
-    // private
-    Image {
-        id: oilLowText
-        x: 866
-        y: 258
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/oilPreLowErr/oilLowText.png"
-    }
-
-    Image {
-        id: pressLow
-        x: 894
-        y: 338
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/oilPreLowErr/pressLow.png"
-    }
-
-    Image {
-        id: pointer
-        x: 969
-        y: 451
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/oilPreLowErr/pointer.png"
-
-        transform: Rotation {
-            id: pointerRotation
-            origin.x: 34
-            origin.y: 10
-            angle: 0
-            Behavior on angle { NumberAnimation{ duration: 300 } }
-        }
-    }
-
-    ParallelAnimation {
-        running: true
-        SequentialAnimation {
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 1.0; to: 0; duration: 300 }
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 0; to: 1.0; duration: 300 }
-            loops: 2
-        }
-        SequentialAnimation {
-            NumberAnimation { target: pointerRotation; property: "angle"; from: 0; to: 60; duration: 400 }
-            NumberAnimation { target: pointerRotation; property: "angle"; from: 60; to: 0; duration: 400 }
-            loops:Animation.Infinite
-        }
-    }
+//    ParallelAnimation {
+//        running: true
+//        SequentialAnimation {
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+//            loops:Animation.Infinite
+//        }
+//    }
     states: [
         State {
             name: ""

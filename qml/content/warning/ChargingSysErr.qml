@@ -4,50 +4,59 @@ Item {
     id: chargingSysErr
 
     // common
+//    Image {
+//        id: frameRec
+//        x: 709
+//        y: 253
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/frameRec.png"
+//    }
+//    Image {
+//        id: picLight
+//        x: 576
+//        y: 414
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picLight.png"
+//    }
+//    Image {
+//        id: picCar
+//        x: 669
+//        y: 390
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picCar.png"
+//    }
+//    Image {
+//        id: picWarn
+//        x: 869
+//        y: 504
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picWarn.png"
+//    }
+
+   // private
     Image {
-        id: textRec
-        x: 697
-        y: 233
+        id: picBatErr
+        x: 913
+        y: 204
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/textRec.png"
+        source: "qrc:/warningPic/images/warningPic/picBatErr.png"
     }
     Image {
-        id: warningSymbol
-        x: 775
-        y: 251
+        id: textBatSysFault
+        x: 863
+        y: 308
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/warningSymbol.png"
+        source: "qrc:/warningPic/images/warningPic/textBatSysFault.png"
     }
 
-    // private
-    Image {
-        id: batterBg
-        x: 872
-        y: 395
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/chargingSysErr/batterBg.png"
-    }
-    Image {
-        id: chargingSysErrText
-        x: 881
-        y: 258
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/chargingSysErr/chargingSysErrText.png"
-    }
-
-    ParallelAnimation {
-        running: true
-        SequentialAnimation {
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 1.0; to: 0; duration: 300 }
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 0; to: 1.0; duration: 300 }
-            loops: 2
-        }
-        SequentialAnimation {
-            NumberAnimation { target: batterBg; property: "opacity"; from: 1.0; to: 0; duration: 800 }
-            NumberAnimation { target: batterBg; property: "opacity"; from: 0; to: 1.0; duration: 800 }
-            loops:Animation.Infinite
-        }
-    }
+//    ParallelAnimation {
+//        running: true
+//        SequentialAnimation {
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+//            loops:Animation.Infinite
+//        }
+//    }
     states: [
         State {
             name: ""

@@ -19,7 +19,6 @@
         <file>qml/content/OilBar.qml</file>
         <file>qml/content/CarTipsIcon.qml</file>
         <file>qml/content/CarFunction.qml</file>
-        <file>qml/content/functionMode/FunctionMenu.qml</file>
         <file>qml/content/Gear.qml</file>
         <file>qml/content/SplashPanel.qml</file>
         <file>qml/content/GearPanel.qml</file>
@@ -45,89 +44,62 @@
         <file>qml/content/warning/ChangeBrakeFront.qml</file>
         <file>qml/content/warning/ChangeBrakeRear.qml</file>
         <file>qml/content/warning/TcsErr.qml</file>
+        <file>qml/content/FunctionMenu.qml</file>
     </qresource>
     <qresource prefix="/common">
         <file>images/common/spinner.png</file>
+        <file>images/common/num0.png</file>
+        <file>images/common/num1.png</file>
+        <file>images/common/num2.png</file>
+        <file>images/common/num3.png</file>
+        <file>images/common/num4.png</file>
+        <file>images/common/num5.png</file>
+        <file>images/common/num6.png</file>
+        <file>images/common/num7.png</file>
+        <file>images/common/num8.png</file>
+        <file>images/common/num9.png</file>
+        <file>images/common/runningInfoTemp.png</file>
+        <file>images/common/l100km.png</file>
+        <file>images/common/lh.png</file>
     </qresource>
-    <qresource prefix="/letfPanel/gearPanel">
-        <file>images/letfPanel/gearPanel/gearS8.png</file>
-        <file>images/letfPanel/gearPanel/gearS7.png</file>
-        <file>images/letfPanel/gearPanel/gearS6.png</file>
-        <file>images/letfPanel/gearPanel/gearS5.png</file>
-        <file>images/letfPanel/gearPanel/gearS4.png</file>
-        <file>images/letfPanel/gearPanel/gearS3.png</file>
-        <file>images/letfPanel/gearPanel/gearS2.png</file>
-        <file>images/letfPanel/gearPanel/gearS1.png</file>
-        <file>images/letfPanel/gearPanel/gearR.png</file>
-        <file>images/letfPanel/gearPanel/gearP.png</file>
-        <file>images/letfPanel/gearPanel/gearN.png</file>
-        <file>images/letfPanel/gearPanel/gearM8.png</file>
-        <file>images/letfPanel/gearPanel/gearM7.png</file>
-        <file>images/letfPanel/gearPanel/gearM6.png</file>
-        <file>images/letfPanel/gearPanel/gearM5.png</file>
-        <file>images/letfPanel/gearPanel/gearM4.png</file>
-        <file>images/letfPanel/gearPanel/gearM3.png</file>
-        <file>images/letfPanel/gearPanel/gearM2.png</file>
-        <file>images/letfPanel/gearPanel/gearM1.png</file>
-        <file>images/letfPanel/gearPanel/gearD8.png</file>
-        <file>images/letfPanel/gearPanel/gearD7.png</file>
-        <file>images/letfPanel/gearPanel/gearD6.png</file>
-        <file>images/letfPanel/gearPanel/gearD5.png</file>
-        <file>images/letfPanel/gearPanel/gearD4.png</file>
-        <file>images/letfPanel/gearPanel/gearD3.png</file>
-        <file>images/letfPanel/gearPanel/gearD2.png</file>
-        <file>images/letfPanel/gearPanel/gearD1.png</file>
-    </qresource>
-    <qresource prefix="/rightPanel">
-        <file>images/rightDisk/graduationRight2.png</file>
-        <file>images/rightDisk/graduationRight1.png</file>
-        <file>images/rightDisk/rightPoint.png</file>
-        <file>images/rightDisk/num240.png</file>
-        <file>images/rightDisk/num220.png</file>
-        <file>images/rightDisk/num200.png</file>
-        <file>images/rightDisk/num180.png</file>
-        <file>images/rightDisk/num160.png</file>
-        <file>images/rightDisk/num140.png</file>
-        <file>images/rightDisk/num120.png</file>
-        <file>images/rightDisk/num100.png</file>
-        <file>images/rightDisk/num80.png</file>
-        <file>images/rightDisk/num60.png</file>
-        <file>images/rightDisk/num40.png</file>
-        <file>images/rightDisk/num20.png</file>
-        <file>images/rightDisk/num0.png</file>
-        <file>images/rightDisk/numSpeed.png</file>
-        <file>images/rightDisk/iconKmPerHBig.png</file>
-        <file>images/rightDisk/09.png</file>
-        <file>images/rightDisk/08.png</file>
-        <file>images/rightDisk/07.png</file>
-        <file>images/rightDisk/06.png</file>
-        <file>images/rightDisk/05.png</file>
-        <file>images/rightDisk/04.png</file>
-        <file>images/rightDisk/03.png</file>
-        <file>images/rightDisk/02.png</file>
-        <file>images/rightDisk/01.png</file>
-        <file>images/rightDisk/00.png</file>
-    </qresource>
+    <qresource prefix="/rightPanel"/>
     <qresource prefix="/centrePanel">
-        <file>images/centrePanel/normalUpLine.png</file>
-        <file>images/centrePanel/normalDownLine.png</file>
-        <file>images/centrePanel/functionUpLine.png</file>
-        <file>images/centrePanel/functionDownLine.png</file>
         <file>images/centrePanel/bg.png</file>
-        <file>images/centrePanel/runningInfo.png</file>
+        <file>images/centrePanel/lineBg.png</file>
+        <file>images/centrePanel/odoUint.png</file>
+        <file>images/centrePanel/temputureUint.png</file>
         <file>images/centrePanel/tripAIcon.png</file>
-        <file>images/centrePanel/tempIcon.png</file>
-        <file>images/centrePanel/odoIcon.png</file>
-        <file>images/centrePanel/kmIcon.png</file>
-        <file>images/centrePanel/cTempIcon.png</file>
-        <file>images/centrePanel/baseline.png</file>
-        <file>images/centrePanel/100km.png</file>
-        <file>images/centrePanel/h.png</file>
+        <file>images/centrePanel/tripUint.png</file>
+        <file>images/centrePanel/gearD1.png</file>
+        <file>images/centrePanel/gearD2.png</file>
+        <file>images/centrePanel/gearD3.png</file>
+        <file>images/centrePanel/gearD4.png</file>
+        <file>images/centrePanel/gearD5.png</file>
+        <file>images/centrePanel/gearD6.png</file>
+        <file>images/centrePanel/gearD7.png</file>
+        <file>images/centrePanel/gearD8.png</file>
+        <file>images/centrePanel/gearM1.png</file>
+        <file>images/centrePanel/gearM2.png</file>
+        <file>images/centrePanel/gearM3.png</file>
+        <file>images/centrePanel/gearM4.png</file>
+        <file>images/centrePanel/gearM5.png</file>
+        <file>images/centrePanel/gearM6.png</file>
+        <file>images/centrePanel/gearM7.png</file>
+        <file>images/centrePanel/gearM8.png</file>
+        <file>images/centrePanel/gearN.png</file>
+        <file>images/centrePanel/gearP.png</file>
+        <file>images/centrePanel/gearR.png</file>
+        <file>images/centrePanel/gearS1.png</file>
+        <file>images/centrePanel/gearS2.png</file>
+        <file>images/centrePanel/gearS3.png</file>
+        <file>images/centrePanel/gearS4.png</file>
+        <file>images/centrePanel/gearS5.png</file>
+        <file>images/centrePanel/gearS6.png</file>
+        <file>images/centrePanel/gearS7.png</file>
+        <file>images/centrePanel/gearS8.png</file>
         <file>images/centrePanel/tripBIcon.png</file>
     </qresource>
     <qresource prefix="/rpmDisk">
-        <file>images/letfPanel/rpmDisk/unit.png</file>
-        <file>images/letfPanel/rpmDisk/rpm_scale.png</file>
         <file>images/letfPanel/rpmDisk/rpm7.png</file>
         <file>images/letfPanel/rpmDisk/rpm6.png</file>
         <file>images/letfPanel/rpmDisk/rpm5.png</file>
@@ -136,34 +108,59 @@
         <file>images/letfPanel/rpmDisk/rpm2.png</file>
         <file>images/letfPanel/rpmDisk/rpm1.png</file>
         <file>images/letfPanel/rpmDisk/rpm0.png</file>
+        <file>images/letfPanel/rpmDisk/scale1.png</file>
+        <file>images/letfPanel/rpmDisk/scale2.png</file>
+        <file>images/letfPanel/rpmDisk/scale3.png</file>
+        <file>images/letfPanel/rpmDisk/scale4.png</file>
+        <file>images/letfPanel/rpmDisk/scale5.png</file>
+        <file>images/letfPanel/rpmDisk/scale6.png</file>
+        <file>images/letfPanel/rpmDisk/scale7.png</file>
+        <file>images/letfPanel/rpmDisk/scale8.png</file>
+        <file>images/letfPanel/rpmDisk/scales1.png</file>
+        <file>images/letfPanel/rpmDisk/scales2.png</file>
+        <file>images/letfPanel/rpmDisk/scales3.png</file>
+        <file>images/letfPanel/rpmDisk/scales4.png</file>
+        <file>images/letfPanel/rpmDisk/scales5.png</file>
+        <file>images/letfPanel/rpmDisk/scales6.png</file>
+        <file>images/letfPanel/rpmDisk/scales7.png</file>
+        <file>images/letfPanel/rpmDisk/scales8.png</file>
+        <file>images/letfPanel/rpmDisk/scales9.png</file>
+        <file>images/letfPanel/rpmDisk/scales10.png</file>
+        <file>images/letfPanel/rpmDisk/scales11.png</file>
+        <file>images/letfPanel/rpmDisk/scales12.png</file>
+        <file>images/letfPanel/rpmDisk/scales13.png</file>
+        <file>images/letfPanel/rpmDisk/scales14.png</file>
+        <file>images/letfPanel/rpmDisk/scales15.png</file>
+        <file>images/letfPanel/rpmDisk/scales16.png</file>
+        <file>images/letfPanel/rpmDisk/scales17.png</file>
+        <file>images/letfPanel/rpmDisk/scales18.png</file>
+        <file>images/letfPanel/rpmDisk/scales19.png</file>
+        <file>images/letfPanel/rpmDisk/scales20.png</file>
+        <file>images/letfPanel/rpmDisk/scales21.png</file>
+        <file>images/letfPanel/rpmDisk/scales22.png</file>
+        <file>images/letfPanel/rpmDisk/scales23.png</file>
+        <file>images/letfPanel/rpmDisk/scales24.png</file>
+        <file>images/letfPanel/rpmDisk/scales25.png</file>
+        <file>images/letfPanel/rpmDisk/scales26.png</file>
+        <file>images/letfPanel/rpmDisk/scales27.png</file>
+        <file>images/letfPanel/rpmDisk/scales28.png</file>
+        <file>images/letfPanel/rpmDisk/rpmUint.png</file>
+        <file>images/letfPanel/rpmDisk/coolantTemp.png</file>
+        <file>images/letfPanel/rpmDisk/warningBar.png</file>
+        <file>images/letfPanel/rpmDisk/warningLine1.png</file>
+        <file>images/letfPanel/rpmDisk/warningLine2.png</file>
     </qresource>
     <qresource prefix="/menuPanel">
-        <file>images/menuPanel/7812512.png</file>
-        <file>images/menuPanel/7812512Y.png</file>
-        <file>images/menuPanel/7984524512.png</file>
-        <file>images/menuPanel/7984524512Y.png</file>
-        <file>images/menuPanel/contactSetting.png</file>
-        <file>images/menuPanel/contactSettingY.png</file>
-        <file>images/menuPanel/drivInfo.png</file>
-        <file>images/menuPanel/drivInfoY.png</file>
-        <file>images/menuPanel/themeStyle.png</file>
-        <file>images/menuPanel/themeStyleY.png</file>
-        <file>images/menuPanel/timeSetting.png</file>
-        <file>images/menuPanel/timeSettingY.png</file>
-        <file>images/menuPanel/TPMSInfo.png</file>
-        <file>images/menuPanel/TPMSInfoY.png</file>
-        <file>images/menuPanel/unitSetting.png</file>
-        <file>images/menuPanel/unitSettingY.png</file>
-        <file>images/menuPanel/ellipse_14.png</file>
-        <file>images/menuPanel/ellipse_14_copy.png</file>
-        <file>images/menuPanel/ellipse_18.png</file>
-        <file>images/menuPanel/layer_177_copy_2.png</file>
-        <file>images/menuPanel/layer_177_copy_3.png</file>
-        <file>images/menuPanel/layer_180.png</file>
-        <file>images/menuPanel/menu.png</file>
-        <file>images/menuPanel/rect_1.png</file>
-        <file>images/menuPanel/rect_1_copy.png</file>
-        <file>images/menuPanel/yellow_copy.png</file>
+        <file>images/menuPanel/acc.png</file>
+        <file>images/menuPanel/car.png</file>
+        <file>images/menuPanel/media.png</file>
+        <file>images/menuPanel/menuBg.png</file>
+        <file>images/menuPanel/menuLine.png</file>
+        <file>images/menuPanel/nav.png</file>
+        <file>images/menuPanel/nightView.png</file>
+        <file>images/menuPanel/phone.png</file>
+        <file>images/menuPanel/radio.png</file>
+        <file>images/menuPanel/warning.png</file>
     </qresource>
     <qresource prefix="/splash">
         <file>images/splash/splash.png</file>
@@ -171,41 +168,6 @@
     <qresource prefix="/common/disk">
         <file>images/common/disk/pointer.png</file>
         <file>images/common/disk/disk.png</file>
-    </qresource>
-    <qresource prefix="/common/bar">
-        <file>images/common/bar/redCube.png</file>
-        <file>images/common/bar/greenCube.png</file>
-        <file>images/common/bar/barOutline.png</file>
-        <file>images/common/bar/middleLine.png</file>
-        <file>images/common/bar/9999.png</file>
-        <file>images/common/bar/8888.png</file>
-        <file>images/common/bar/7777.png</file>
-        <file>images/common/bar/6666.png</file>
-        <file>images/common/bar/5555.png</file>
-        <file>images/common/bar/4444.png</file>
-        <file>images/common/bar/3333.png</file>
-        <file>images/common/bar/2222.png</file>
-        <file>images/common/bar/1111.png</file>
-        <file>images/common/bar/0000.png</file>
-        <file>images/common/bar/iconPercentage.png</file>
-    </qresource>
-    <qresource prefix="/rightPanel/coolantTemp">
-        <file>images/rightPanel/coolantTemp/iconTemp.png</file>
-        <file>images/rightPanel/coolantTemp/coolant130.png</file>
-        <file>images/rightPanel/coolantTemp/coolant90.png</file>
-        <file>images/rightPanel/coolantTemp/coolant50.png</file>
-    </qresource>
-    <qresource prefix="/rightPanel/oilBar">
-        <file>images/rightPanel/oilBar/iconOilMass.png</file>
-        <file>images/rightPanel/oilBar/oilBoxPoint.png</file>
-    </qresource>
-    <qresource prefix="/letfPanel/socBar">
-        <file>images/letfPanel/socBar/soc_unit.png</file>
-    </qresource>
-    <qresource prefix="/letfPanel/powerKwBar">
-        <file>images/letfPanel/powerKwBar/voltage_unit.png</file>
-        <file>images/letfPanel/powerKwBar/voltage_100.png</file>
-        <file>images/letfPanel/powerKwBar/voltage_0%.png</file>
     </qresource>
     <qresource prefix="/centralPanel">
         <file>images/centralPanel/warningSymbol.png</file>
@@ -299,5 +261,103 @@
         <file>images/carTipsIcon/engineErrLight.png</file>
         <file>images/carTipsIcon/espErrLight.png</file>
         <file>images/carTipsIcon/breakSys.png</file>
+    </qresource>
+    <qresource prefix="/speedDisk">
+        <file>images/rightPanel/speedDisk/b1.png</file>
+        <file>images/rightPanel/speedDisk/b2.png</file>
+        <file>images/rightPanel/speedDisk/b3.png</file>
+        <file>images/rightPanel/speedDisk/b4.png</file>
+        <file>images/rightPanel/speedDisk/b5.png</file>
+        <file>images/rightPanel/speedDisk/b6.png</file>
+        <file>images/rightPanel/speedDisk/b7.png</file>
+        <file>images/rightPanel/speedDisk/b8.png</file>
+        <file>images/rightPanel/speedDisk/b9.png</file>
+        <file>images/rightPanel/speedDisk/b10.png</file>
+        <file>images/rightPanel/speedDisk/b11.png</file>
+        <file>images/rightPanel/speedDisk/b12.png</file>
+        <file>images/rightPanel/speedDisk/b13.png</file>
+        <file>images/rightPanel/speedDisk/m1.png</file>
+        <file>images/rightPanel/speedDisk/m2.png</file>
+        <file>images/rightPanel/speedDisk/m3.png</file>
+        <file>images/rightPanel/speedDisk/m4.png</file>
+        <file>images/rightPanel/speedDisk/m5.png</file>
+        <file>images/rightPanel/speedDisk/m6.png</file>
+        <file>images/rightPanel/speedDisk/m7.png</file>
+        <file>images/rightPanel/speedDisk/m8.png</file>
+        <file>images/rightPanel/speedDisk/m9.png</file>
+        <file>images/rightPanel/speedDisk/m10.png</file>
+        <file>images/rightPanel/speedDisk/m11.png</file>
+        <file>images/rightPanel/speedDisk/m12.png</file>
+        <file>images/rightPanel/speedDisk/s1.png</file>
+        <file>images/rightPanel/speedDisk/s2.png</file>
+        <file>images/rightPanel/speedDisk/s3.png</file>
+        <file>images/rightPanel/speedDisk/s4.png</file>
+        <file>images/rightPanel/speedDisk/s5.png</file>
+        <file>images/rightPanel/speedDisk/s6.png</file>
+        <file>images/rightPanel/speedDisk/s7.png</file>
+        <file>images/rightPanel/speedDisk/s8.png</file>
+        <file>images/rightPanel/speedDisk/s9.png</file>
+        <file>images/rightPanel/speedDisk/s10.png</file>
+        <file>images/rightPanel/speedDisk/s11.png</file>
+        <file>images/rightPanel/speedDisk/s12.png</file>
+        <file>images/rightPanel/speedDisk/s13.png</file>
+        <file>images/rightPanel/speedDisk/s14.png</file>
+        <file>images/rightPanel/speedDisk/s15.png</file>
+        <file>images/rightPanel/speedDisk/s16.png</file>
+        <file>images/rightPanel/speedDisk/s17.png</file>
+        <file>images/rightPanel/speedDisk/s18.png</file>
+        <file>images/rightPanel/speedDisk/s19.png</file>
+        <file>images/rightPanel/speedDisk/s20.png</file>
+        <file>images/rightPanel/speedDisk/s21.png</file>
+        <file>images/rightPanel/speedDisk/s22.png</file>
+        <file>images/rightPanel/speedDisk/s23.png</file>
+        <file>images/rightPanel/speedDisk/s24.png</file>
+        <file>images/rightPanel/speedDisk/speed0.png</file>
+        <file>images/rightPanel/speedDisk/speed20.png</file>
+        <file>images/rightPanel/speedDisk/speed40.png</file>
+        <file>images/rightPanel/speedDisk/speed60.png</file>
+        <file>images/rightPanel/speedDisk/speed80.png</file>
+        <file>images/rightPanel/speedDisk/speed100.png</file>
+        <file>images/rightPanel/speedDisk/speed120.png</file>
+        <file>images/rightPanel/speedDisk/speed140.png</file>
+        <file>images/rightPanel/speedDisk/speed160.png</file>
+        <file>images/rightPanel/speedDisk/speed180.png</file>
+        <file>images/rightPanel/speedDisk/speed200.png</file>
+        <file>images/rightPanel/speedDisk/speed220.png</file>
+        <file>images/rightPanel/speedDisk/speed240.png</file>
+        <file>images/rightPanel/speedDisk/speedUint.png</file>
+        <file>images/rightPanel/speedDisk/oilBar.png</file>
+    </qresource>
+    <qresource prefix="/warningPic">
+        <file>images/warningPic/frameRec.png</file>
+        <file>images/warningPic/picAbs.png</file>
+        <file>images/warningPic/picAirBag.png</file>
+        <file>images/warningPic/picBatErr.png</file>
+        <file>images/warningPic/picBrakeSysIcon.png</file>
+        <file>images/warningPic/picCar.png</file>
+        <file>images/warningPic/picfrictionPlate.png</file>
+        <file>images/warningPic/picGearboxIcon.png</file>
+        <file>images/warningPic/picLight.png</file>
+        <file>images/warningPic/picMotorIcon.png</file>
+        <file>images/warningPic/picOilPressureIcon.png</file>
+        <file>images/warningPic/picParkingSysIcon.png</file>
+        <file>images/warningPic/picTcsIcon.png</file>
+        <file>images/warningPic/picWarn.png</file>
+        <file>images/warningPic/textABSFault.png</file>
+        <file>images/warningPic/textAddOil.png</file>
+        <file>images/warningPic/textAirbag.png</file>
+        <file>images/warningPic/textBatSysFault.png</file>
+        <file>images/warningPic/textBrakeFluid.png</file>
+        <file>images/warningPic/textBrakeSysFault.png</file>
+        <file>images/warningPic/textCoolant.png</file>
+        <file>images/warningPic/textESP.png</file>
+        <file>images/warningPic/textGasOver.png</file>
+        <file>images/warningPic/textGearbox.png</file>
+        <file>images/warningPic/textMotorSys.png</file>
+        <file>images/warningPic/textOilPressureLow.png</file>
+        <file>images/warningPic/textParkingFault.png</file>
+        <file>images/warningPic/textReplaceFront.png</file>
+        <file>images/warningPic/textReplaceRear.png</file>
+        <file>images/warningPic/textTCS.png</file>
     </qresource>
 </RCC>

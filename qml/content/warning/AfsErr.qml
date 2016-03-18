@@ -4,57 +4,52 @@ Item {
     id: afsErr
 
     // common
+//    Image {
+//        id: frameRec
+//        x: 709
+//        y: 253
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/frameRec.png"
+//    }
+//    Image {
+//        id: picLight
+//        x: 576
+//        y: 414
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picLight.png"
+//    }
+//    Image {
+//        id: picCar
+//        x: 669
+//        y: 390
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picCar.png"
+//    }
+//    Image {
+//        id: picWarn
+//        x: 869
+//        y: 504
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picWarn.png"
+//    }
+
+   // private
     Image {
-        id: textRec
-        x: 697
-        y: 233
+        id: textABSFault
+        x: 889
+        y: 308
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/textRec.png"
-    }
-    Image {
-        id: warningSymbol
-        x: 775
-        y: 251
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/warningSymbol.png"
+        source: "qrc:/warningPic/images/warningPic/textABSFault.png"
     }
 
-    // private
-    Image {
-        id: afsLightBg
-        x: 645
-        y: 324
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/afsErr/afsLightBg.png"
-    }
-    Image {
-        id: afsCarBg
-        x: 875
-        y: 326
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/afsErr/afsCarBg.png"
-    }
-    Image {
-        id: afsCloseText
-        x: 888
-        y: 258
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/afsErr/afsCloseText.png"
-    }
-
-    ParallelAnimation {
-        running: true
-        SequentialAnimation {
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 1.0; to: 0; duration: 300 }
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 0; to: 1.0; duration: 300 }
-            loops: 2
-        }
-        SequentialAnimation {
-            NumberAnimation { target: afsLightBg; property: "opacity"; from: 1.0; to: 0; duration: 800 }
-            NumberAnimation { target: afsLightBg; property: "opacity"; from: 0; to: 1.0; duration: 800 }
-            loops:Animation.Infinite
-        }
-    }
+//    ParallelAnimation {
+//        running: true
+//        SequentialAnimation {
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+//            loops:Animation.Infinite
+//        }
+//    }
     states: [
         State {
             name: ""

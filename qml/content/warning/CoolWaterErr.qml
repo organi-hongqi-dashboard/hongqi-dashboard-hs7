@@ -3,57 +3,53 @@ import QtQuick 2.2
 Item {
     id: coolWaterErr
 
+    // common
+//    Image {
+//        id: frameRec
+//        x: 709
+//        y: 253
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/frameRec.png"
+//    }
+//    Image {
+//        id: picLight
+//        x: 576
+//        y: 414
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picLight.png"
+//    }
+//    Image {
+//        id: picCar
+//        x: 669
+//        y: 390
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picCar.png"
+//    }
+//    Image {
+//        id: picWarn
+//        x: 869
+//        y: 504
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picWarn.png"
+//    }
+
+   // private
     Image {
-        id: textRec
-        x: 697
-        y: 233
+        id: textCoolant
+        x: 863
+        y: 308
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/textRec.png"
-    }
-    Image {
-        id: warningSymbol
-        x: 775
-        y: 251
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/warningSymbol.png"
+        source: "qrc:/warningPic/images/warningPic/textCoolant.png"
     }
 
-
-    Image {
-        id: redBack
-        x: 821
-        y: 254
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/coolWaterErr/redBack.png"
-    }
-    Image {
-        id: coolWaterBg
-        x: 861
-        y: 338
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/coolWaterErr/coolWaterBg.png"
-    }
-    Image {
-        id: coolWaterText
-        x: 853
-        y: 259
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/coolWaterErr/coolWaterText.png"
-    }
-
-    ParallelAnimation {
-        running: true
-        SequentialAnimation {
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 1.0; to: 0; duration: 300 }
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 0; to: 1.0; duration: 300 }
-            loops: 2
-        }
-        SequentialAnimation {
-            NumberAnimation { target: redBack; property: "opacity"; from: 1.0; to: 0; duration: 800 }
-            NumberAnimation { target: redBack; property: "opacity"; from: 0; to: 1.0; duration: 800 }
-            loops:Animation.Infinite
-        }
-    }
+//    ParallelAnimation {
+//        running: true
+//        SequentialAnimation {
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+//            loops:Animation.Infinite
+//        }
+//    }
     states: [
         State {
             name: ""

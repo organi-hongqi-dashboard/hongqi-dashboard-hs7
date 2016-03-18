@@ -4,53 +4,34 @@ import "content"
 import "content/warning"
 
 Window {
-    id: main
-    width: 1920
-    height: 720
-    color: "black"
-    visible: true
+	id: main
+	width: 1920
+	height: 720
+	color: "black"
+	visible: true
 
-    Rectangle {
-        id: carnation
+	Rectangle {
+		id: carnation
 
-//        focus: true
-//        Keys.onPressed: {
-//            switch(event.key) {
-//            case Qt.Key_1:
+		SplashPanel {
+			id: splashPanel
+			state: ""
 
-//                mainPanel.state = "functionMode"
-//                break;
-//            case Qt.Key_2:
-//                mainPanel.state = "normalMode"
+			onAnimationFinishedChanged: {
+				if( animationFinished === true ) {
+					mainPanel.state = "normalMode";
+					splashPanel.state = "";
+				}
+			}
+		}
 
-//                break;
-//            }
-//        }
+		MainPanel {
+			id: mainPanel
+			state: ""
+		}
 
-        //        Fps {
-        //            id: fps
-        //        }
-
-        SplashPanel {
-            id: splashPanel
-            state: ""
-
-            onAnimationFinishedChanged: {
-                if( animationFinished === true ) {
-                    mainPanel.state = "normalMode";
-                    splashPanel.state = "";
-                }
-            }
-        }
-
-        MainPanel {
-            id: mainPanel
-            state: ""
-        }
-
-
-        Component.onCompleted: {
-            splashPanel.state = "show"
-        }
-    }
+		Component.onCompleted: {
+			splashPanel.state = "show"
+		}
+	}
 }

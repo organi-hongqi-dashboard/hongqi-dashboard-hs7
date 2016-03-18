@@ -3,74 +3,60 @@ import QtQuick 2.2
 Item {
 	id: gearShiftTemHighErr
 
-	// common
-	Image {
-		id: textRec
-		x: 697
-		y: 233
-		opacity: 1.0
-		source: "qrc:/centralPanel/images/centralPanel/textRec.png"
-	}
-	Image {
-		id: warningSymbol
-		x: 775
-		y: 251
-		opacity: 1.0
-		source: "qrc:/centralPanel/images/centralPanel/warningSymbol.png"
-	}
-
-	// private
-	Image {
-		id: gearWhiteBg
-		x: 871
-		y: 339
-		opacity: 1.0
-		source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/gearWhiteBg.png"
-	}
-	Image {
-		id: gearRedBg
-		x: 781
-		y: 241
-		opacity: 1.0
-		source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/gearRedBg.png"
-	}
+    // common
 //    Image {
-//        id: temBg
-//        x: 881
-//        y: 394
+//        id: frameRec
+//        x: 709
+//        y: 253
 //        opacity: 1.0
-//        source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/temBg.png"
+//        source: "qrc:/warningPic/images/warningPic/frameRec.png"
 //    }
 //    Image {
-//        id: gearShiftTemHighText
-//        x: 867
-//        y: 258
+//        id: picLight
+//        x: 576
+//        y: 414
 //        opacity: 1.0
-//        source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/gearShiftTemHighText.png"
+//        source: "qrc:/warningPic/images/warningPic/picLight.png"
 //    }
-	Text {
-		anchors.centerIn: textRec
-		color: "white"
-		font.pixelSize: 32
-		font.family: fontName.fontCurrent
-		opacity: 1.0
-		text: qsTr("废气监控系统故障!")
-	}
+//    Image {
+//        id: picCar
+//        x: 669
+//        y: 390
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picCar.png"
+//    }
+//    Image {
+//        id: picWarn
+//        x: 869
+//        y: 504
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picWarn.png"
+//    }
 
-	ParallelAnimation {
-		running: true
-		SequentialAnimation {
-			NumberAnimation { target: warningSymbol; property: "opacity"; from: 1.0; to: 0; duration: 300 }
-			NumberAnimation { target: warningSymbol; property: "opacity"; from: 0; to: 1.0; duration: 300 }
-			loops: 2
-		}
-		SequentialAnimation {
-			NumberAnimation { target: gearRedBg; property: "opacity"; from: 1.0; to: 0; duration: 800 }
-			PauseAnimation { duration: 300 }
-			NumberAnimation { target: gearRedBg; property: "opacity"; from: 0; to: 1.0; duration: 800 }
-			loops:Animation.Infinite
-		}
-	}
+   // private
+    Image {
+        id: picMotorIcon
+        x: 907
+        y: 200
+        opacity: 1.0
+        source: "qrc:/warningPic/images/warningPic/picMotorIcon.png"
+    }
+    Image {
+        id: textGasOver
+        x: 759
+        y: 308
+        opacity: 1.0
+        source: "qrc:/warningPic/images/warningPic/textGasOver.png"
+    }
+
+//    ParallelAnimation {
+//        running: true
+//        SequentialAnimation {
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+//            loops:Animation.Infinite
+//        }
+//    }
 	states: [
 		State {
 			name: ""

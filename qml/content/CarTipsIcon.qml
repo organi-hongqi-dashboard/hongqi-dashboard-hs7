@@ -2,6 +2,7 @@ import QtQuick 2.2
 
 Rectangle {
 	id: carTipsIcon
+	opacity: 0.0
 
 	property bool leftHandDriveValue: CarStatus.leftHandDrive
 	property bool rightHandDriveValue: CarStatus.rightHandDrive
@@ -48,53 +49,50 @@ Rectangle {
 	property bool speedChangerErrPicValue: CarStatus.speedChangerErrPic
 	property bool speedChaTempHighPicValue: CarStatus.speedChaTempHighPic
 
+	property bool lightOn: false
 	Image {
 		id: leftHandDrive
-		x: 570
-		y: 20
-		opacity: true == leftHandDriveValue ? 1.0 : 0.0
+		x: 567
+		y: 36
+		visible: leftHandDriveValue || lightOn
 		source: "qrc:/carTipsIcon/images/carTipsIcon/leftHandDrive.png"
 	}
 	Image {
 		id: rightHandDrive
-		x: 1298
-		y: 20
-		opacity: true == rightHandDriveValue ? 1.0 : 0.0
+		x: 1208
+		y: 36
+		visible: rightHandDriveValue || lightOn
 		source: "qrc:/carTipsIcon/images/carTipsIcon/rightHandDrive.png"
 	}
 
 	Image {
 		id: airbagErrLight
-		//        x: 829
-		//        y: 662
-		x: 1815
-		y: 61
-		opacity: true == airBagLightValue ? 1.0 : 0.0
+		x: 705
+		y: 15
+		visible: airBagLightValue || lightOn
 		source: "qrc:/carTipsIcon/images/carTipsIcon/airbagErrLight.png"
 	}
 
 	Image {
 		id: engineErrLight
-		//        x: 1084
-		//        y: 667
-		x: 1126 - 10
-		y: 12 + 5
-		opacity: (true == engineFaultLightValue || true == milLightValue) ? 1.0 : 0.0
+		x: 212
+		y: 252
+		visible: (engineFaultLightValue || milLightValue) || lightOn
 		source: "qrc:/carTipsIcon/images/carTipsIcon/engineErrLight.png"
 	}
 	Image {
 		id: absErrLight
-		x: 1859
-		y: 24
-		opacity: true == absFaultValue ? 1.0 : 0.0
+		x: 806
+		y: 82
+		visible: absFaultValue || lightOn
 		source: "qrc:/carTipsIcon/images/carTipsIcon/absErrLight.png"
 	}
 
 	Image {
 		id: engineOilLight
-		x: 1787
-		y: 676
-		opacity: oilPressureLowValue ? 1.0 : 0.0
+		x: 1571
+		y: 199
+		visible: oilPressureLowValue || lightOn
 		width: 56
 		height: 22
 		source: "qrc:/carTipsIcon/images/carTipsIcon/engineOilLight.png"
@@ -102,9 +100,9 @@ Rectangle {
 
 	Image {
 		id: sysBattErr
-		x: 1852
-		y: 671
-		opacity: batteryFaultLightValue ? 1.0 : 0.0
+		x: 1776
+		y: 615
+		visible: batteryFaultLightValue || lightOn
 		width: 48
 		height: 30
 		source: "qrc:/carTipsIcon/images/carTipsIcon/sysBattErr.png"
@@ -112,25 +110,25 @@ Rectangle {
 
 	Image {
 		id: breakSysErrLight
-		//        x: 1018
-		//        y: 663
-		x: 1765
-		y: 25
-		opacity: true == brakeSystemFailureValue ? 1.0 : 0.0
+		x: 88
+		y: 612
+		visible: brakeSystemFailureValue || lightOn
 		source: "qrc:/carTipsIcon/images/carTipsIcon/breakSysErrLight.png"
 	}
 
 	Image {
 		id: epbErrLight
-		x: 1852
-		y: 622
-		opacity: parkingLightValue ? 1.0 : 0.0
+		x: 1188
+		y: 18
+		visible: parkingLightValue || lightOn
 		width: 48
 		height: 33
 		source: "qrc:/carTipsIcon/images/carTipsIcon/epbErrLight.png"
 	}
 
 	onEspLightValueChanged: {
+		if(lightOn)
+			return;
 		switch( espLightValue ) {
 		case 1:
 			espErrLightBlink.running = false;
@@ -159,21 +157,17 @@ Rectangle {
 
 	Image {
 		id: espErrLight
-		//        x: 769
-		//        y: 662
-		x: 1866
-		y: 105
-		visible: false
+		x: 647
+		y: 598
+		visible: true
 		source: "qrc:/carTipsIcon/images/carTipsIcon/espErrLight.png"
 	}
 
 	Image {
 		id: gearboxLight
-		//        x: 1245
-		//        y: 660
-		x: 1176
-		y: 12
-		opacity: gearboxErrLightValue ? 1.0 : 0.0
+		x: 294
+		y: 193
+		visible: gearboxErrLightValue  || lightOn
 		width: 49
 		height: 48
 		source: "qrc:/carTipsIcon/images/carTipsIcon/gearboxLight.png"
@@ -181,11 +175,9 @@ Rectangle {
 
 	Image {
 		id: changeBrakePadsLight
-		//		x: 1178
-		//		y: 664
-		x: 636
-		y: 25
-		opacity: true == changeBrakePadsLightValue ? 1.0 : 0.0
+		x: 675
+		y: 81
+		visible: changeBrakePadsLightValue || lightOn
 		width: 51
 		height: 39
 		source: "qrc:/carTipsIcon/images/carTipsIcon/changeBrakePadsLight.png"
@@ -193,9 +185,9 @@ Rectangle {
 
 	Image {
 		id: breakSys
-		x: 758
-		y: 23
-		opacity: true == electronicParkingLightValue ? 1.0 : 0.0
+		x: 741
+		y: 82
+		visible: electronicParkingLightValue || lightOn
 		source: "qrc:/carTipsIcon/images/carTipsIcon/breakSys.png"
 	}
 
@@ -553,4 +545,54 @@ Rectangle {
 	//        height: 30
 	//        source: "qrc:/carTipsIcon/images/carTipsIcon/positionLight.png"
 	//    }
+
+	states: [
+		State {
+			name: ""
+			PropertyChanges { target: carTipsIcon; opacity: 0.0 }
+		},
+		State {
+			name: "normalMode"
+			PropertyChanges { target: carTipsIcon; opacity: 1.0 }
+		}
+	]
+
+	transitions: [
+		Transition {
+			from: ""
+			to: "normalMode"
+			SequentialAnimation {
+				ScriptAction{
+					script: {
+						lightOn = true;
+					}
+				}
+
+				NumberAnimation { target: carTipsIcon; property: "opacity"; duration: 1000 }
+
+				PauseAnimation {
+					duration: 2000
+				}
+				ScriptAction{
+					script: {
+						lightOn = false;
+						switch( espLightValue ) {
+						case 1:
+							espErrLightBlink.running = false;
+							espErrLight.visible = true;
+							break;
+						case 2:
+							espErrLightBlink.running = true;
+							espErrLight.visible = true;
+							break;
+						default:
+							espErrLightBlink.running = false;
+							espErrLight.visible = false;
+							break;
+						}
+					}
+				}
+			}
+		}
+	]
 }

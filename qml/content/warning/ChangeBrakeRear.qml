@@ -4,60 +4,59 @@ Item {
     id: changeBrakeRear
 
     // common
+//    Image {
+//        id: frameRec
+//        x: 709
+//        y: 253
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/frameRec.png"
+//    }
+//    Image {
+//        id: picLight
+//        x: 576
+//        y: 414
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picLight.png"
+//    }
+//    Image {
+//        id: picCar
+//        x: 669
+//        y: 390
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picCar.png"
+//    }
+//    Image {
+//        id: picWarn
+//        x: 869
+//        y: 504
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picWarn.png"
+//    }
+
+   // private
     Image {
-        id: textRec
-        x: 697
-        y: 233
+        id: picfrictionPlate
+        x: 910
+        y: 198
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/textRec.png"
+        source: "qrc:/warningPic/images/warningPic/picfrictionPlate.png"
     }
     Image {
-        id: warningSymbol
-        x: 775
-        y: 251
+        id: textReplaceRear
+        x: 818
+        y: 308
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/warningSymbol.png"
+        source: "qrc:/warningPic/images/warningPic/textReplaceRear.png"
     }
 
-    // private
-    Image {
-        id: brake
-        x: 853
-        y: 337
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/changebreak/brake.png"
-    }
-    Image {
-        id: brakeRed
-        x: 836
-        y: 317
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/changebreak/brakeRed.png"
-    }
-
-    Text {
-        anchors.centerIn: textRec
-        color: "white"
-        font.pixelSize: 32
-        font.family: fontName.fontCurrent
-        opacity: 1.0
-		text: qsTr("  请更换后制动摩擦片!")
-    }
-
-    ParallelAnimation {
-        running: true
-        SequentialAnimation {
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 1.0; to: 0; duration: 300 }
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 0; to: 1.0; duration: 300 }
-            loops: 2
-        }
-        SequentialAnimation {
-            NumberAnimation { target: brakeRed; property: "opacity"; from: 1.0; to: 0; duration: 800 }
-            PauseAnimation { duration: 300 }
-            NumberAnimation { target: brakeRed; property: "opacity"; from: 0; to: 1.0; duration: 800 }
-            loops:Animation.Infinite
-        }
-    }
+//    ParallelAnimation {
+//        running: true
+//        SequentialAnimation {
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+//            loops:Animation.Infinite
+//        }
+//    }
     states: [
         State {
             name: ""

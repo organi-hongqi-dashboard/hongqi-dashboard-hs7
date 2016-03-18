@@ -41,7 +41,7 @@ CarStatus::CarStatus(const QString &serialDev, QSerialPort *parent)
 
 void CarStatus::initValues()
 {
-    m_active = false;
+	m_active = true;
 
 #ifdef Todi
     m_projectName = "Todi";
@@ -66,7 +66,7 @@ void CarStatus::initValues()
     m_key3 = false;
     m_key4 = false;
     m_igOn = false;
-    m_gear = 0;
+	m_gear = 14;
     m_gearMode = 0;
     m_keyStatus = 0;
     m_lfDoor = false;

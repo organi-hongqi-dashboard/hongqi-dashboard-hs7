@@ -4,73 +4,59 @@ Item {
     id: gearShiftTemHighErr
 
     // common
-    Image {
-        id: textRec
-        x: 697
-        y: 233
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/textRec.png"
-    }
-    Image {
-        id: warningSymbol
-        x: 775
-        y: 251
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/warningSymbol.png"
-    }
-
-    // private
-    Image {
-        id: gearWhiteBg
-        x: 871
-        y: 339
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/gearWhiteBg.png"
-    }
-    Image {
-        id: gearRedBg
-        x: 781
-        y: 241
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/gearRedBg.png"
-    }
 //    Image {
-//        id: temBg
-//        x: 881
-//        y: 394
+//        id: frameRec
+//        x: 709
+//        y: 253
 //        opacity: 1.0
-//        source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/temBg.png"
+//        source: "qrc:/warningPic/images/warningPic/frameRec.png"
 //    }
 //    Image {
-//        id: gearShiftTemHighText
-//        x: 867
-//        y: 258
+//        id: picLight
+//        x: 576
+//        y: 414
 //        opacity: 1.0
-//        source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/gearShiftTemHighText.png"
+//        source: "qrc:/warningPic/images/warningPic/picLight.png"
 //    }
-	Text {
-		anchors.centerIn: textRec
-		color: "white"
-		font.pixelSize: 32
-		font.family: fontName.fontCurrent
-		opacity: 1.0
-		text: qsTr("变速器故障!")
-	}
+//    Image {
+//        id: picCar
+//        x: 669
+//        y: 390
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picCar.png"
+//    }
+//    Image {
+//        id: picWarn
+//        x: 869
+//        y: 504
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picWarn.png"
+//    }
 
-    ParallelAnimation {
-        running: true
-        SequentialAnimation {
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 1.0; to: 0; duration: 300 }
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 0; to: 1.0; duration: 300 }
-            loops: 2
-        }
-        SequentialAnimation {
-            NumberAnimation { target: gearRedBg; property: "opacity"; from: 1.0; to: 0; duration: 800 }
-            PauseAnimation { duration: 300 }
-            NumberAnimation { target: gearRedBg; property: "opacity"; from: 0; to: 1.0; duration: 800 }
-            loops:Animation.Infinite
-        }
+   // private
+    Image {
+        id: picGearboxIcon
+        x: 913
+        y: 190
+        opacity: 1.0
+        source: "qrc:/warningPic/images/warningPic/picGearboxIcon.png"
     }
+    Image {
+        id: textGearbox
+        x: 878
+        y: 308
+        opacity: 1.0
+        source: "qrc:/warningPic/images/warningPic/textGearbox.png"
+    }
+
+//    ParallelAnimation {
+//        running: true
+//        SequentialAnimation {
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+//            loops:Animation.Infinite
+//        }
+//    }
     states: [
         State {
             name: ""

@@ -4,63 +4,52 @@ Item {
     id: brakingErr
 
     // common
+//    Image {
+//        id: frameRec
+//        x: 709
+//        y: 253
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/frameRec.png"
+//    }
+//    Image {
+//        id: picLight
+//        x: 576
+//        y: 414
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picLight.png"
+//    }
+//    Image {
+//        id: picCar
+//        x: 669
+//        y: 390
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picCar.png"
+//    }
+//    Image {
+//        id: picWarn
+//        x: 869
+//        y: 504
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picWarn.png"
+//    }
+
+   // private
     Image {
-        id: textRec
-        x: 697
-        y: 233
+        id: textBrakeFluid
+        x: 848
+        y: 308
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/textRec.png"
-    }
-    Image {
-        id: warningSymbol
-        x: 775
-        y: 251
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/warningSymbol.png"
+        source: "qrc:/warningPic/images/warningPic/textBrakeFluid.png"
     }
 
-    // private
-    Image {
-        id: displayBG
-        x: 830
-        y: 238
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/brakingErr/displayBG.png"
-    }
-    Image {
-        id: triBG
-        x: 1100
-        y: 437
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/brakingErr/triBG.png"
-    }
-    Image {
-        id: brakeLevelLowText
-        x: 852
-        y: 259
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/brakingErr/brakeLevelLowText.png"
-    }
-
-    ParallelAnimation {
-        running: true
-        SequentialAnimation {
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 1.0; to: 0; duration: 300 }
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 0; to: 1.0; duration: 300 }
-            loops: 2
-        }
-        SequentialAnimation {
-            NumberAnimation { target: triBG; property: "opacity"; from: 0; to: 1.0; duration: 0 }
-            NumberAnimation { target: triBG; property: "x"; from: 1100; to: 1020; duration: 400 }
-            NumberAnimation { target: triBG; property: "opacity"; from: 1.0; to: 0; duration: 400 }
-            NumberAnimation { target: triBG; property: "opacity"; from: 0; to: 1.0; duration: 400 }
-            NumberAnimation { target: triBG; property: "opacity"; from: 1.0; to: 0; duration: 400 }
-            NumberAnimation { target: triBG; property: "opacity"; from: 0; to: 1.0; duration: 400 }
-            NumberAnimation { target: triBG; property: "opacity"; from: 1.0; to: 0; duration: 400 }
-            NumberAnimation { target: triBG; property: "x"; from: 1020; to: 1080; duration: 0 }
-            loops:Animation.Infinite
-        }
-    }
+//    ParallelAnimation {
+//        running: true
+//        SequentialAnimation {
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+//            loops:Animation.Infinite
+//        }
+//    }
     states: [
         State {
             name: ""

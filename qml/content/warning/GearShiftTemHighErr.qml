@@ -4,65 +4,59 @@ Item {
     id: gearShiftTemHighErr
 
     // common
+//    Image {
+//        id: frameRec
+//        x: 709
+//        y: 253
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/frameRec.png"
+//    }
+//    Image {
+//        id: picLight
+//        x: 576
+//        y: 414
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picLight.png"
+//    }
+//    Image {
+//        id: picCar
+//        x: 669
+//        y: 390
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picCar.png"
+//    }
+//    Image {
+//        id: picWarn
+//        x: 869
+//        y: 504
+//        opacity: 1.0
+//        source: "qrc:/warningPic/images/warningPic/picWarn.png"
+//    }
+
+   // private
     Image {
-        id: textRec
-        x: 697
-        y: 233
+        id: picGearboxIcon
+        x: 913
+        y: 190
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/textRec.png"
+        source: "qrc:/warningPic/images/warningPic/picGearboxIcon.png"
     }
     Image {
-        id: warningSymbol
-        x: 775
-        y: 251
+        id: textGearbox
+        x: 878
+        y: 308
         opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/warningSymbol.png"
+        source: "qrc:/warningPic/images/warningPic/textGearbox.png"
     }
 
-    // private
-    Image {
-        id: gearWhiteBg
-        x: 871
-        y: 339
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/gearWhiteBg.png"
-    }
-    Image {
-        id: gearRedBg
-        x: 781
-        y: 241
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/gearRedBg.png"
-    }
-    Image {
-        id: temBg
-        x: 881
-        y: 394
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/temBg.png"
-    }
-    Image {
-        id: gearShiftTemHighText
-        x: 867
-        y: 258
-        opacity: 1.0
-        source: "qrc:/centralPanel/images/centralPanel/gearShiftTemHighErr/gearShiftTemHighText.png"
-    }
-
-    ParallelAnimation {
-        running: true
-        SequentialAnimation {
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 1.0; to: 0; duration: 300 }
-            NumberAnimation { target: warningSymbol; property: "opacity"; from: 0; to: 1.0; duration: 300 }
-            loops: 2
-        }
-        SequentialAnimation {
-            NumberAnimation { target: gearRedBg; property: "opacity"; from: 1.0; to: 0; duration: 800 }
-            PauseAnimation { duration: 300 }
-            NumberAnimation { target: gearRedBg; property: "opacity"; from: 0; to: 1.0; duration: 800 }
-            loops:Animation.Infinite
-        }
-    }
+//    ParallelAnimation {
+//        running: true
+//        SequentialAnimation {
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 1.0; to: 0; duration: 800 }
+//            NumberAnimation { target: picWarn; property: "opacity"; from: 0; to: 1.0; duration: 800 }
+//            loops:Animation.Infinite
+//        }
+//    }
     states: [
         State {
             name: ""
