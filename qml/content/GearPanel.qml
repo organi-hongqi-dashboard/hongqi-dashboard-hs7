@@ -62,8 +62,6 @@ Item {
 		x: 1200
 		y: 591
 		opacity: 1.0
-		width: 87
-		height: 59
 		source: "qrc:/centrePanel/images/centrePanel/gearN.png"
 	}
 }

@@ -190,46 +190,46 @@ Rectangle {
 		source: "qrc:/centrePanel/images/centrePanel/tripUint.png"
 	}
 
-	property int zeroOdoNum: 0
-	property int iOdo: 0
-	onValueOdoChanged: {
-		zeroOdoNum = 0;
-		iOdo = valueOdo;
-		while( iOdo != 0 ){
-			zeroOdoNum++;
-			iOdo /= 10;
-		}
+//	property int zeroOdoNum: 0
+//	property int iOdo: 0
+//	onValueOdoChanged: {
+//		zeroOdoNum = 0;
+//		iOdo = valueOdo;
+//		while( iOdo != 0 ){
+//			zeroOdoNum++;
+//			iOdo /= 10;
+//		}
 
-		zeroOdoNum = 6 - zeroOdoNum;
-		switch(zeroOdoNum) {
-		case 0:
-			odoZero.text = "";
-			break;
-		case 1:
-			odoZero.text = "0";
-			break;
-		case 2:
-			odoZero.text = "00";
-			break;
-		case 3:
-			odoZero.text = "000";
-			break;
-		case 4:
-			odoZero.text = "0000";
-			break;
-		case 5:
-			odoZero.text = "00000";
-			break;
-		default:
-			odoZero.text = "000000";
-			break;
-		}
+//		zeroOdoNum = 6 - zeroOdoNum;
+//		switch(zeroOdoNum) {
+//		case 0:
+//			odoZero.text = "";
+//			break;
+//		case 1:
+//			odoZero.text = "0";
+//			break;
+//		case 2:
+//			odoZero.text = "00";
+//			break;
+//		case 3:
+//			odoZero.text = "000";
+//			break;
+//		case 4:
+//			odoZero.text = "0000";
+//			break;
+//		case 5:
+//			odoZero.text = "00000";
+//			break;
+//		default:
+//			odoZero.text = "000000";
+//			break;
+//		}
 
-		if( valueOdo == 0 || valueOdo > 999999 )
-			odoV.text = "";
-		else
-			odoV.text = valueOdo;
-	}
+//		if( valueOdo == 0 || valueOdo > 999999 )
+//			odoV.text = "";
+//		else
+//			odoV.text = valueOdo;
+//	}
 
 	Image {
 		id: odoUint
@@ -243,7 +243,7 @@ Rectangle {
 
 	Text {
 		id: odoV
-		text: ""
+		text: valueOdo
 		font.pixelSize: 32
 		font.family: fontName.fontCurrent
 		color: "white"
@@ -252,15 +252,15 @@ Rectangle {
 		anchors.rightMargin: 5
 	}
 
-	Text {
-		id: odoZero
-		text: "000000"
-		font.pixelSize: 32
-		font.family: fontName.fontCurrent
-		color: "gray"
-		y: 664
-		anchors.right: odoV.left
-	}
+//	Text {
+//		id: odoZero
+//		text: "000000"
+//		font.pixelSize: 32
+//		font.family: fontName.fontCurrent
+//		color: "gray"
+//		y: 664
+//		anchors.right: odoV.left
+//	}
 
 
 	GearPanel {
