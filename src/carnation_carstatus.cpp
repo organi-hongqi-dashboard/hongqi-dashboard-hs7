@@ -143,7 +143,7 @@ void CarnationCarStatus::getGeneralSerial(GeneralInfo data)
         BoolValueChangeSet(hoodDoor, data.hoodDoor);
         BoolValueChangeSet(trunkDoor, data.trunkDoor);
         NumValueErrChangeSet(odo, data.odo, (uint32_t) 0, (uint32_t) 999999, 0xFFFFFF);
-        NumValueChangeSet(avgSpeed, data.avgSpeed, (uint32_t) 0, (uint32_t) 240);
+		NumValueErrChangeSet(avgSpeed, data.avgSpeed, (uint32_t) 0, (uint32_t) 240, 0xFF);
         BoolValueChangeSet(avgFuelUnit, data.avgFuelUnit);
         BoolValueChangeSet(instantaneousFuelUnit, data.instantaneousFuelUnit);
         NumValueErrChangeSet(remainMileage, data.remainMileage, (uint16_t) 0, (uint16_t) 999, 0xFFFF);
