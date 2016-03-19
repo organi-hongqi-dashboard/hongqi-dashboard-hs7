@@ -55,16 +55,16 @@ Item {
 			x: 157
 			y: 492
 			opacity: {
-				if(valueRpm >= 0 && valueRpm <= 7000)
-					return (1.0 - valueRpm/8000.0);
+				if(valueRpm >= 0 && valueRpm < 1000)
+					return (1.0 - valueRpm/2500.0);
 				else
-					return 0.1
+					return (0.2 - valueRpm/70000.0);
 			}
 			scale: {
 				if(valueRpm >= 0 && valueRpm < 1000)
-					return (1.5 - (valueRpm)/2000.0);
+					return (1.2 - (valueRpm)/3333.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -76,16 +76,16 @@ Item {
 			x: 107
 			y: 343
 			opacity: {
-				if(valueRpm >= 0 && valueRpm <= 7000)
-					return (1.0 - Math.abs(valueRpm - 1000)/8000.0);
+				if(valueRpm > 0 && valueRpm < 2000)
+					return (1.0 - Math.abs(valueRpm - 1000)/2500.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueRpm - 1000)/70000.0);
 			}
 			scale: {
 				if(valueRpm > 0 && valueRpm < 2000)
-					return (1.5 - Math.abs(valueRpm - 1000)/2000.0);
+					return (1.2 - Math.abs(valueRpm - 1000)/3333.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -97,16 +97,16 @@ Item {
 			x: 156
 			y: 200
 			opacity: {
-				if(valueRpm >= 0 && valueRpm <= 7000)
-					return (1.0 - Math.abs(valueRpm - 2000)/8000.0);
+				if(valueRpm > 1000 && valueRpm < 3000)
+					return (1.0 - Math.abs(valueRpm - 2000)/2500.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueRpm - 2000)/70000.0);
 			}
 			scale: {
 				if(valueRpm > 1000 && valueRpm < 3000)
-					return (1.5 - Math.abs(valueRpm - 2000)/2000.0);
+					return (1.2 - Math.abs(valueRpm - 2000)/3333.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -118,16 +118,16 @@ Item {
 			x: 279
 			y: 111
 			opacity: {
-				if(valueRpm >= 0 && valueRpm <= 7000)
-					return (1.0 - Math.abs(valueRpm - 3000)/8000.0);
+				if(valueRpm > 2000 && valueRpm < 4000)
+					return (1.0 - Math.abs(valueRpm - 3000)/2500.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueRpm - 3000)/70000.0);
 			}
 			scale: {
 				if(valueRpm > 2000 && valueRpm < 4000)
-					return (1.5 - Math.abs(valueRpm - 3000)/2000.0);
+					return (1.2 - Math.abs(valueRpm - 3000)/3333.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -139,16 +139,16 @@ Item {
 			x: 428
 			y: 110
 			opacity: {
-				if(valueRpm >= 0 && valueRpm <= 7000)
-					return (1.0 - Math.abs(valueRpm - 4000)/8000.0);
+				if(valueRpm > 3000 && valueRpm < 5000)
+					return (1.0 - Math.abs(valueRpm - 4000)/2500.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueRpm - 4000)/70000.0);
 			}
 			scale: {
 				if(valueRpm > 3000 && valueRpm < 5000)
-					return (1.5 - Math.abs(valueRpm - 4000)/2000.0);
+					return (1.2 - Math.abs(valueRpm - 4000)/3333.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -160,16 +160,16 @@ Item {
 			x: 547
 			y: 200
 			opacity: {
-				if(valueRpm >= 0 && valueRpm <= 7000)
-					return (1.0 - Math.abs(valueRpm - 5000)/8000.0);
+				if(valueRpm > 4000 && valueRpm < 6000)
+					return (1.0 - Math.abs(valueRpm - 5000)/2500.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueRpm - 5000)/70000.0);
 			}
 			scale: {
 				if(valueRpm > 4000 && valueRpm < 6000)
-					return (1.5 - Math.abs(valueRpm - 5000)/2000.0);
+					return (1.2 - Math.abs(valueRpm - 5000)/3333.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -181,16 +181,16 @@ Item {
 			x: 599
 			y: 346
 			opacity: {
-				if(valueRpm >= 0 && valueRpm <= 7000)
-					return (1.0 - Math.abs(valueRpm - 6000)/8000.0);
+				if(valueRpm > 5000 && valueRpm < 7000)
+					return (1.0 - Math.abs(valueRpm - 6000)/2500.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueRpm - 6000)/70000.0);
 			}
 			scale: {
 				if(valueRpm > 5000 && valueRpm < 7000)
-					return (1.5 - Math.abs(valueRpm - 6000)/2000.0);
+					return (1.2 - Math.abs(valueRpm - 6000)/3333.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -202,16 +202,16 @@ Item {
 			x: 548
 			y: 504
 			opacity: {
-				if(valueRpm >= 0 && valueRpm <= 7000)
-					return (1.0 - Math.abs(valueRpm - 7000)/8000.0);
+				if(valueRpm > 6000 && valueRpm <= 7000)
+					return (1.0 - Math.abs(valueRpm - 7000)/2500.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueRpm - 7000)/70000.0);
 			}
 			scale: {
 				if(valueRpm > 6000 && valueRpm <= 7000)
-					return (1.5 - (7000 - valueRpm)/2000.0);
+					return (1.2 - (7000 - valueRpm)/3333.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }

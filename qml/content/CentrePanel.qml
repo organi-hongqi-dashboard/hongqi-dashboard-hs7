@@ -281,7 +281,16 @@ Rectangle {
 			source: "qrc:/common/images/common/runningInfoTemp.png"
 		}
 
-
+		Text {
+			id: averageSpeedNC
+			text: qsTr("- -")
+			anchors.right: runningInfoTemp.right
+			anchors.rightMargin: 180 +10
+			y:313
+			font.pixelSize: 52
+			color: "white"
+			visible: getAvgSpeed == 255
+		}
 
 		DigitValue {
 			id: averageSpeed
@@ -299,6 +308,7 @@ Rectangle {
 			icon8: "qrc:/common/images/common/num8.png"
 			icon9: "qrc:/common/images/common/num9.png"
 			value: getAvgSpeed
+			visible: getAvgSpeed !== 255
 		}
 
 		DigitValue {

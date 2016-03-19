@@ -23,16 +23,16 @@ Rectangle {
 			x: 1337
 			y: 498
 			opacity: {
-				if(valueSpeed >= 0 && valueSpeed <= 240)
-					return (1.0 - valueSpeed/266.0);
+				if(valueSpeed >= 0 && valueSpeed < 20)
+					return (1.0 - valueSpeed/50.0);
 				else
-					return 0.1
+					return (0.2 - valueSpeed/2400.0);
 			}
 			scale: {
 				if(valueSpeed >= 0 && valueSpeed < 20)
-					return (1.3 - valueSpeed/66.0);
+					return (1.2 - valueSpeed/66.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -44,16 +44,16 @@ Rectangle {
 			x: 1295
 			y: 414
 			opacity: {
-				if(valueSpeed >= 0 && valueSpeed <= 240)
-					return (1.0 - Math.abs(valueSpeed - 20)/266.0);
+				if(valueSpeed >= 0 && valueSpeed < 40)
+					return (1.0 - Math.abs(valueSpeed- 20)/50.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueSpeed- 20)/2400.0);
 			}
 			scale: {
 				if(valueSpeed > 0 && valueSpeed < 40)
-					return (1.3 - Math.abs(valueSpeed - 20)/66.0);
+					return (1.2 - Math.abs(valueSpeed - 20)/66.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -65,16 +65,16 @@ Rectangle {
 			x: 1283
 			y: 321
 			opacity: {
-				if(valueSpeed >= 0 && valueSpeed <= 240)
-					return (1.0 - Math.abs(valueSpeed - 40)/266.0);
+				if(valueSpeed >= 20 && valueSpeed < 60)
+					return (1.0 - Math.abs(valueSpeed- 40)/50.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueSpeed- 40)/2400.0);
 			}
 			scale: {
 				if(valueSpeed > 20 && valueSpeed < 60)
-					return (1.3 - Math.abs(valueSpeed - 40)/66.0);
+					return (1.2 - Math.abs(valueSpeed - 40)/66.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -86,16 +86,16 @@ Rectangle {
 			x: 1308
 			y: 236
 			opacity: {
-				if(valueSpeed >= 0 && valueSpeed <= 240)
-					return (1.0 - Math.abs(valueSpeed - 60)/266.0);
+				if(valueSpeed >= 40 && valueSpeed < 80)
+					return (1.0 - Math.abs(valueSpeed- 60)/50.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueSpeed- 60)/2400.0);
 			}
 			scale: {
 				if(valueSpeed > 40 && valueSpeed < 80)
-					return (1.3 - Math.abs(valueSpeed - 60)/66.0);
+					return (1.2 - Math.abs(valueSpeed - 60)/66.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -107,16 +107,16 @@ Rectangle {
 			x: 1358
 			y: 170
 			opacity: {
-				if(valueSpeed >= 0 && valueSpeed <= 240)
-					return (1.0 - Math.abs(valueSpeed - 80)/266.0);
+				if(valueSpeed >= 60 && valueSpeed < 100)
+					return (1.0 - Math.abs(valueSpeed- 80)/50.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueSpeed- 80)/2400.0);
 			}
 			scale: {
 				if(valueSpeed > 60 && valueSpeed < 100)
-					return (1.3 - Math.abs(valueSpeed - 80)/66.0);
+					return (1.2 - Math.abs(valueSpeed - 80)/66.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -128,16 +128,16 @@ Rectangle {
 			x: 1416
 			y: 123
 			opacity: {
-				if(valueSpeed >= 0 && valueSpeed <= 240)
-					return (1.0 - Math.abs(valueSpeed - 100)/266.0);
+				if(valueSpeed >= 80 && valueSpeed < 120)
+					return (1.0 - Math.abs(valueSpeed- 100)/50.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueSpeed- 100)/2400.0);
 			}
 			scale: {
 				if(valueSpeed > 80 && valueSpeed < 120)
-					return (1.3 - Math.abs(valueSpeed - 100)/66.0);
+					return (1.2 - Math.abs(valueSpeed - 100)/66.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -149,16 +149,16 @@ Rectangle {
 			x: 1508
 			y: 94
 			opacity: {
-				if(valueSpeed >= 0 && valueSpeed <= 240)
-					return (1.0 - Math.abs(valueSpeed - 120)/266.0);
+				if(valueSpeed >= 100 && valueSpeed < 140)
+					return (1.0 - Math.abs(valueSpeed- 120)/50.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueSpeed- 120)/2400.0);
 			}
 			scale: {
 				if(valueSpeed > 100 && valueSpeed < 140)
-					return (1.3 - Math.abs(valueSpeed - 120)/66.0);
+					return (1.2 - Math.abs(valueSpeed - 120)/66.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -170,16 +170,16 @@ Rectangle {
 			x: 1590
 			y: 119
 			opacity: {
-				if(valueSpeed >= 0 && valueSpeed <= 240)
-					return (1.0 - Math.abs(valueSpeed - 140)/266.0);
+				if(valueSpeed >= 120 && valueSpeed < 160)
+					return (1.0 - Math.abs(valueSpeed- 140)/50.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueSpeed- 140)/2400.0);
 			}
 			scale: {
 				if(valueSpeed > 120 && valueSpeed < 160)
-					return (1.3 - Math.abs(valueSpeed - 140)/66.0);
+					return (1.2 - Math.abs(valueSpeed - 140)/66.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -191,16 +191,16 @@ Rectangle {
 			x: 1666
 			y: 170
 			opacity: {
-				if(valueSpeed >= 0 && valueSpeed <= 240)
-					return (1.0 - Math.abs(valueSpeed - 160)/266.0);
+				if(valueSpeed >= 140 && valueSpeed < 180)
+					return (1.0 - Math.abs(valueSpeed- 160)/50.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueSpeed- 160)/2400.0);
 			}
 			scale: {
 				if(valueSpeed > 140 && valueSpeed < 180)
-					return (1.3 - Math.abs(valueSpeed - 160)/66.0);
+					return (1.2 - Math.abs(valueSpeed - 160)/66.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -212,16 +212,16 @@ Rectangle {
 			x: 1713
 			y: 236
 			opacity: {
-				if(valueSpeed >= 0 && valueSpeed <= 240)
-					return (1.0 - Math.abs(valueSpeed - 180)/266.0);
+				if(valueSpeed >= 160 && valueSpeed < 200)
+					return (1.0 - Math.abs(valueSpeed- 180)/50.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueSpeed- 180)/2400.0);
 			}
 			scale: {
 				if(valueSpeed > 160 && valueSpeed < 200)
-					return (1.3 - Math.abs(valueSpeed - 180)/66.0);
+					return (1.2 - Math.abs(valueSpeed - 180)/66.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -233,16 +233,16 @@ Rectangle {
 			x: 1724
 			y: 321
 			opacity: {
-				if(valueSpeed >= 0 && valueSpeed <= 240)
-					return (1.0 - Math.abs(valueSpeed - 200)/266.0);
+				if(valueSpeed >= 180 && valueSpeed < 220)
+					return (1.0 - Math.abs(valueSpeed- 200)/50.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueSpeed- 200)/2400.0);
 			}
 			scale: {
 				if(valueSpeed > 180 && valueSpeed < 220)
-					return (1.3 - Math.abs(valueSpeed - 200)/66.0);
+					return (1.2 - Math.abs(valueSpeed - 200)/66.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -254,16 +254,16 @@ Rectangle {
 			x: 1719
 			y: 413
 			opacity: {
-				if(valueSpeed >= 0 && valueSpeed <= 240)
-					return (1.0 - Math.abs(valueSpeed - 220)/266.0);
+				if(valueSpeed >= 200 && valueSpeed < 240)
+					return (1.0 - Math.abs(valueSpeed- 220)/50.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueSpeed- 220)/2400.0);
 			}
 			scale: {
 				if(valueSpeed > 200 && valueSpeed < 240)
-					return (1.3 - Math.abs(valueSpeed - 220)/66.0);
+					return (1.2 - Math.abs(valueSpeed - 220)/66.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
@@ -275,16 +275,16 @@ Rectangle {
 			x: 1676
 			y: 497
 			opacity: {
-				if(valueSpeed >= 0 && valueSpeed <= 240)
-					return (1.0 - Math.abs(valueSpeed - 240)/266.0);
+				if(valueSpeed > 220 && valueSpeed <= 240)
+					return (1.0 - Math.abs(valueSpeed- 240)/50.0);
 				else
-					return 0.1
+					return (0.2 - Math.abs(valueSpeed- 240)/2400.0);
 			}
 			scale: {
 				if(valueSpeed > 220 && valueSpeed <= 240)
-					return (1.3 - (240 - valueSpeed)/66.0);
+					return (1.2 - (240 - valueSpeed)/66.0);
 				else
-					return 1.0
+					return 0.9
 			}
 			Behavior on opacity { SpringAnimation{ spring: 1.2; damping: 0.2;} }
 			Behavior on scale { SpringAnimation{ spring: 1.2; damping: 0.2;} }
